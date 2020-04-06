@@ -1,4 +1,4 @@
-#if ENABLE_PLAYFABADMIN_API
+#if ENABLE_PLAYFABADMIN_API || UNITY_EDITOR
 
 using PlayFab.AdminModels;
 using PlayFab.Internal;

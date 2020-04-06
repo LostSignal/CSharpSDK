@@ -1,4 +1,4 @@
-#if ENABLE_PLAYFABSERVER_API
+#if ENABLE_PLAYFABSERVER_API || UNITY_EDITOR
 
 using PlayFab.ServerModels;
 using PlayFab.Internal;

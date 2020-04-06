@@ -46,7 +46,7 @@ namespace PlayFab
             if (requestContext.ClientSessionTicket != null) { authKey = "X-Authorization"; authValue = requestContext.ClientSessionTicket; }
 #endif
 
-#if ENABLE_PLAYFABSERVER_API || ENABLE_PLAYFABADMIN_API
+#if ENABLE_PLAYFABSERVER_API || ENABLE_PLAYFABADMIN_API || UNITY_EDITOR
             if (requestSettings.DeveloperSecretKey != null) { authKey = "X-SecretKey"; authValue = requestSettings.DeveloperSecretKey; }
 #endif
 
