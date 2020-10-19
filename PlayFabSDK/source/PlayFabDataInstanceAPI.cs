@@ -2,6 +2,11 @@
 
 using PlayFab.DataModels;
 using PlayFab.Internal;
+#pragma warning disable 0649
+using System;
+// This is required for the Obsolete Attribute flag
+//  which is not always present in all API's
+#pragma warning restore 0649
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -231,7 +236,6 @@ namespace PlayFab
 
             return new PlayFabResult<SetObjectsResponse> { Result = result, CustomData = customData };
         }
-
     }
 }
 #endif

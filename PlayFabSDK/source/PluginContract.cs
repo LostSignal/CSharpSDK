@@ -1,4 +1,4 @@
-﻿namespace PlayFab
+namespace PlayFab
 {
     public enum PluginContract
     {

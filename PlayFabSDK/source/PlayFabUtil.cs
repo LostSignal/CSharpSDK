@@ -12,7 +12,7 @@ namespace PlayFab
     {
         public string SortProperty { get; set; }
 
-        public Unordered() { }
+        public Unordered() {}
 
         public Unordered(string sortProperty)
         {
@@ -25,8 +25,8 @@ namespace PlayFab
 #pragma warning disable 0414
         private static string _localSettingsFileName = "playfab.local.settings.json";
 #pragma warning restore 0414
-        public static readonly string[] DefaultDateTimeFormats = { // All parseable ISO 8601 formats for DateTime.[Try]ParseExact - Lets us deserialize any legacy timestamps in one of these formats
-            // These are the standard format with ISO 8601 UTC markers (T/Z)
+        public static readonly string[] DefaultDateTimeFormats =   // All parseable ISO 8601 formats for DateTime.[Try]ParseExact - Lets us deserialize any legacy timestamps in one of these formats
+        {   // These are the standard format with ISO 8601 UTC markers (T/Z)
             "yyyy-MM-ddTHH:mm:ss.FFFFFFZ",
             "yyyy-MM-ddTHH:mm:ss.FFFFZ",
             "yyyy-MM-ddTHH:mm:ss.FFFZ", // DEFAULT_UTC_OUTPUT_INDEX
@@ -55,7 +55,7 @@ namespace PlayFab
         private static StringBuilder _sb;
         /// <summary>
         /// A threadsafe way to block and load a text file
-        /// 
+        ///
         /// Load a text file, and return the file as text.
         /// Used for small (usually json) files.
         /// </summary>

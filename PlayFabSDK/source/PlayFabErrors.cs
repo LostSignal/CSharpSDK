@@ -509,6 +509,11 @@ namespace PlayFab
         PartyRequestsThrottledFromRateLimiter = 1504,
         XboxServiceTooManyRequests = 1505,
         NintendoSwitchNotEnabledForTitle = 1506,
+        RequestMultiplayerServersThrottledFromRateLimiter = 1507,
+        TitleDataOverrideNotFound = 1508,
+        DuplicateKeys = 1509,
+        WasNotCreatedWithCloudRoot = 1510,
+        LegacyMultiplayerServersDeprecated = 1511,
         MatchmakingEntityInvalid = 2001,
         MatchmakingPlayerAttributesInvalid = 2002,
         MatchmakingQueueNotFound = 2016,
@@ -591,6 +596,11 @@ namespace PlayFab
         ExperimentationExperimentSchedulingInProgress = 7014,
         MaxActionDepthExceeded = 8000,
         TitleNotOnUpdatedPricingPlan = 9000,
+        SegmentManagementTitleNotInFlight = 10000,
+        SegmentManagementNoExpressionTree = 10001,
+        SegmentManagementTriggerActionCountOverLimit = 10002,
+        SegmentManagementSegmentCountOverLimit = 10003,
+        SegmentManagementInvalidSegmentId = 10004,
         SnapshotNotFound = 11000
     }
 
@@ -601,6 +611,7 @@ namespace PlayFab
         public PlayFabErrorCode Error;
         public string ErrorMessage;
         public Dictionary<string, string[]> ErrorDetails;
+        public string RequestId;
 
         private static readonly StringBuilder Sb = new StringBuilder();
         /// <summary>
@@ -618,6 +629,11 @@ namespace PlayFab
             else
             {
                 Sb.Append("Http Code: " + HttpCode.ToString() + "\nHttp Status: " + HttpStatus + "\nError: " + Error.ToString() + "\n");
+            }
+
+            if (RequestId != null)
+            {
+                Sb.Append("\n " + RequestId + "\n");
             }
 
             if (ErrorDetails == null)

@@ -1,7 +1,12 @@
-#if (ENABLE_PLAYFABSERVER_API || UNITY_EDITOR) && !DISABLE_PLAYFAB_STATIC_API
+#if ENABLE_PLAYFABSERVER_API && !DISABLE_PLAYFAB_STATIC_API
 
 using PlayFab.MatchmakerModels;
 using PlayFab.Internal;
+#pragma warning disable 0649
+using System;
+// This is required for the Obsolete Attribute flag
+//  which is not always present in all API's
+#pragma warning restore 0649
 using System.Collections.Generic;
 using System.Threading.Tasks;
 

@@ -9,18 +9,17 @@ namespace PlayFab.CloudScriptModels
         /// <summary>
         /// UTC time stamp of attribution
         /// </summary>
-        public DateTime AttributedAt ;
+        public DateTime AttributedAt;
 
         /// <summary>
         /// Attribution campaign identifier
         /// </summary>
-        public string CampaignId ;
+        public string CampaignId;
 
         /// <summary>
         /// Attribution network name
         /// </summary>
-        public string Platform ;
-
+        public string Platform;
     }
 
     public enum CloudScriptRevisionOption
@@ -35,18 +34,17 @@ namespace PlayFab.CloudScriptModels
         /// <summary>
         /// The email address
         /// </summary>
-        public string EmailAddress ;
+        public string EmailAddress;
 
         /// <summary>
         /// The name of the email info data
         /// </summary>
-        public string Name ;
+        public string Name;
 
         /// <summary>
         /// The verification status of the email
         /// </summary>
-        public EmailVerificationStatus? VerificationStatus ;
-
+        public EmailVerificationStatus? VerificationStatus;
     }
 
     public enum ContinentCode
@@ -338,7 +336,6 @@ namespace PlayFab.CloudScriptModels
         /// Entity type. See https://docs.microsoft.com/gaming/playfab/features/data/entities/available-built-in-entity-types
         /// </summary>
         public string Type { get; set; }
-
     }
 
     public class ExecuteCloudScriptResult : PlayFabResultCommon
@@ -346,61 +343,60 @@ namespace PlayFab.CloudScriptModels
         /// <summary>
         /// Number of PlayFab API requests issued by the CloudScript function
         /// </summary>
-        public int APIRequestsIssued ;
+        public int APIRequestsIssued;
 
         /// <summary>
         /// Information about the error, if any, that occurred during execution
         /// </summary>
-        public ScriptExecutionError Error ;
+        public ScriptExecutionError Error;
 
-        public double ExecutionTimeSeconds ;
+        public double ExecutionTimeSeconds;
 
         /// <summary>
         /// The name of the function that executed
         /// </summary>
-        public string FunctionName ;
+        public string FunctionName;
 
         /// <summary>
         /// The object returned from the CloudScript function, if any
         /// </summary>
-        public object FunctionResult ;
+        public object FunctionResult;
 
         /// <summary>
         /// Flag indicating if the FunctionResult was too large and was subsequently dropped from this event. This only occurs if
         /// the total event size is larger than 350KB.
         /// </summary>
-        public bool? FunctionResultTooLarge ;
+        public bool? FunctionResultTooLarge;
 
         /// <summary>
         /// Number of external HTTP requests issued by the CloudScript function
         /// </summary>
-        public int HttpRequestsIssued ;
+        public int HttpRequestsIssued;
 
         /// <summary>
         /// Entries logged during the function execution. These include both entries logged in the function code using log.info()
         /// and log.error() and error entries for API and HTTP request failures.
         /// </summary>
-        public List<LogStatement> Logs ;
+        public List<LogStatement> Logs;
 
         /// <summary>
         /// Flag indicating if the logs were too large and were subsequently dropped from this event. This only occurs if the total
         /// event size is larger than 350KB after the FunctionResult was removed.
         /// </summary>
-        public bool? LogsTooLarge ;
+        public bool? LogsTooLarge;
 
-        public uint MemoryConsumedBytes ;
+        public uint MemoryConsumedBytes;
 
         /// <summary>
         /// Processor time consumed while executing the function. This does not include time spent waiting on API calls or HTTP
         /// requests.
         /// </summary>
-        public double ProcessorTimeSeconds ;
+        public double ProcessorTimeSeconds;
 
         /// <summary>
         /// The revision of the CloudScript that executed
         /// </summary>
-        public int Revision ;
-
+        public int Revision;
     }
 
     /// <summary>
@@ -409,38 +405,42 @@ namespace PlayFab.CloudScriptModels
     public class ExecuteEntityCloudScriptRequest : PlayFabRequestCommon
     {
         /// <summary>
+        /// The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.).
+        /// </summary>
+        public Dictionary<string, string> CustomTags;
+
+        /// <summary>
         /// The entity to perform this action on.
         /// </summary>
-        public EntityKey Entity ;
+        public EntityKey Entity;
 
         /// <summary>
         /// The name of the CloudScript function to execute
         /// </summary>
-        public string FunctionName ;
+        public string FunctionName;
 
         /// <summary>
         /// Object that is passed in to the function as the first argument
         /// </summary>
-        public object FunctionParameter ;
+        public object FunctionParameter;
 
         /// <summary>
         /// Generate a 'entity_executed_cloudscript' PlayStream event containing the results of the function execution and other
         /// contextual information. This event will show up in the PlayStream debugger console for the player in Game Manager.
         /// </summary>
-        public bool? GeneratePlayStreamEvent ;
+        public bool? GeneratePlayStreamEvent;
 
         /// <summary>
         /// Option for which revision of the CloudScript to execute. 'Latest' executes the most recently created revision, 'Live'
         /// executes the current live, published revision, and 'Specific' executes the specified revision. The default value is
         /// 'Specific', if the SpecificRevision parameter is specified, otherwise it is 'Live'.
         /// </summary>
-        public CloudScriptRevisionOption? RevisionSelection ;
+        public CloudScriptRevisionOption? RevisionSelection;
 
         /// <summary>
         /// The specific revision to execute, when RevisionSelection is set to 'Specific'
         /// </summary>
-        public int? SpecificRevision ;
-
+        public int? SpecificRevision;
     }
 
     /// <summary>
@@ -448,6 +448,11 @@ namespace PlayFab.CloudScriptModels
     /// </summary>
     public class ExecuteFunctionRequest : PlayFabRequestCommon
     {
+        /// <summary>
+        /// The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.).
+        /// </summary>
+        public Dictionary<string, string> CustomTags { get; set; }
+
         /// <summary>
         /// The entity to perform this action on.
         /// </summary>
@@ -468,7 +473,6 @@ namespace PlayFab.CloudScriptModels
         /// other contextual information. This event will show up in the PlayStream debugger console for the player in Game Manager.
         /// </summary>
         public bool? GeneratePlayStreamEvent { get; set; }
-
     }
 
     public class ExecuteFunctionResult : PlayFabResultCommon
@@ -476,28 +480,27 @@ namespace PlayFab.CloudScriptModels
         /// <summary>
         /// Error from the CloudScript Azure Function.
         /// </summary>
-        public FunctionExecutionError Error ;
+        public FunctionExecutionError Error;
 
         /// <summary>
         /// The amount of time the function took to execute
         /// </summary>
-        public int ExecutionTimeMilliseconds ;
+        public int ExecutionTimeMilliseconds;
 
         /// <summary>
         /// The name of the function that executed
         /// </summary>
-        public string FunctionName ;
+        public string FunctionName;
 
         /// <summary>
         /// The object returned from the function, if any
         /// </summary>
-        public object FunctionResult ;
+        public object FunctionResult;
 
         /// <summary>
         /// Flag indicating if the FunctionResult was too large and was subsequently dropped from this event.
         /// </summary>
-        public bool? FunctionResultTooLarge ;
-
+        public bool? FunctionResultTooLarge;
     }
 
     public class FunctionExecutionError
@@ -506,18 +509,17 @@ namespace PlayFab.CloudScriptModels
         /// Error code, such as CloudScriptAzureFunctionsExecutionTimeLimitExceeded, CloudScriptAzureFunctionsArgumentSizeExceeded,
         /// CloudScriptAzureFunctionsReturnSizeExceeded or CloudScriptAzureFunctionsHTTPRequestError
         /// </summary>
-        public string Error ;
+        public string Error;
 
         /// <summary>
         /// Details about the error
         /// </summary>
-        public string Message ;
+        public string Message;
 
         /// <summary>
         /// Point during the execution of the function at which the error occurred, if any
         /// </summary>
-        public string StackTrace ;
-
+        public string StackTrace;
     }
 
     public class FunctionModel
@@ -525,18 +527,17 @@ namespace PlayFab.CloudScriptModels
         /// <summary>
         /// The address of the function.
         /// </summary>
-        public string FunctionAddress ;
+        public string FunctionAddress;
 
         /// <summary>
         /// The name the function was registered under.
         /// </summary>
-        public string FunctionName ;
+        public string FunctionName;
 
         /// <summary>
         /// The trigger type for the function.
         /// </summary>
-        public string TriggerType ;
-
+        public string TriggerType;
     }
 
     public class HttpFunctionModel
@@ -544,13 +545,12 @@ namespace PlayFab.CloudScriptModels
         /// <summary>
         /// The name the function was registered under.
         /// </summary>
-        public string FunctionName ;
+        public string FunctionName;
 
         /// <summary>
         /// The URL of the function.
         /// </summary>
-        public string FunctionUrl ;
-
+        public string FunctionUrl;
     }
 
     public class LinkedPlatformAccountModel
@@ -558,23 +558,22 @@ namespace PlayFab.CloudScriptModels
         /// <summary>
         /// Linked account email of the user on the platform, if available
         /// </summary>
-        public string Email ;
+        public string Email;
 
         /// <summary>
         /// Authentication platform
         /// </summary>
-        public LoginIdentityProvider? Platform ;
+        public LoginIdentityProvider? Platform;
 
         /// <summary>
         /// Unique account identifier of the user on the platform
         /// </summary>
-        public string PlatformUserId ;
+        public string PlatformUserId;
 
         /// <summary>
         /// Linked account username of the user on the platform, if available
         /// </summary>
-        public string Username ;
-
+        public string Username;
     }
 
     /// <summary>
@@ -583,6 +582,10 @@ namespace PlayFab.CloudScriptModels
     /// </summary>
     public class ListFunctionsRequest : PlayFabRequestCommon
     {
+        /// <summary>
+        /// The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.).
+        /// </summary>
+        public Dictionary<string, string> CustomTags;
     }
 
     public class ListFunctionsResult : PlayFabResultCommon
@@ -590,8 +593,7 @@ namespace PlayFab.CloudScriptModels
         /// <summary>
         /// The list of functions that are currently registered for the title.
         /// </summary>
-        public List<FunctionModel> Functions ;
-
+        public List<FunctionModel> Functions;
     }
 
     public class ListHttpFunctionsResult : PlayFabResultCommon
@@ -599,8 +601,7 @@ namespace PlayFab.CloudScriptModels
         /// <summary>
         /// The list of HTTP triggered functions that are currently registered for the title.
         /// </summary>
-        public List<HttpFunctionModel> Functions ;
-
+        public List<HttpFunctionModel> Functions;
     }
 
     public class ListQueuedFunctionsResult : PlayFabResultCommon
@@ -608,8 +609,7 @@ namespace PlayFab.CloudScriptModels
         /// <summary>
         /// The list of Queue triggered functions that are currently registered for the title.
         /// </summary>
-        public List<QueuedFunctionModel> Functions ;
-
+        public List<QueuedFunctionModel> Functions;
     }
 
     public class LocationModel
@@ -617,28 +617,27 @@ namespace PlayFab.CloudScriptModels
         /// <summary>
         /// City name.
         /// </summary>
-        public string City ;
+        public string City;
 
         /// <summary>
         /// The two-character continent code for this location
         /// </summary>
-        public ContinentCode? ContinentCode ;
+        public ContinentCode? ContinentCode;
 
         /// <summary>
         /// The two-character ISO 3166-1 country code for the country associated with the location
         /// </summary>
-        public CountryCode? CountryCode ;
+        public CountryCode? CountryCode;
 
         /// <summary>
         /// Latitude coordinate of the geographic location.
         /// </summary>
-        public double? Latitude ;
+        public double? Latitude;
 
         /// <summary>
         /// Longitude coordinate of the geographic location.
         /// </summary>
-        public double? Longitude ;
-
+        public double? Longitude;
     }
 
     public enum LoginIdentityProvider
@@ -671,15 +670,14 @@ namespace PlayFab.CloudScriptModels
         /// <summary>
         /// Optional object accompanying the message as contextual information
         /// </summary>
-        public object Data ;
+        public object Data;
 
         /// <summary>
         /// 'Debug', 'Info', or 'Error'
         /// </summary>
-        public string Level ;
+        public string Level;
 
-        public string Message ;
-
+        public string Message;
     }
 
     public class MembershipModel
@@ -687,29 +685,28 @@ namespace PlayFab.CloudScriptModels
         /// <summary>
         /// Whether this membership is active. That is, whether the MembershipExpiration time has been reached.
         /// </summary>
-        public bool IsActive ;
+        public bool IsActive;
 
         /// <summary>
         /// The time this membership expires
         /// </summary>
-        public DateTime MembershipExpiration ;
+        public DateTime MembershipExpiration;
 
         /// <summary>
         /// The id of the membership
         /// </summary>
-        public string MembershipId ;
+        public string MembershipId;
 
         /// <summary>
         /// Membership expirations can be explicitly overridden (via game manager or the admin api). If this membership has been
         /// overridden, this will be the new expiration time.
         /// </summary>
-        public DateTime? OverrideExpiration ;
+        public DateTime? OverrideExpiration;
 
         /// <summary>
         /// The list of subscriptions that this player has for this membership
         /// </summary>
-        public List<SubscriptionModel> Subscriptions ;
-
+        public List<SubscriptionModel> Subscriptions;
     }
 
     /// <summary>
@@ -721,13 +718,12 @@ namespace PlayFab.CloudScriptModels
         /// <summary>
         /// Id Identifier, if present
         /// </summary>
-        public string Id ;
+        public string Id;
 
         /// <summary>
         /// Name Identifier, if present
         /// </summary>
-        public string Name ;
-
+        public string Name;
     }
 
     public class PlayerProfileModel
@@ -735,104 +731,103 @@ namespace PlayFab.CloudScriptModels
         /// <summary>
         /// List of advertising campaigns the player has been attributed to
         /// </summary>
-        public List<AdCampaignAttributionModel> AdCampaignAttributions ;
+        public List<AdCampaignAttributionModel> AdCampaignAttributions;
 
         /// <summary>
         /// URL of the player's avatar image
         /// </summary>
-        public string AvatarUrl ;
+        public string AvatarUrl;
 
         /// <summary>
         /// If the player is currently banned, the UTC Date when the ban expires
         /// </summary>
-        public DateTime? BannedUntil ;
+        public DateTime? BannedUntil;
 
         /// <summary>
         /// List of all contact email info associated with the player account
         /// </summary>
-        public List<ContactEmailInfoModel> ContactEmailAddresses ;
+        public List<ContactEmailInfoModel> ContactEmailAddresses;
 
         /// <summary>
         /// Player record created
         /// </summary>
-        public DateTime? Created ;
+        public DateTime? Created;
 
         /// <summary>
         /// Player display name
         /// </summary>
-        public string DisplayName ;
+        public string DisplayName;
 
         /// <summary>
         /// List of experiment variants for the player.
         /// </summary>
-        public List<string> ExperimentVariants ;
+        public List<string> ExperimentVariants;
 
         /// <summary>
         /// UTC time when the player most recently logged in to the title
         /// </summary>
-        public DateTime? LastLogin ;
+        public DateTime? LastLogin;
 
         /// <summary>
         /// List of all authentication systems linked to this player account
         /// </summary>
-        public List<LinkedPlatformAccountModel> LinkedAccounts ;
+        public List<LinkedPlatformAccountModel> LinkedAccounts;
 
         /// <summary>
         /// List of geographic locations from which the player has logged in to the title
         /// </summary>
-        public List<LocationModel> Locations ;
+        public List<LocationModel> Locations;
 
         /// <summary>
         /// List of memberships for the player, along with whether are expired.
         /// </summary>
-        public List<MembershipModel> Memberships ;
+        public List<MembershipModel> Memberships;
 
         /// <summary>
         /// Player account origination
         /// </summary>
-        public LoginIdentityProvider? Origination ;
+        public LoginIdentityProvider? Origination;
 
         /// <summary>
         /// PlayFab player account unique identifier
         /// </summary>
-        public string PlayerId ;
+        public string PlayerId;
 
         /// <summary>
         /// Publisher this player belongs to
         /// </summary>
-        public string PublisherId ;
+        public string PublisherId;
 
         /// <summary>
         /// List of configured end points registered for sending the player push notifications
         /// </summary>
-        public List<PushNotificationRegistrationModel> PushNotificationRegistrations ;
+        public List<PushNotificationRegistrationModel> PushNotificationRegistrations;
 
         /// <summary>
         /// List of leaderboard statistic values for the player
         /// </summary>
-        public List<StatisticModel> Statistics ;
+        public List<StatisticModel> Statistics;
 
         /// <summary>
         /// List of player's tags for segmentation
         /// </summary>
-        public List<TagModel> Tags ;
+        public List<TagModel> Tags;
 
         /// <summary>
         /// Title ID this player profile applies to
         /// </summary>
-        public string TitleId ;
+        public string TitleId;
 
         /// <summary>
         /// Sum of the player's purchases made with real-money currencies, converted to US dollars equivalent and represented as a
         /// whole number of cents (1/100 USD). For example, 999 indicates nine dollars and ninety-nine cents.
         /// </summary>
-        public uint? TotalValueToDateInUSD ;
+        public uint? TotalValueToDateInUSD;
 
         /// <summary>
         /// List of the player's lifetime purchase totals, summed by real-money currency
         /// </summary>
-        public List<ValueToDateModel> ValuesToDate ;
-
+        public List<ValueToDateModel> ValuesToDate;
     }
 
     public class PlayStreamEventEnvelopeModel
@@ -840,104 +835,119 @@ namespace PlayFab.CloudScriptModels
         /// <summary>
         /// The ID of the entity the event is about.
         /// </summary>
-        public string EntityId ;
+        public string EntityId;
 
         /// <summary>
         /// The type of the entity the event is about.
         /// </summary>
-        public string EntityType ;
+        public string EntityType;
 
         /// <summary>
         /// Data specific to this event.
         /// </summary>
-        public string EventData ;
+        public string EventData;
 
         /// <summary>
         /// The name of the event.
         /// </summary>
-        public string EventName ;
+        public string EventName;
 
         /// <summary>
         /// The namespace of the event.
         /// </summary>
-        public string EventNamespace ;
+        public string EventNamespace;
 
         /// <summary>
         /// Settings for the event.
         /// </summary>
-        public string EventSettings ;
-
+        public string EventSettings;
     }
 
     public class PostFunctionResultForEntityTriggeredActionRequest : PlayFabRequestCommon
     {
         /// <summary>
+        /// The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.).
+        /// </summary>
+        public Dictionary<string, string> CustomTags;
+
+        /// <summary>
         /// The entity to perform this action on.
         /// </summary>
-        public EntityKey Entity ;
+        public EntityKey Entity;
 
         /// <summary>
         /// The result of the function execution.
         /// </summary>
-        public ExecuteFunctionResult FunctionResult ;
-
+        public ExecuteFunctionResult FunctionResult;
     }
 
     public class PostFunctionResultForFunctionExecutionRequest : PlayFabRequestCommon
     {
         /// <summary>
+        /// The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.).
+        /// </summary>
+        public Dictionary<string, string> CustomTags;
+
+        /// <summary>
         /// The entity to perform this action on.
         /// </summary>
-        public EntityKey Entity ;
+        public EntityKey Entity;
 
         /// <summary>
         /// The result of the function execution.
         /// </summary>
-        public ExecuteFunctionResult FunctionResult ;
-
+        public ExecuteFunctionResult FunctionResult;
     }
 
     public class PostFunctionResultForPlayerTriggeredActionRequest : PlayFabRequestCommon
     {
         /// <summary>
+        /// The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.).
+        /// </summary>
+        public Dictionary<string, string> CustomTags;
+
+        /// <summary>
         /// The entity to perform this action on.
         /// </summary>
-        public EntityKey Entity ;
+        public EntityKey Entity;
 
         /// <summary>
         /// The result of the function execution.
         /// </summary>
-        public ExecuteFunctionResult FunctionResult ;
+        public ExecuteFunctionResult FunctionResult;
 
         /// <summary>
         /// The player profile the function was invoked with.
         /// </summary>
-        public PlayerProfileModel PlayerProfile ;
+        public PlayerProfileModel PlayerProfile;
 
         /// <summary>
         /// The triggering PlayStream event, if any, that caused the function to be invoked.
         /// </summary>
-        public PlayStreamEventEnvelopeModel PlayStreamEventEnvelope ;
-
+        public PlayStreamEventEnvelopeModel PlayStreamEventEnvelope;
     }
 
     public class PostFunctionResultForScheduledTaskRequest : PlayFabRequestCommon
     {
         /// <summary>
+        /// The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.).
+        /// </summary>
+        public Dictionary<string, string> CustomTags;
+
+        /// <summary>
         /// The entity to perform this action on.
         /// </summary>
-        public EntityKey Entity ;
+        public EntityKey Entity;
 
         /// <summary>
         /// The result of the function execution
         /// </summary>
-        public ExecuteFunctionResult FunctionResult ;
+        public ExecuteFunctionResult FunctionResult;
 
         /// <summary>
         /// The id of the scheduled task that invoked the function.
         /// </summary>
-        public NameIdentifier ScheduledTaskId ;
-
+        public NameIdentifier ScheduledTaskId;
     }
 
     public enum PushNotificationPlatform
@@ -951,13 +961,12 @@ namespace PlayFab.CloudScriptModels
         /// <summary>
         /// Notification configured endpoint
         /// </summary>
-        public string NotificationEndpointARN ;
+        public string NotificationEndpointARN;
 
         /// <summary>
         /// Push notification platform
         /// </summary>
-        public PushNotificationPlatform? Platform ;
-
+        public PushNotificationPlatform? Platform;
     }
 
     public class QueuedFunctionModel
@@ -965,32 +974,35 @@ namespace PlayFab.CloudScriptModels
         /// <summary>
         /// The connection string for the Azure Storage Account that hosts the queue.
         /// </summary>
-        public string ConnectionString ;
+        public string ConnectionString;
 
         /// <summary>
         /// The name the function was registered under.
         /// </summary>
-        public string FunctionName ;
+        public string FunctionName;
 
         /// <summary>
         /// The name of the queue that triggers the Azure Function.
         /// </summary>
-        public string QueueName ;
-
+        public string QueueName;
     }
 
     public class RegisterHttpFunctionRequest : PlayFabRequestCommon
     {
         /// <summary>
+        /// The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.).
+        /// </summary>
+        public Dictionary<string, string> CustomTags;
+
+        /// <summary>
         /// The name of the function to register
         /// </summary>
-        public string FunctionName ;
+        public string FunctionName;
 
         /// <summary>
         /// Full URL for Azure Function that implements the function.
         /// </summary>
-        public string FunctionUrl ;
-
+        public string FunctionUrl;
     }
 
     /// <summary>
@@ -1002,18 +1014,22 @@ namespace PlayFab.CloudScriptModels
         /// <summary>
         /// A connection string for the storage account that hosts the queue for the Azure Function.
         /// </summary>
-        public string ConnectionString ;
+        public string ConnectionString;
+
+        /// <summary>
+        /// The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.).
+        /// </summary>
+        public Dictionary<string, string> CustomTags;
 
         /// <summary>
         /// The name of the function to register
         /// </summary>
-        public string FunctionName ;
+        public string FunctionName;
 
         /// <summary>
         /// The name of the queue for the Azure Function.
         /// </summary>
-        public string QueueName ;
-
+        public string QueueName;
     }
 
     public class ScriptExecutionError
@@ -1022,18 +1038,17 @@ namespace PlayFab.CloudScriptModels
         /// Error code, such as CloudScriptNotFound, JavascriptException, CloudScriptFunctionArgumentSizeExceeded,
         /// CloudScriptAPIRequestCountExceeded, CloudScriptAPIRequestError, or CloudScriptHTTPRequestError
         /// </summary>
-        public string Error ;
+        public string Error;
 
         /// <summary>
         /// Details about the error
         /// </summary>
-        public string Message ;
+        public string Message;
 
         /// <summary>
         /// Point during the execution of the script at which the error occurred, if any
         /// </summary>
-        public string StackTrace ;
-
+        public string StackTrace;
     }
 
     public class StatisticModel
@@ -1041,18 +1056,17 @@ namespace PlayFab.CloudScriptModels
         /// <summary>
         /// Statistic name
         /// </summary>
-        public string Name ;
+        public string Name;
 
         /// <summary>
         /// Statistic value
         /// </summary>
-        public int Value ;
+        public int Value;
 
         /// <summary>
         /// Statistic version (0 if not a versioned statistic)
         /// </summary>
-        public int Version ;
-
+        public int Version;
     }
 
     public class SubscriptionModel
@@ -1060,38 +1074,37 @@ namespace PlayFab.CloudScriptModels
         /// <summary>
         /// When this subscription expires.
         /// </summary>
-        public DateTime Expiration ;
+        public DateTime Expiration;
 
         /// <summary>
         /// The time the subscription was orignially purchased
         /// </summary>
-        public DateTime InitialSubscriptionTime ;
+        public DateTime InitialSubscriptionTime;
 
         /// <summary>
         /// Whether this subscription is currently active. That is, if Expiration > now.
         /// </summary>
-        public bool IsActive ;
+        public bool IsActive;
 
         /// <summary>
         /// The status of this subscription, according to the subscription provider.
         /// </summary>
-        public SubscriptionProviderStatus? Status ;
+        public SubscriptionProviderStatus? Status;
 
         /// <summary>
         /// The id for this subscription
         /// </summary>
-        public string SubscriptionId ;
+        public string SubscriptionId;
 
         /// <summary>
         /// The item id for this subscription from the primary catalog
         /// </summary>
-        public string SubscriptionItemId ;
+        public string SubscriptionItemId;
 
         /// <summary>
         /// The provider for this subscription. Apple or Google Play are supported today.
         /// </summary>
-        public string SubscriptionProvider ;
-
+        public string SubscriptionProvider;
     }
 
     public enum SubscriptionProviderStatus
@@ -1111,8 +1124,7 @@ namespace PlayFab.CloudScriptModels
         /// <summary>
         /// Full value of the tag, including namespace
         /// </summary>
-        public string TagValue ;
-
+        public string TagValue;
     }
 
     public enum TriggerType
@@ -1124,10 +1136,14 @@ namespace PlayFab.CloudScriptModels
     public class UnregisterFunctionRequest : PlayFabRequestCommon
     {
         /// <summary>
+        /// The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.).
+        /// </summary>
+        public Dictionary<string, string> CustomTags;
+
+        /// <summary>
         /// The name of the function to unregister
         /// </summary>
-        public string FunctionName ;
-
+        public string FunctionName;
     }
 
     public class ValueToDateModel
@@ -1135,19 +1151,18 @@ namespace PlayFab.CloudScriptModels
         /// <summary>
         /// ISO 4217 code of the currency used in the purchases
         /// </summary>
-        public string Currency ;
+        public string Currency;
 
         /// <summary>
         /// Total value of the purchases in a whole number of 1/100 monetary units. For example, 999 indicates nine dollars and
         /// ninety-nine cents when Currency is 'USD')
         /// </summary>
-        public uint TotalValue ;
+        public uint TotalValue;
 
         /// <summary>
         /// Total value of the purchases in a string representation of decimal monetary units. For example, '9.99' indicates nine
         /// dollars and ninety-nine cents when Currency is 'USD'.
         /// </summary>
-        public string TotalValueAsDecimal ;
-
+        public string TotalValueAsDecimal;
     }
 }

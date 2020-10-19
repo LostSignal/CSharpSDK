@@ -1,4 +1,3 @@
-﻿
 #if !DISABLE_PLAYFABCLIENT_API && !DISABLE_PLAYFABENTITY_API
 namespace PlayFab.QoS
 {

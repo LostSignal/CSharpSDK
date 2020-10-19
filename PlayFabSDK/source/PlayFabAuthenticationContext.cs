@@ -41,6 +41,7 @@ namespace PlayFab
         {
             return !string.IsNullOrEmpty(ClientSessionTicket);
         }
+
 #endif
 
 #if !DISABLE_PLAYFABENTITY_API
@@ -59,6 +60,7 @@ namespace PlayFab
         {
             return !string.IsNullOrEmpty(EntityToken);
         }
+
 #endif
 
         public void ForgetAllCredentials()

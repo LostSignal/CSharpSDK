@@ -2,6 +2,11 @@
 
 using PlayFab.AdminModels;
 using PlayFab.Internal;
+#pragma warning disable 0649
+using System;
+// This is required for the Obsolete Attribute flag
+//  which is not always present in all API's
+#pragma warning restore 0649
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -645,6 +650,33 @@ namespace PlayFab
             var result = resultData.data;
 
             return new PlayFabResult<DeleteTitleResult> { Result = result, CustomData = customData };
+        }
+
+        /// <summary>
+        /// Deletes a specified set of title data overrides.
+        /// </summary>
+        public static async Task<PlayFabResult<DeleteTitleDataOverrideResult>> DeleteTitleDataOverrideAsync(DeleteTitleDataOverrideRequest request, object customData = null, Dictionary<string, string> extraHeaders = null)
+        {
+            await new PlayFabUtil.SynchronizationContextRemover();
+
+            var requestContext = request?.AuthenticationContext ?? PlayFabSettings.staticPlayer;
+            var requestSettings = PlayFabSettings.staticSettings;
+            if (requestSettings.DeveloperSecretKey == null) throw new PlayFabException(PlayFabExceptionCode.DeveloperKeyNotSet, "DeveloperSecretKey must be set in your local or global settings to call this method");
+
+
+            var httpResult = await PlayFabHttp.DoPost("/Admin/DeleteTitleDataOverride", request, "X-SecretKey", requestSettings.DeveloperSecretKey, extraHeaders);
+            if (httpResult is PlayFabError)
+            {
+                var error = (PlayFabError)httpResult;
+                PlayFabSettings.GlobalErrorHandler?.Invoke(error);
+                return new PlayFabResult<DeleteTitleDataOverrideResult> { Error = error, CustomData = customData };
+            }
+
+            var resultRawJson = (string)httpResult;
+            var resultData = PluginManager.GetPlugin<ISerializerPlugin>(PluginContract.PlayFab_Serializer).DeserializeObject<PlayFabJsonSuccess<DeleteTitleDataOverrideResult>>(resultRawJson);
+            var result = resultData.data;
+
+            return new PlayFabResult<DeleteTitleDataOverrideResult> { Result = result, CustomData = customData };
         }
 
         /// <summary>
@@ -2494,6 +2526,33 @@ namespace PlayFab
             var result = resultData.data;
 
             return new PlayFabResult<SetTitleDataResult> { Result = result, CustomData = customData };
+        }
+
+        /// <summary>
+        /// Set and delete key-value pairs in a title data override instance.
+        /// </summary>
+        public static async Task<PlayFabResult<SetTitleDataAndOverridesResult>> SetTitleDataAndOverridesAsync(SetTitleDataAndOverridesRequest request, object customData = null, Dictionary<string, string> extraHeaders = null)
+        {
+            await new PlayFabUtil.SynchronizationContextRemover();
+
+            var requestContext = request?.AuthenticationContext ?? PlayFabSettings.staticPlayer;
+            var requestSettings = PlayFabSettings.staticSettings;
+            if (requestSettings.DeveloperSecretKey == null) throw new PlayFabException(PlayFabExceptionCode.DeveloperKeyNotSet, "DeveloperSecretKey must be set in your local or global settings to call this method");
+
+
+            var httpResult = await PlayFabHttp.DoPost("/Admin/SetTitleDataAndOverrides", request, "X-SecretKey", requestSettings.DeveloperSecretKey, extraHeaders);
+            if (httpResult is PlayFabError)
+            {
+                var error = (PlayFabError)httpResult;
+                PlayFabSettings.GlobalErrorHandler?.Invoke(error);
+                return new PlayFabResult<SetTitleDataAndOverridesResult> { Error = error, CustomData = customData };
+            }
+
+            var resultRawJson = (string)httpResult;
+            var resultData = PluginManager.GetPlugin<ISerializerPlugin>(PluginContract.PlayFab_Serializer).DeserializeObject<PlayFabJsonSuccess<SetTitleDataAndOverridesResult>>(resultRawJson);
+            var result = resultData.data;
+
+            return new PlayFabResult<SetTitleDataAndOverridesResult> { Result = result, CustomData = customData };
         }
 
         /// <summary>

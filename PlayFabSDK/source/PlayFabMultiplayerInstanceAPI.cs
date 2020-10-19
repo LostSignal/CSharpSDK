@@ -2,6 +2,11 @@
 
 using PlayFab.MultiplayerModels;
 using PlayFab.Internal;
+#pragma warning disable 0649
+using System;
+// This is required for the Obsolete Attribute flag
+//  which is not always present in all API's
+#pragma warning restore 0649
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -227,6 +232,32 @@ namespace PlayFab
             var result = resultData.data;
 
             return new PlayFabResult<CreateBuildWithManagedContainerResponse> { Result = result, CustomData = customData };
+        }
+
+        /// <summary>
+        /// Creates a multiplayer server build with the server running as a process.
+        /// </summary>
+        public async Task<PlayFabResult<CreateBuildWithProcessBasedServerResponse>> CreateBuildWithProcessBasedServerAsync(CreateBuildWithProcessBasedServerRequest request, object customData = null, Dictionary<string, string> extraHeaders = null)
+        {
+            await new PlayFabUtil.SynchronizationContextRemover();
+
+            var requestContext = request?.AuthenticationContext ?? authenticationContext;
+            var requestSettings = apiSettings ?? PlayFabSettings.staticSettings;
+            if (requestContext.EntityToken == null) throw new PlayFabException(PlayFabExceptionCode.EntityTokenNotSet, "Must call Client Login or GetEntityToken before calling this method");
+
+            var httpResult = await PlayFabHttp.DoPost("/MultiplayerServer/CreateBuildWithProcessBasedServer", request, "X-EntityToken", requestContext.EntityToken, extraHeaders, requestSettings);
+            if (httpResult is PlayFabError)
+            {
+                var error = (PlayFabError)httpResult;
+                PlayFabSettings.GlobalErrorHandler?.Invoke(error);
+                return new PlayFabResult<CreateBuildWithProcessBasedServerResponse> { Error = error, CustomData = customData };
+            }
+
+            var resultRawJson = (string)httpResult;
+            var resultData = PluginManager.GetPlugin<ISerializerPlugin>(PluginContract.PlayFab_Serializer).DeserializeObject<PlayFabJsonSuccess<CreateBuildWithProcessBasedServerResponse>>(resultRawJson);
+            var result = resultData.data;
+
+            return new PlayFabResult<CreateBuildWithProcessBasedServerResponse> { Result = result, CustomData = customData };
         }
 
         /// <summary>
@@ -467,6 +498,32 @@ namespace PlayFab
         }
 
         /// <summary>
+        /// Deletes a container image repository.
+        /// </summary>
+        public async Task<PlayFabResult<EmptyResponse>> DeleteContainerImageRepositoryAsync(DeleteContainerImageRequest request, object customData = null, Dictionary<string, string> extraHeaders = null)
+        {
+            await new PlayFabUtil.SynchronizationContextRemover();
+
+            var requestContext = request?.AuthenticationContext ?? authenticationContext;
+            var requestSettings = apiSettings ?? PlayFabSettings.staticSettings;
+            if (requestContext.EntityToken == null) throw new PlayFabException(PlayFabExceptionCode.EntityTokenNotSet, "Must call Client Login or GetEntityToken before calling this method");
+
+            var httpResult = await PlayFabHttp.DoPost("/MultiplayerServer/DeleteContainerImageRepository", request, "X-EntityToken", requestContext.EntityToken, extraHeaders, requestSettings);
+            if (httpResult is PlayFabError)
+            {
+                var error = (PlayFabError)httpResult;
+                PlayFabSettings.GlobalErrorHandler?.Invoke(error);
+                return new PlayFabResult<EmptyResponse> { Error = error, CustomData = customData };
+            }
+
+            var resultRawJson = (string)httpResult;
+            var resultData = PluginManager.GetPlugin<ISerializerPlugin>(PluginContract.PlayFab_Serializer).DeserializeObject<PlayFabJsonSuccess<EmptyResponse>>(resultRawJson);
+            var result = resultData.data;
+
+            return new PlayFabResult<EmptyResponse> { Result = result, CustomData = customData };
+        }
+
+        /// <summary>
         /// Deletes a remote user to log on to a VM for a multiplayer server build.
         /// </summary>
         public async Task<PlayFabResult<EmptyResponse>> DeleteRemoteUserAsync(DeleteRemoteUserRequest request, object customData = null, Dictionary<string, string> extraHeaders = null)
@@ -649,7 +706,7 @@ namespace PlayFab
         }
 
         /// <summary>
-        /// Get a matchmaking queue configuration.
+        /// SDK support is limited to C# and Java for this API. Get a matchmaking queue configuration.
         /// </summary>
         public async Task<PlayFabResult<GetMatchmakingQueueResult>> GetMatchmakingQueueAsync(GetMatchmakingQueueRequest request, object customData = null, Dictionary<string, string> extraHeaders = null)
         {
@@ -1119,7 +1176,7 @@ namespace PlayFab
         }
 
         /// <summary>
-        /// List all matchmaking queue configs.
+        /// SDK support is limited to C# and Java for this API. List all matchmaking queue configs.
         /// </summary>
         public async Task<PlayFabResult<ListMatchmakingQueuesResult>> ListMatchmakingQueuesAsync(ListMatchmakingQueuesRequest request, object customData = null, Dictionary<string, string> extraHeaders = null)
         {
@@ -1205,9 +1262,8 @@ namespace PlayFab
 
             var requestContext = request?.AuthenticationContext ?? authenticationContext;
             var requestSettings = apiSettings ?? PlayFabSettings.staticSettings;
-            if (requestContext.EntityToken == null) throw new PlayFabException(PlayFabExceptionCode.EntityTokenNotSet, "Must call Client Login or GetEntityToken before calling this method");
 
-            var httpResult = await PlayFabHttp.DoPost("/MultiplayerServer/ListPartyQosServers", request, "X-EntityToken", requestContext.EntityToken, extraHeaders, requestSettings);
+            var httpResult = await PlayFabHttp.DoPost("/MultiplayerServer/ListPartyQosServers", request, null, null, extraHeaders, requestSettings);
             if (httpResult is PlayFabError)
             {
                 var error = (PlayFabError)httpResult;
@@ -1223,32 +1279,8 @@ namespace PlayFab
         }
 
         /// <summary>
-        /// Lists quality of service servers.
-        /// </summary>
-        public async Task<PlayFabResult<ListQosServersResponse>> ListQosServersAsync(ListQosServersRequest request, object customData = null, Dictionary<string, string> extraHeaders = null)
-        {
-            await new PlayFabUtil.SynchronizationContextRemover();
-
-            var requestContext = request?.AuthenticationContext ?? authenticationContext;
-            var requestSettings = apiSettings ?? PlayFabSettings.staticSettings;
-
-            var httpResult = await PlayFabHttp.DoPost("/MultiplayerServer/ListQosServers", request, null, null, extraHeaders, requestSettings);
-            if (httpResult is PlayFabError)
-            {
-                var error = (PlayFabError)httpResult;
-                PlayFabSettings.GlobalErrorHandler?.Invoke(error);
-                return new PlayFabResult<ListQosServersResponse> { Error = error, CustomData = customData };
-            }
-
-            var resultRawJson = (string)httpResult;
-            var resultData = PluginManager.GetPlugin<ISerializerPlugin>(PluginContract.PlayFab_Serializer).DeserializeObject<PlayFabJsonSuccess<ListQosServersResponse>>(resultRawJson);
-            var result = resultData.data;
-
-            return new PlayFabResult<ListQosServersResponse> { Result = result, CustomData = customData };
-        }
-
-        /// <summary>
-        /// Lists quality of service servers.
+        /// Lists quality of service servers for the title. By default, servers are only returned for regions where a Multiplayer
+        /// Servers build has been deployed.
         /// </summary>
         public async Task<PlayFabResult<ListQosServersForTitleResponse>> ListQosServersForTitleAsync(ListQosServersForTitleRequest request, object customData = null, Dictionary<string, string> extraHeaders = null)
         {
@@ -1326,7 +1358,7 @@ namespace PlayFab
         }
 
         /// <summary>
-        /// Remove a matchmaking queue config.
+        /// SDK support is limited to C# and Java for this API. Remove a matchmaking queue config.
         /// </summary>
         public async Task<PlayFabResult<RemoveMatchmakingQueueResult>> RemoveMatchmakingQueueAsync(RemoveMatchmakingQueueRequest request, object customData = null, Dictionary<string, string> extraHeaders = null)
         {
@@ -1405,7 +1437,7 @@ namespace PlayFab
         }
 
         /// <summary>
-        /// Create or update a matchmaking queue configuration.
+        /// SDK support is limited to C# and Java for this API. Create or update a matchmaking queue configuration.
         /// </summary>
         public async Task<PlayFabResult<SetMatchmakingQueueResult>> SetMatchmakingQueueAsync(SetMatchmakingQueueRequest request, object customData = null, Dictionary<string, string> extraHeaders = null)
         {
@@ -1585,7 +1617,6 @@ namespace PlayFab
 
             return new PlayFabResult<EmptyResponse> { Result = result, CustomData = customData };
         }
-
     }
 }
 #endif

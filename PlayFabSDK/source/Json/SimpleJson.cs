@@ -1,4 +1,4 @@
-﻿//-----------------------------------------------------------------------
+//-----------------------------------------------------------------------
 // <copyright file="SimpleJson.cs" company="The Outercurve Foundation">
 //    Copyright (c) 2011, The Outercurve Foundation.
 //
@@ -86,18 +86,18 @@ namespace PlayFab.Json
 #else
     public
 #endif
- class JsonArray : List<object>
+    class JsonArray : List<object>
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="JsonArray"/> class.
         /// </summary>
-        public JsonArray() { }
+        public JsonArray() {}
 
         /// <summary>
         /// Initializes a new instance of the <see cref="JsonArray"/> class.
         /// </summary>
         /// <param name="capacity">The capacity of the json array.</param>
-        public JsonArray(int capacity) : base(capacity) { }
+        public JsonArray(int capacity) : base(capacity) {}
 
         /// <summary>
         /// The json representation of the array.
@@ -120,11 +120,11 @@ namespace PlayFab.Json
 #else
     public
 #endif
- class JsonObject :
+    class JsonObject :
 #if SIMPLE_JSON_DYNAMIC
- DynamicObject,
+        DynamicObject,
 #endif
- IDictionary<string, object>
+        IDictionary<string, object>
     {
         private const int DICTIONARY_DEFAULT_SIZE = 16;
         /// <summary>
@@ -408,7 +408,7 @@ namespace PlayFab.Json
             if (indexes == null) throw new ArgumentNullException("indexes");
             if (indexes.Length == 1)
             {
-                result = ((IDictionary<string, object>)this)[(string)indexes[0]];
+                result = ((IDictionary<string, object>) this)[(string)indexes[0]];
                 return true;
             }
             result = null;
@@ -449,7 +449,7 @@ namespace PlayFab.Json
             if (indexes == null) throw new ArgumentNullException("indexes");
             if (indexes.Length == 1)
             {
-                ((IDictionary<string, object>)this)[(string)indexes[0]] = value;
+                ((IDictionary<string, object>) this)[(string)indexes[0]] = value;
                 return true;
             }
             return base.TrySetIndex(binder, indexes, value);
@@ -484,6 +484,7 @@ namespace PlayFab.Json
             foreach (var key in Keys)
                 yield return key;
         }
+
 #endif
     }
 
@@ -500,7 +501,7 @@ namespace PlayFab.Json
 #else
     public
 #endif
- static class PlayFabSimpleJson
+    static class PlayFabSimpleJson
     {
         private enum TokenType : byte
         {
@@ -522,7 +523,8 @@ namespace PlayFab.Json
         private static readonly char[] EscapeTable;
         private static readonly char[] EscapeCharacters = new char[] { '"', '\\', '\b', '\f', '\n', '\r', '\t' };
         // private static readonly string EscapeCharactersString = new string(EscapeCharacters);
-        internal static readonly List<Type> NumberTypes = new List<Type> {
+        internal static readonly List<Type> NumberTypes = new List<Type>
+        {
             typeof(bool), typeof(byte), typeof(ushort), typeof(uint), typeof(ulong), typeof(sbyte), typeof(short), typeof(int), typeof(long), typeof(double), typeof(float), typeof(decimal)
         };
 
@@ -1091,8 +1093,7 @@ namespace PlayFab.Json
                 string stringKey = key as string;
                 if (stringKey != null)
                     SerializeString(stringKey, builder);
-                else
-                    if (!SerializeValue(jsonSerializerStrategy, value, builder)) return false;
+                else if (!SerializeValue(jsonSerializerStrategy, value, builder)) return false;
                 builder.Append(":");
                 if (!SerializeValue(jsonSerializerStrategy, value, builder))
                     return false;
@@ -1208,11 +1209,11 @@ namespace PlayFab.Json
                 return _currentJsonSerializerStrategy ??
                     (_currentJsonSerializerStrategy =
 #if SIMPLE_JSON_DATACONTRACT
- DataContractJsonSerializerStrategy
+                            DataContractJsonSerializerStrategy
 #else
- PocoJsonSerializerStrategy
+                            PocoJsonSerializerStrategy
 #endif
-);
+                    );
             }
             set
             {
@@ -1251,7 +1252,7 @@ namespace PlayFab.Json
 #else
     public
 #endif
- interface IJsonSerializerStrategy
+    interface IJsonSerializerStrategy
     {
         [SuppressMessage("Microsoft.Design", "CA1007:UseGenericsWhereAppropriate", Justification = "Need to support .NET 2")]
         bool TrySerializeNonPrimitiveObject(object input, out object output);
@@ -1264,7 +1265,7 @@ namespace PlayFab.Json
 #else
     public
 #endif
- class PocoJsonSerializerStrategy : IJsonSerializerStrategy
+    class PocoJsonSerializerStrategy : IJsonSerializerStrategy
     {
         internal IDictionary<Type, ReflectionUtils.ConstructorDelegate> ConstructorCache;
         internal IDictionary<Type, IDictionary<MemberInfo, ReflectionUtils.GetDelegate>> GetCache;
@@ -1274,11 +1275,11 @@ namespace PlayFab.Json
         internal static readonly Type[] ArrayConstructorParameterTypes = new Type[] { typeof(int) };
 
         private static readonly string[] Iso8601Format = new string[]
-                                                             {
-                                                                 @"yyyy-MM-dd\THH:mm:ss.FFFFFFF\Z",
-                                                                 @"yyyy-MM-dd\THH:mm:ss\Z",
-                                                                 @"yyyy-MM-dd\THH:mm:ssK"
-                                                             };
+        {
+            @"yyyy-MM-dd\THH:mm:ss.FFFFFFF\Z",
+            @"yyyy-MM-dd\THH:mm:ss\Z",
+            @"yyyy-MM-dd\THH:mm:ssK"
+        };
 
         public PocoJsonSerializerStrategy()
         {
@@ -1541,6 +1542,7 @@ namespace PlayFab.Json
             }
             return returnValue;
         }
+
         [SuppressMessage("Microsoft.Design", "CA1007:UseGenericsWhereAppropriate", Justification = "Need to support .NET 2")]
         protected virtual bool TrySerializeUnknownTypes(object input, out object output)
         {
@@ -1576,7 +1578,7 @@ namespace PlayFab.Json
 #else
     public
 #endif
- class DataContractJsonSerializerStrategy : PocoJsonSerializerStrategy
+    class DataContractJsonSerializerStrategy : PocoJsonSerializerStrategy
     {
         public DataContractJsonSerializerStrategy()
         {
@@ -1652,11 +1654,11 @@ namespace PlayFab.Json
     // that might be in place in the target project.
     [GeneratedCode("reflection-utils", "1.0.0")]
 #if SIMPLE_JSON_REFLECTION_UTILS_PUBLIC
-        public
+    public
 #else
     internal
 #endif
- class ReflectionUtils
+    class ReflectionUtils
     {
         private static readonly object[] EmptyObjects = new object[0];
 
@@ -1674,11 +1676,13 @@ namespace PlayFab.Json
         {
             return type.GetTypeInfo();
         }
+
 #else
         public static Type GetTypeInfo(Type type)
         {
             return type;
         }
+
 #endif
 
         public static Attribute GetAttribute(MemberInfo info, Type type)
@@ -1718,7 +1722,6 @@ namespace PlayFab.Json
 
         public static Attribute GetAttribute(Type objectType, Type attributeType)
         {
-
 #if SIMPLE_JSON_TYPEINFO
             if (objectType == null || attributeType == null || !objectType.GetTypeInfo().IsDefined(attributeType))
                 return null;
@@ -1755,10 +1758,10 @@ namespace PlayFab.Json
                 || genericDefinition == typeof(ICollection<>)
                 || genericDefinition == typeof(IEnumerable<>)
 #if SIMPLE_JSON_READONLY_COLLECTIONS
-                    || genericDefinition == typeof(IReadOnlyCollection<>)
-                    || genericDefinition == typeof(IReadOnlyList<>)
+                || genericDefinition == typeof(IReadOnlyCollection<>)
+                || genericDefinition == typeof(IReadOnlyList<>)
 #endif
-);
+            );
         }
 
         public static bool IsAssignableFrom(Type type1, Type type2)
@@ -1883,7 +1886,7 @@ namespace PlayFab.Json
 
         public static ConstructorDelegate GetConstructorByReflection(ConstructorInfo constructorInfo)
         {
-            return delegate (object[] args)
+            return delegate(object[] args)
             {
                 var x = constructorInfo;
                 return x.Invoke(args);
@@ -1909,12 +1912,12 @@ namespace PlayFab.Json
         public static GetDelegate GetGetMethodByReflection(PropertyInfo propertyInfo)
         {
             MethodInfo methodInfo = GetGetterMethodInfo(propertyInfo);
-            return delegate (object source) { return methodInfo.Invoke(source, EmptyObjects); };
+            return delegate(object source) { return methodInfo.Invoke(source, EmptyObjects); };
         }
 
         public static GetDelegate GetGetMethodByReflection(FieldInfo fieldInfo)
         {
-            return delegate (object source) { return fieldInfo.GetValue(source); };
+            return delegate(object source) { return fieldInfo.GetValue(source); };
         }
 
         public static SetDelegate GetSetMethod(PropertyInfo propertyInfo)
@@ -1930,7 +1933,7 @@ namespace PlayFab.Json
         public static SetDelegate GetSetMethodByReflection(PropertyInfo propertyInfo)
         {
             MethodInfo methodInfo = GetSetterMethodInfo(propertyInfo);
-            return delegate (object source, object value)
+            return delegate(object source, object value)
             {
                 if (_1ObjArray == null)
                     _1ObjArray = new object[1];
@@ -1941,7 +1944,7 @@ namespace PlayFab.Json
 
         public static SetDelegate GetSetMethodByReflection(FieldInfo fieldInfo)
         {
-            return delegate (object source, object value) { fieldInfo.SetValue(source, value); };
+            return delegate(object source, object value) { fieldInfo.SetValue(source, value); };
         }
 
         public sealed class ThreadSafeDictionary<TKey, TValue> : IDictionary<TKey, TValue>

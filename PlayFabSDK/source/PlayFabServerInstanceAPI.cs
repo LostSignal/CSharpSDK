@@ -2,6 +2,11 @@
 
 using PlayFab.ServerModels;
 using PlayFab.Internal;
+#pragma warning disable 0649
+using System;
+// This is required for the Obsolete Attribute flag
+//  which is not always present in all API's
+#pragma warning restore 0649
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -16,7 +21,7 @@ namespace PlayFab
         public readonly PlayFabApiSettings apiSettings = null;
         public readonly PlayFabAuthenticationContext authenticationContext = null;
 
-        public PlayFabServerInstanceAPI() { }
+        public PlayFabServerInstanceAPI() {}
 
         public PlayFabServerInstanceAPI(PlayFabApiSettings settings)
         {
@@ -3530,7 +3535,6 @@ namespace PlayFab
 
             return new PlayFabResult<WriteEventResponse> { Result = result, CustomData = customData };
         }
-
     }
 }
 #endif

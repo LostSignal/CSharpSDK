@@ -1,4 +1,4 @@
-﻿#if !DISABLE_PLAYFABCLIENT_API && !DISABLE_PLAYFABENTITY_API
+#if !DISABLE_PLAYFABCLIENT_API && !DISABLE_PLAYFABENTITY_API
 namespace PlayFab.QoS
 {
     public enum QosErrorCode
@@ -12,4 +12,3 @@ namespace PlayFab.QoS
     }
 }
 #endif
-

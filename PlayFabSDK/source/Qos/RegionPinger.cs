@@ -1,4 +1,4 @@
-﻿#if !DISABLE_PLAYFABCLIENT_API && !DISABLE_PLAYFABENTITY_API
+#if !DISABLE_PLAYFABCLIENT_API && !DISABLE_PLAYFABENTITY_API
 namespace PlayFab.QoS
 {
     using System;
@@ -14,7 +14,7 @@ namespace PlayFab.QoS
     {
         private const int PortNumber = 3075;
         private const int UnknownLatencyValue = int.MaxValue;
-        
+
         ///
         /// Need to have at least NumSuccessBeforeFilteringOutBestAndWorst successful results before filtering the
         /// best and worst results from the average that is reported
@@ -33,7 +33,7 @@ namespace PlayFab.QoS
         private readonly List<int> latencyMeasures;
 
         public RegionPinger(string hostNameOrAddress, string region, int timeoutMs, int numTimeoutsForError,
-            int expectedPingsPerRegion)
+                            int expectedPingsPerRegion)
         {
             _hostNameOrAddress = hostNameOrAddress;
             _region = region;
@@ -102,7 +102,7 @@ namespace PlayFab.QoS
                     int count = 0;
                     if (latencyMeasures.Count >= NumSuccessBeforeFilteringOutBestAndWorst)
                     {
-                        // Throw out the top and bottom measurements 
+                        // Throw out the top and bottom measurements
                         latencyMeasures.Sort();
                         for (int i = 1; i < latencyMeasures.Count - 1; i++)
                         {
@@ -190,7 +190,7 @@ namespace PlayFab.QoS
     public class RegionPinger
     {
         public RegionPinger(string hostNameOrAddress, string region, int timeoutMs, int numTimeoutsForError,
-            int expectedPingsPerRegion)
+                            int expectedPingsPerRegion)
         {
         }
 

@@ -6,6 +6,10 @@ namespace PlayFab.InsightsModels
 {
     public class InsightsEmptyRequest : PlayFabRequestCommon
     {
+        /// <summary>
+        /// The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.).
+        /// </summary>
+        public Dictionary<string, string> CustomTags;
     }
 
     public class InsightsGetDetailsResponse : PlayFabResultCommon
@@ -13,33 +17,32 @@ namespace PlayFab.InsightsModels
         /// <summary>
         /// Amount of data (in MB) currently used by Insights.
         /// </summary>
-        public uint DataUsageMb ;
+        public uint DataUsageMb;
 
         /// <summary>
         /// Details of any error that occurred while retrieving Insights details.
         /// </summary>
-        public string ErrorMessage ;
+        public string ErrorMessage;
 
         /// <summary>
         /// Allowed range of values for performance level and data storage retention.
         /// </summary>
-        public InsightsGetLimitsResponse Limits ;
+        public InsightsGetLimitsResponse Limits;
 
         /// <summary>
         /// List of pending Insights operations for the title.
         /// </summary>
-        public List<InsightsGetOperationStatusResponse> PendingOperations ;
+        public List<InsightsGetOperationStatusResponse> PendingOperations;
 
         /// <summary>
         /// Current Insights performance level setting.
         /// </summary>
-        public int PerformanceLevel ;
+        public int PerformanceLevel;
 
         /// <summary>
         /// Current Insights data storage retention value in days.
         /// </summary>
-        public int RetentionDays ;
-
+        public int RetentionDays;
     }
 
     public class InsightsGetLimitsResponse : PlayFabResultCommon
@@ -47,28 +50,27 @@ namespace PlayFab.InsightsModels
         /// <summary>
         /// Default Insights performance level.
         /// </summary>
-        public int DefaultPerformanceLevel ;
+        public int DefaultPerformanceLevel;
 
         /// <summary>
         /// Default Insights data storage retention days.
         /// </summary>
-        public int DefaultStorageRetentionDays ;
+        public int DefaultStorageRetentionDays;
 
         /// <summary>
         /// Maximum allowed data storage retention days.
         /// </summary>
-        public int StorageMaxRetentionDays ;
+        public int StorageMaxRetentionDays;
 
         /// <summary>
         /// Minimum allowed data storage retention days.
         /// </summary>
-        public int StorageMinRetentionDays ;
+        public int StorageMinRetentionDays;
 
         /// <summary>
         /// List of Insights submeter limits for the allowed performance levels.
         /// </summary>
-        public List<InsightsPerformanceLevel> SubMeters ;
-
+        public List<InsightsPerformanceLevel> SubMeters;
     }
 
     /// <summary>
@@ -77,10 +79,14 @@ namespace PlayFab.InsightsModels
     public class InsightsGetOperationStatusRequest : PlayFabRequestCommon
     {
         /// <summary>
+        /// The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.).
+        /// </summary>
+        public Dictionary<string, string> CustomTags;
+
+        /// <summary>
         /// Id of the Insights operation.
         /// </summary>
-        public string OperationId ;
-
+        public string OperationId;
     }
 
     public class InsightsGetOperationStatusResponse : PlayFabResultCommon
@@ -88,43 +94,42 @@ namespace PlayFab.InsightsModels
         /// <summary>
         /// Optional message related to the operation details.
         /// </summary>
-        public string Message ;
+        public string Message;
 
         /// <summary>
         /// Time the operation was completed.
         /// </summary>
-        public DateTime OperationCompletedTime ;
+        public DateTime OperationCompletedTime;
 
         /// <summary>
         /// Id of the Insights operation.
         /// </summary>
-        public string OperationId ;
+        public string OperationId;
 
         /// <summary>
         /// Time the operation status was last updated.
         /// </summary>
-        public DateTime OperationLastUpdated ;
+        public DateTime OperationLastUpdated;
 
         /// <summary>
         /// Time the operation started.
         /// </summary>
-        public DateTime OperationStartedTime ;
+        public DateTime OperationStartedTime;
 
         /// <summary>
         /// The type of operation, SetPerformance or SetStorageRetention.
         /// </summary>
-        public string OperationType ;
+        public string OperationType;
 
         /// <summary>
         /// The value requested for the operation.
         /// </summary>
-        public int OperationValue ;
+        public int OperationValue;
 
         /// <summary>
         /// Current status of the operation.
         /// </summary>
-        public string Status ;
-
+        public string Status;
     }
 
     /// <summary>
@@ -133,10 +138,14 @@ namespace PlayFab.InsightsModels
     public class InsightsGetPendingOperationsRequest : PlayFabRequestCommon
     {
         /// <summary>
+        /// The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.).
+        /// </summary>
+        public Dictionary<string, string> CustomTags;
+
+        /// <summary>
         /// The type of pending operations requested, or blank for all operation types.
         /// </summary>
-        public string OperationType ;
-
+        public string OperationType;
     }
 
     public class InsightsGetPendingOperationsResponse : PlayFabResultCommon
@@ -144,8 +153,7 @@ namespace PlayFab.InsightsModels
         /// <summary>
         /// List of pending Insights operations.
         /// </summary>
-        public List<InsightsGetOperationStatusResponse> PendingOperations ;
-
+        public List<InsightsGetOperationStatusResponse> PendingOperations;
     }
 
     public class InsightsOperationResponse : PlayFabResultCommon
@@ -153,18 +161,17 @@ namespace PlayFab.InsightsModels
         /// <summary>
         /// Optional message related to the operation details.
         /// </summary>
-        public string Message ;
+        public string Message;
 
         /// <summary>
         /// Id of the Insights operation.
         /// </summary>
-        public string OperationId ;
+        public string OperationId;
 
         /// <summary>
         /// The type of operation, SetPerformance or SetStorageRetention.
         /// </summary>
-        public string OperationType ;
-
+        public string OperationType;
     }
 
     public class InsightsPerformanceLevel
@@ -172,43 +179,42 @@ namespace PlayFab.InsightsModels
         /// <summary>
         /// Number of allowed active event exports.
         /// </summary>
-        public int ActiveEventExports ;
+        public int ActiveEventExports;
 
         /// <summary>
         /// Maximum cache size.
         /// </summary>
-        public int CacheSizeMB ;
+        public int CacheSizeMB;
 
         /// <summary>
         /// Maximum number of concurrent queries.
         /// </summary>
-        public int Concurrency ;
+        public int Concurrency;
 
         /// <summary>
         /// Number of Insights credits consumed per minute.
         /// </summary>
-        public double CreditsPerMinute ;
+        public double CreditsPerMinute;
 
         /// <summary>
         /// Maximum events per second.
         /// </summary>
-        public int EventsPerSecond ;
+        public int EventsPerSecond;
 
         /// <summary>
         /// Performance level.
         /// </summary>
-        public int Level ;
+        public int Level;
 
         /// <summary>
         /// Maximum amount of memory allowed per query.
         /// </summary>
-        public int MaxMemoryPerQueryMB ;
+        public int MaxMemoryPerQueryMB;
 
         /// <summary>
         /// Amount of compute power allocated for queries and operations.
         /// </summary>
-        public int VirtualCpuCores ;
-
+        public int VirtualCpuCores;
     }
 
     /// <summary>
@@ -217,10 +223,14 @@ namespace PlayFab.InsightsModels
     public class InsightsSetPerformanceRequest : PlayFabRequestCommon
     {
         /// <summary>
+        /// The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.).
+        /// </summary>
+        public Dictionary<string, string> CustomTags;
+
+        /// <summary>
         /// The Insights performance level to apply to the title.
         /// </summary>
-        public int PerformanceLevel ;
-
+        public int PerformanceLevel;
     }
 
     /// <summary>
@@ -229,9 +239,13 @@ namespace PlayFab.InsightsModels
     public class InsightsSetStorageRetentionRequest : PlayFabRequestCommon
     {
         /// <summary>
+        /// The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.).
+        /// </summary>
+        public Dictionary<string, string> CustomTags;
+
+        /// <summary>
         /// The Insights data storage retention value (in days) to apply to the title.
         /// </summary>
-        public int RetentionDays ;
-
+        public int RetentionDays;
     }
 }

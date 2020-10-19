@@ -1,4 +1,4 @@
-﻿#if !DISABLE_PLAYFABCLIENT_API && !DISABLE_PLAYFABENTITY_API
+#if !DISABLE_PLAYFABCLIENT_API && !DISABLE_PLAYFABENTITY_API
 namespace PlayFab.QoS
 {
     using EventsModels;
@@ -57,6 +57,7 @@ namespace PlayFab.QoS
 
             return result;
         }
+
 #pragma warning restore 4014
 
         private async Task<QosResult> GetResultAsync(int timeoutMs, int pingsPerRegion, int degreeOfParallelism)
@@ -92,8 +93,8 @@ namespace PlayFab.QoS
                 return _dataCenterMap;
             }
 
-            var request = new ListQosServersRequest();
-            PlayFabResult<ListQosServersResponse> response = await multiplayerApi.ListQosServersAsync(request);
+            var request = new ListQosServersForTitleRequest();
+            PlayFabResult<ListQosServersForTitleResponse> response = await multiplayerApi.ListQosServersForTitleAsync(request);
 
             if (response == null || response.Error != null)
             {

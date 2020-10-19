@@ -9,13 +9,12 @@ namespace PlayFab.MultiplayerModels
         /// <summary>
         /// The asset's file name. This is a filename with the .zip, .tar, or .tar.gz extension.
         /// </summary>
-        public string FileName ;
+        public string FileName;
 
         /// <summary>
         /// The asset's mount path.
         /// </summary>
-        public string MountPath ;
-
+        public string MountPath;
     }
 
     public class AssetReferenceParams
@@ -23,13 +22,12 @@ namespace PlayFab.MultiplayerModels
         /// <summary>
         /// The asset's file name.
         /// </summary>
-        public string FileName ;
+        public string FileName;
 
         /// <summary>
         /// The asset's mount path.
         /// </summary>
-        public string MountPath ;
-
+        public string MountPath;
     }
 
     public class AssetSummary
@@ -37,13 +35,12 @@ namespace PlayFab.MultiplayerModels
         /// <summary>
         /// The asset's file name. This is a filename with the .zip, .tar, or .tar.gz extension.
         /// </summary>
-        public string FileName ;
+        public string FileName;
 
         /// <summary>
         /// The metadata associated with the asset.
         /// </summary>
-        public Dictionary<string,string> Metadata ;
-
+        public Dictionary<string, string> Metadata;
     }
 
     public enum AttributeMergeFunction
@@ -84,7 +81,9 @@ namespace PlayFab.MultiplayerModels
         WestUs,
         ChinaEast2,
         ChinaNorth2,
-        SouthAfricaNorth
+        SouthAfricaNorth,
+        CentralUsEuap,
+        WestCentralUs
     }
 
     public enum AzureVmFamily
@@ -92,21 +91,31 @@ namespace PlayFab.MultiplayerModels
         A,
         Av2,
         Dv2,
+        Dv3,
         F,
-        Fsv2
+        Fsv2,
+        Dasv4
     }
 
     public enum AzureVmSize
     {
+        Standard_A1,
+        Standard_A2,
+        Standard_A3,
+        Standard_A4,
+        Standard_A1_v2,
+        Standard_A2_v2,
+        Standard_A4_v2,
+        Standard_A8_v2,
         Standard_D1_v2,
         Standard_D2_v2,
         Standard_D3_v2,
         Standard_D4_v2,
         Standard_D5_v2,
-        Standard_A1_v2,
-        Standard_A2_v2,
-        Standard_A4_v2,
-        Standard_A8_v2,
+        Standard_D2_v3,
+        Standard_D4_v3,
+        Standard_D8_v3,
+        Standard_D16_v3,
         Standard_F1,
         Standard_F2,
         Standard_F4,
@@ -116,10 +125,10 @@ namespace PlayFab.MultiplayerModels
         Standard_F4s_v2,
         Standard_F8s_v2,
         Standard_F16s_v2,
-        Standard_A1,
-        Standard_A2,
-        Standard_A3,
-        Standard_A4
+        Standard_D2as_v4,
+        Standard_D4as_v4,
+        Standard_D8as_v4,
+        Standard_D16as_v4
     }
 
     public class BuildAliasDetailsResponse : PlayFabResultCommon
@@ -127,28 +136,27 @@ namespace PlayFab.MultiplayerModels
         /// <summary>
         /// The guid string alias Id of the alias to be created or updated.
         /// </summary>
-        public string AliasId ;
+        public string AliasId;
 
         /// <summary>
         /// The alias name.
         /// </summary>
-        public string AliasName ;
+        public string AliasName;
 
         /// <summary>
         /// Array of build selection criteria.
         /// </summary>
-        public List<BuildSelectionCriterion> BuildSelectionCriteria ;
+        public List<BuildSelectionCriterion> BuildSelectionCriteria;
 
         /// <summary>
         /// The page size on the response.
         /// </summary>
-        public int PageSize ;
+        public int PageSize;
 
         /// <summary>
         /// The skip token for the paged response.
         /// </summary>
-        public string SkipToken ;
-
+        public string SkipToken;
     }
 
     public class BuildAliasParams
@@ -156,8 +164,7 @@ namespace PlayFab.MultiplayerModels
         /// <summary>
         /// The guid string alias ID to use for the request.
         /// </summary>
-        public string AliasId ;
-
+        public string AliasId;
     }
 
     public class BuildRegion
@@ -165,34 +172,38 @@ namespace PlayFab.MultiplayerModels
         /// <summary>
         /// The current multiplayer server stats for the region.
         /// </summary>
-        public CurrentServerStats CurrentServerStats ;
+        public CurrentServerStats CurrentServerStats;
 
         /// <summary>
         /// Optional settings to control dynamic adjustment of standby target
         /// </summary>
-        public DynamicStandbySettings DynamicStandbySettings ;
+        public DynamicStandbySettings DynamicStandbySettings;
 
         /// <summary>
         /// The maximum number of multiplayer servers for the region.
         /// </summary>
-        public int MaxServers ;
+        public int MaxServers;
 
         /// <summary>
         /// The build region.
         /// </summary>
-        public string Region ;
+        public string Region;
+
+        /// <summary>
+        /// Optional settings to set the standby target to specified values during the supplied schedules
+        /// </summary>
+        public ScheduledStandbySettings ScheduledStandbySettings;
 
         /// <summary>
         /// The target number of standby multiplayer servers for the region.
         /// </summary>
-        public int StandbyServers ;
+        public int StandbyServers;
 
         /// <summary>
         /// The status of multiplayer servers in the build region. Valid values are - Unknown, Initialized, Deploying, Deployed,
         /// Unhealthy, Deleting, Deleted.
         /// </summary>
-        public string Status ;
-
+        public string Status;
     }
 
     public class BuildRegionParams
@@ -200,23 +211,27 @@ namespace PlayFab.MultiplayerModels
         /// <summary>
         /// Optional settings to control dynamic adjustment of standby target. If not specified, dynamic standby is disabled
         /// </summary>
-        public DynamicStandbySettings DynamicStandbySettings ;
+        public DynamicStandbySettings DynamicStandbySettings;
 
         /// <summary>
         /// The maximum number of multiplayer servers for the region.
         /// </summary>
-        public int MaxServers ;
+        public int MaxServers;
 
         /// <summary>
         /// The build region.
         /// </summary>
-        public string Region ;
+        public string Region;
+
+        /// <summary>
+        /// Optional settings to set the standby target to specified values during the supplied schedules
+        /// </summary>
+        public ScheduledStandbySettings ScheduledStandbySettings;
 
         /// <summary>
         /// The number of standby multiplayer servers for the region.
         /// </summary>
-        public int StandbyServers ;
-
+        public int StandbyServers;
     }
 
     public class BuildSelectionCriterion
@@ -224,8 +239,7 @@ namespace PlayFab.MultiplayerModels
         /// <summary>
         /// Dictionary of build ids and their respective weights for distribution of allocation requests.
         /// </summary>
-        public Dictionary<string,uint> BuildWeightDistribution ;
-
+        public Dictionary<string, uint> BuildWeightDistribution;
     }
 
     public class BuildSummary
@@ -233,28 +247,27 @@ namespace PlayFab.MultiplayerModels
         /// <summary>
         /// The guid string build ID of the build.
         /// </summary>
-        public string BuildId ;
+        public string BuildId;
 
         /// <summary>
         /// The build name.
         /// </summary>
-        public string BuildName ;
+        public string BuildName;
 
         /// <summary>
         /// The time the build was created in UTC.
         /// </summary>
-        public DateTime? CreationTime ;
+        public DateTime? CreationTime;
 
         /// <summary>
         /// The metadata of the build.
         /// </summary>
-        public Dictionary<string,string> Metadata ;
+        public Dictionary<string, string> Metadata;
 
         /// <summary>
         /// The configuration and status for each region in the build.
         /// </summary>
-        public List<BuildRegion> RegionConfigurations ;
-
+        public List<BuildRegion> RegionConfigurations;
     }
 
     /// <summary>
@@ -266,15 +279,19 @@ namespace PlayFab.MultiplayerModels
     public class CancelAllMatchmakingTicketsForPlayerRequest : PlayFabRequestCommon
     {
         /// <summary>
+        /// The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.).
+        /// </summary>
+        public Dictionary<string, string> CustomTags;
+
+        /// <summary>
         /// The entity key of the player whose tickets should be canceled.
         /// </summary>
-        public EntityKey Entity ;
+        public EntityKey Entity;
 
         /// <summary>
         /// The name of the queue from which a player's tickets should be canceled.
         /// </summary>
-        public string QueueName ;
-
+        public string QueueName;
     }
 
     public class CancelAllMatchmakingTicketsForPlayerResult : PlayFabResultCommon
@@ -289,15 +306,19 @@ namespace PlayFab.MultiplayerModels
     public class CancelAllServerBackfillTicketsForPlayerRequest : PlayFabRequestCommon
     {
         /// <summary>
+        /// The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.).
+        /// </summary>
+        public Dictionary<string, string> CustomTags;
+
+        /// <summary>
         /// The entity key of the player whose backfill tickets should be canceled.
         /// </summary>
-        public EntityKey Entity ;
+        public EntityKey Entity;
 
         /// <summary>
         /// The name of the queue from which a player's backfill tickets should be canceled.
         /// </summary>
-        public string QueueName ;
-
+        public string QueueName;
     }
 
     public class CancelAllServerBackfillTicketsForPlayerResult : PlayFabResultCommon
@@ -325,15 +346,19 @@ namespace PlayFab.MultiplayerModels
     public class CancelMatchmakingTicketRequest : PlayFabRequestCommon
     {
         /// <summary>
+        /// The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.).
+        /// </summary>
+        public Dictionary<string, string> CustomTags;
+
+        /// <summary>
         /// The name of the queue the ticket is in.
         /// </summary>
-        public string QueueName ;
+        public string QueueName;
 
         /// <summary>
         /// The Id of the ticket to find a match for.
         /// </summary>
-        public string TicketId ;
-
+        public string TicketId;
     }
 
     public class CancelMatchmakingTicketResult : PlayFabResultCommon
@@ -351,15 +376,19 @@ namespace PlayFab.MultiplayerModels
     public class CancelServerBackfillTicketRequest : PlayFabRequestCommon
     {
         /// <summary>
+        /// The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.).
+        /// </summary>
+        public Dictionary<string, string> CustomTags;
+
+        /// <summary>
         /// The name of the queue the ticket is in.
         /// </summary>
-        public string QueueName ;
+        public string QueueName;
 
         /// <summary>
         /// The Id of the ticket to find a match for.
         /// </summary>
-        public string TicketId ;
-
+        public string TicketId;
     }
 
     public class CancelServerBackfillTicketResult : PlayFabResultCommon
@@ -371,19 +400,18 @@ namespace PlayFab.MultiplayerModels
         /// <summary>
         /// Base64 encoded string contents of the certificate.
         /// </summary>
-        public string Base64EncodedValue ;
+        public string Base64EncodedValue;
 
         /// <summary>
         /// A name for the certificate. This is used to reference certificates in build configurations.
         /// </summary>
-        public string Name ;
+        public string Name;
 
         /// <summary>
         /// If required for your PFX certificate, use this field to provide a password that will be used to install the certificate
         /// on the container.
         /// </summary>
-        public string Password ;
-
+        public string Password;
     }
 
     public class CertificateSummary
@@ -391,13 +419,12 @@ namespace PlayFab.MultiplayerModels
         /// <summary>
         /// The name of the certificate.
         /// </summary>
-        public string Name ;
+        public string Name;
 
         /// <summary>
         /// The thumbprint for the certificate.
         /// </summary>
-        public string Thumbprint ;
-
+        public string Thumbprint;
     }
 
     public class ConnectedPlayer
@@ -405,8 +432,7 @@ namespace PlayFab.MultiplayerModels
         /// <summary>
         /// The player ID of the player connected to the multiplayer server.
         /// </summary>
-        public string PlayerId ;
-
+        public string PlayerId;
     }
 
     public enum ContainerFlavor
@@ -422,13 +448,12 @@ namespace PlayFab.MultiplayerModels
         /// <summary>
         /// The container image name.
         /// </summary>
-        public string ImageName ;
+        public string ImageName;
 
         /// <summary>
         /// The container tag.
         /// </summary>
-        public string Tag ;
-
+        public string Tag;
     }
 
     public class CoreCapacity
@@ -436,23 +461,22 @@ namespace PlayFab.MultiplayerModels
         /// <summary>
         /// The available core capacity for the (Region, VmFamily)
         /// </summary>
-        public int Available ;
+        public int Available;
 
         /// <summary>
         /// The AzureRegion
         /// </summary>
-        public string Region ;
+        public string Region;
 
         /// <summary>
         /// The total core capacity for the (Region, VmFamily)
         /// </summary>
-        public int Total ;
+        public int Total;
 
         /// <summary>
         /// The AzureVmFamily
         /// </summary>
-        public AzureVmFamily? VmFamily ;
-
+        public AzureVmFamily? VmFamily;
     }
 
     /// <summary>
@@ -463,13 +487,17 @@ namespace PlayFab.MultiplayerModels
         /// <summary>
         /// The alias name.
         /// </summary>
-        public string AliasName ;
+        public string AliasName;
 
         /// <summary>
         /// Array of build selection criteria.
         /// </summary>
-        public List<BuildSelectionCriterion> BuildSelectionCriteria ;
+        public List<BuildSelectionCriterion> BuildSelectionCriteria;
 
+        /// <summary>
+        /// The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.).
+        /// </summary>
+        public Dictionary<string, string> CustomTags;
     }
 
     /// <summary>
@@ -478,140 +506,177 @@ namespace PlayFab.MultiplayerModels
     public class CreateBuildWithCustomContainerRequest : PlayFabRequestCommon
     {
         /// <summary>
+        /// When true, assets will not be copied for each server inside the VM. All serverswill run from the same set of assets, or
+        /// will have the same assets mounted in the container.
+        /// </summary>
+        public bool? AreAssetsReadonly;
+
+        /// <summary>
         /// The build name.
         /// </summary>
-        public string BuildName ;
+        public string BuildName;
 
         /// <summary>
         /// The flavor of container to create a build from.
         /// </summary>
-        public ContainerFlavor? ContainerFlavor ;
+        public ContainerFlavor? ContainerFlavor;
 
         /// <summary>
         /// The container reference, consisting of the image name and tag.
         /// </summary>
-        public ContainerImageReference ContainerImageReference ;
+        public ContainerImageReference ContainerImageReference;
 
         /// <summary>
         /// The container command to run when the multiplayer server has been allocated, including any arguments.
         /// </summary>
-        public string ContainerRunCommand ;
+        public string ContainerRunCommand;
+
+        /// <summary>
+        /// The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.).
+        /// </summary>
+        public Dictionary<string, string> CustomTags;
 
         /// <summary>
         /// The list of game assets related to the build.
         /// </summary>
-        public List<AssetReferenceParams> GameAssetReferences ;
+        public List<AssetReferenceParams> GameAssetReferences;
 
         /// <summary>
         /// The game certificates for the build.
         /// </summary>
-        public List<GameCertificateReferenceParams> GameCertificateReferences ;
+        public List<GameCertificateReferenceParams> GameCertificateReferences;
+
+        /// <summary>
+        /// The Linux instrumentation configuration for the build.
+        /// </summary>
+        public LinuxInstrumentationConfiguration LinuxInstrumentationConfiguration;
 
         /// <summary>
         /// Metadata to tag the build. The keys are case insensitive. The build metadata is made available to the server through
         /// Game Server SDK (GSDK).Constraints: Maximum number of keys: 30, Maximum key length: 50, Maximum value length: 100
         /// </summary>
-        public Dictionary<string,string> Metadata ;
+        public Dictionary<string, string> Metadata;
 
         /// <summary>
         /// The number of multiplayer servers to host on a single VM.
         /// </summary>
-        public int MultiplayerServerCountPerVm ;
+        public int MultiplayerServerCountPerVm;
 
         /// <summary>
         /// The ports to map the build on.
         /// </summary>
-        public List<Port> Ports ;
+        public List<Port> Ports;
 
         /// <summary>
         /// The region configurations for the build.
         /// </summary>
-        public List<BuildRegionParams> RegionConfigurations ;
+        public List<BuildRegionParams> RegionConfigurations;
+
+        /// <summary>
+        /// When true, assets will be downloaded and uncompressed in memory, without the compressedversion being written first to
+        /// disc.
+        /// </summary>
+        public bool? UseStreamingForAssetDownloads;
 
         /// <summary>
         /// The VM size to create the build on.
         /// </summary>
-        public AzureVmSize? VmSize ;
-
+        public AzureVmSize? VmSize;
     }
 
     public class CreateBuildWithCustomContainerResponse : PlayFabResultCommon
     {
         /// <summary>
+        /// When true, assets will not be copied for each server inside the VM. All serverswill run from the same set of assets, or
+        /// will have the same assets mounted in the container.
+        /// </summary>
+        public bool? AreAssetsReadonly;
+
+        /// <summary>
         /// The guid string build ID. Must be unique for every build.
         /// </summary>
-        public string BuildId ;
+        public string BuildId;
 
         /// <summary>
         /// The build name.
         /// </summary>
-        public string BuildName ;
+        public string BuildName;
 
         /// <summary>
         /// The flavor of container of the build.
         /// </summary>
-        public ContainerFlavor? ContainerFlavor ;
+        public ContainerFlavor? ContainerFlavor;
 
         /// <summary>
         /// The container command to run when the multiplayer server has been allocated, including any arguments.
         /// </summary>
-        public string ContainerRunCommand ;
+        public string ContainerRunCommand;
 
         /// <summary>
         /// The time the build was created in UTC.
         /// </summary>
-        public DateTime? CreationTime ;
+        public DateTime? CreationTime;
 
         /// <summary>
         /// The custom game container image reference information.
         /// </summary>
-        public ContainerImageReference CustomGameContainerImage ;
+        public ContainerImageReference CustomGameContainerImage;
 
         /// <summary>
         /// The game assets for the build.
         /// </summary>
-        public List<AssetReference> GameAssetReferences ;
+        public List<AssetReference> GameAssetReferences;
 
         /// <summary>
         /// The game certificates for the build.
         /// </summary>
-        public List<GameCertificateReference> GameCertificateReferences ;
+        public List<GameCertificateReference> GameCertificateReferences;
+
+        /// <summary>
+        /// The Linux instrumentation configuration for this build.
+        /// </summary>
+        public LinuxInstrumentationConfiguration LinuxInstrumentationConfiguration;
 
         /// <summary>
         /// The metadata of the build.
         /// </summary>
-        public Dictionary<string,string> Metadata ;
+        public Dictionary<string, string> Metadata;
 
         /// <summary>
         /// The number of multiplayer servers to host on a single VM of the build.
         /// </summary>
-        public int MultiplayerServerCountPerVm ;
+        public int MultiplayerServerCountPerVm;
 
         /// <summary>
         /// The OS platform used for running the game process.
         /// </summary>
-        public string OsPlatform ;
+        public string OsPlatform;
 
         /// <summary>
         /// The ports the build is mapped on.
         /// </summary>
-        public List<Port> Ports ;
+        public List<Port> Ports;
 
         /// <summary>
         /// The region configuration for the build.
         /// </summary>
-        public List<BuildRegion> RegionConfigurations ;
+        public List<BuildRegion> RegionConfigurations;
 
         /// <summary>
         /// The type of game server being hosted.
         /// </summary>
-        public string ServerType ;
+        public string ServerType;
+
+        /// <summary>
+        /// When true, assets will be downloaded and uncompressed in memory, without the compressedversion being written first to
+        /// disc.
+        /// </summary>
+        public bool? UseStreamingForAssetDownloads;
 
         /// <summary>
         /// The VM size the build was created on.
         /// </summary>
-        public AzureVmSize? VmSize ;
-
+        public AzureVmSize? VmSize;
     }
 
     /// <summary>
@@ -620,152 +685,363 @@ namespace PlayFab.MultiplayerModels
     public class CreateBuildWithManagedContainerRequest : PlayFabRequestCommon
     {
         /// <summary>
+        /// When true, assets will not be copied for each server inside the VM. All serverswill run from the same set of assets, or
+        /// will have the same assets mounted in the container.
+        /// </summary>
+        public bool? AreAssetsReadonly;
+
+        /// <summary>
         /// The build name.
         /// </summary>
-        public string BuildName ;
+        public string BuildName;
 
         /// <summary>
         /// The flavor of container to create a build from.
         /// </summary>
-        public ContainerFlavor? ContainerFlavor ;
+        public ContainerFlavor? ContainerFlavor;
+
+        /// <summary>
+        /// The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.).
+        /// </summary>
+        public Dictionary<string, string> CustomTags;
 
         /// <summary>
         /// The list of game assets related to the build.
         /// </summary>
-        public List<AssetReferenceParams> GameAssetReferences ;
+        public List<AssetReferenceParams> GameAssetReferences;
 
         /// <summary>
         /// The game certificates for the build.
         /// </summary>
-        public List<GameCertificateReferenceParams> GameCertificateReferences ;
+        public List<GameCertificateReferenceParams> GameCertificateReferences;
 
         /// <summary>
         /// The directory containing the game executable. This would be the start path of the game assets that contain the main game
         /// server executable. If not provided, a best effort will be made to extract it from the start game command.
         /// </summary>
-        public string GameWorkingDirectory ;
+        public string GameWorkingDirectory;
 
         /// <summary>
         /// The instrumentation configuration for the build.
         /// </summary>
-        public InstrumentationConfiguration InstrumentationConfiguration ;
+        public InstrumentationConfiguration InstrumentationConfiguration;
 
         /// <summary>
         /// Metadata to tag the build. The keys are case insensitive. The build metadata is made available to the server through
         /// Game Server SDK (GSDK).Constraints: Maximum number of keys: 30, Maximum key length: 50, Maximum value length: 100
         /// </summary>
-        public Dictionary<string,string> Metadata ;
+        public Dictionary<string, string> Metadata;
 
         /// <summary>
         /// The number of multiplayer servers to host on a single VM.
         /// </summary>
-        public int MultiplayerServerCountPerVm ;
+        public int MultiplayerServerCountPerVm;
 
         /// <summary>
         /// The ports to map the build on.
         /// </summary>
-        public List<Port> Ports ;
+        public List<Port> Ports;
 
         /// <summary>
         /// The region configurations for the build.
         /// </summary>
-        public List<BuildRegionParams> RegionConfigurations ;
+        public List<BuildRegionParams> RegionConfigurations;
 
         /// <summary>
         /// The command to run when the multiplayer server is started, including any arguments.
         /// </summary>
-        public string StartMultiplayerServerCommand ;
+        public string StartMultiplayerServerCommand;
+
+        /// <summary>
+        /// When true, assets will be downloaded and uncompressed in memory, without the compressedversion being written first to
+        /// disc.
+        /// </summary>
+        public bool? UseStreamingForAssetDownloads;
 
         /// <summary>
         /// The VM size to create the build on.
         /// </summary>
-        public AzureVmSize? VmSize ;
-
+        public AzureVmSize? VmSize;
     }
 
     public class CreateBuildWithManagedContainerResponse : PlayFabResultCommon
     {
         /// <summary>
+        /// When true, assets will not be copied for each server inside the VM. All serverswill run from the same set of assets, or
+        /// will have the same assets mounted in the container.
+        /// </summary>
+        public bool? AreAssetsReadonly;
+
+        /// <summary>
         /// The guid string build ID. Must be unique for every build.
         /// </summary>
-        public string BuildId ;
+        public string BuildId;
 
         /// <summary>
         /// The build name.
         /// </summary>
-        public string BuildName ;
+        public string BuildName;
 
         /// <summary>
         /// The flavor of container of the build.
         /// </summary>
-        public ContainerFlavor? ContainerFlavor ;
+        public ContainerFlavor? ContainerFlavor;
 
         /// <summary>
         /// The time the build was created in UTC.
         /// </summary>
-        public DateTime? CreationTime ;
+        public DateTime? CreationTime;
 
         /// <summary>
         /// The game assets for the build.
         /// </summary>
-        public List<AssetReference> GameAssetReferences ;
+        public List<AssetReference> GameAssetReferences;
 
         /// <summary>
         /// The game certificates for the build.
         /// </summary>
-        public List<GameCertificateReference> GameCertificateReferences ;
+        public List<GameCertificateReference> GameCertificateReferences;
 
         /// <summary>
         /// The directory containing the game executable. This would be the start path of the game assets that contain the main game
         /// server executable. If not provided, a best effort will be made to extract it from the start game command.
         /// </summary>
-        public string GameWorkingDirectory ;
+        public string GameWorkingDirectory;
 
         /// <summary>
         /// The instrumentation configuration for this build.
         /// </summary>
-        public InstrumentationConfiguration InstrumentationConfiguration ;
+        public InstrumentationConfiguration InstrumentationConfiguration;
 
         /// <summary>
         /// The metadata of the build.
         /// </summary>
-        public Dictionary<string,string> Metadata ;
+        public Dictionary<string, string> Metadata;
 
         /// <summary>
         /// The number of multiplayer servers to host on a single VM of the build.
         /// </summary>
-        public int MultiplayerServerCountPerVm ;
+        public int MultiplayerServerCountPerVm;
 
         /// <summary>
         /// The OS platform used for running the game process.
         /// </summary>
-        public string OsPlatform ;
+        public string OsPlatform;
 
         /// <summary>
         /// The ports the build is mapped on.
         /// </summary>
-        public List<Port> Ports ;
+        public List<Port> Ports;
 
         /// <summary>
         /// The region configuration for the build.
         /// </summary>
-        public List<BuildRegion> RegionConfigurations ;
+        public List<BuildRegion> RegionConfigurations;
 
         /// <summary>
         /// The type of game server being hosted.
         /// </summary>
-        public string ServerType ;
+        public string ServerType;
 
         /// <summary>
         /// The command to run when the multiplayer server has been allocated, including any arguments.
         /// </summary>
-        public string StartMultiplayerServerCommand ;
+        public string StartMultiplayerServerCommand;
+
+        /// <summary>
+        /// When true, assets will be downloaded and uncompressed in memory, without the compressedversion being written first to
+        /// disc.
+        /// </summary>
+        public bool? UseStreamingForAssetDownloads;
 
         /// <summary>
         /// The VM size the build was created on.
         /// </summary>
-        public AzureVmSize? VmSize ;
+        public AzureVmSize? VmSize;
+    }
 
+    /// <summary>
+    /// Creates a multiplayer server build with the game server running as a process and returns information about the build
+    /// creation request.
+    /// </summary>
+    public class CreateBuildWithProcessBasedServerRequest : PlayFabRequestCommon
+    {
+        /// <summary>
+        /// When true, assets will not be copied for each server inside the VM. All serverswill run from the same set of assets, or
+        /// will have the same assets mounted in the container.
+        /// </summary>
+        public bool? AreAssetsReadonly;
+
+        /// <summary>
+        /// The build name.
+        /// </summary>
+        public string BuildName;
+
+        /// <summary>
+        /// The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.).
+        /// </summary>
+        public Dictionary<string, string> CustomTags;
+
+        /// <summary>
+        /// The list of game assets related to the build.
+        /// </summary>
+        public List<AssetReferenceParams> GameAssetReferences;
+
+        /// <summary>
+        /// The game certificates for the build.
+        /// </summary>
+        public List<GameCertificateReferenceParams> GameCertificateReferences;
+
+        /// <summary>
+        /// The working directory for the game process. If this is not provided, the working directory will be set based on the
+        /// mount path of the game server executable.
+        /// </summary>
+        public string GameWorkingDirectory;
+
+        /// <summary>
+        /// The instrumentation configuration for the build.
+        /// </summary>
+        public InstrumentationConfiguration InstrumentationConfiguration;
+
+        /// <summary>
+        /// Metadata to tag the build. The keys are case insensitive. The build metadata is made available to the server through
+        /// Game Server SDK (GSDK).Constraints: Maximum number of keys: 30, Maximum key length: 50, Maximum value length: 100
+        /// </summary>
+        public Dictionary<string, string> Metadata;
+
+        /// <summary>
+        /// The number of multiplayer servers to host on a single VM.
+        /// </summary>
+        public int MultiplayerServerCountPerVm;
+
+        /// <summary>
+        /// The OS platform used for running the game process.
+        /// </summary>
+        public string OsPlatform;
+
+        /// <summary>
+        /// The ports to map the build on.
+        /// </summary>
+        public List<Port> Ports;
+
+        /// <summary>
+        /// The region configurations for the build.
+        /// </summary>
+        public List<BuildRegionParams> RegionConfigurations;
+
+        /// <summary>
+        /// The command to run when the multiplayer server is started, including any arguments. The path to any executable should be
+        /// relative to the root asset folder when unzipped.
+        /// </summary>
+        public string StartMultiplayerServerCommand;
+
+        /// <summary>
+        /// When true, assets will be downloaded and uncompressed in memory, without the compressedversion being written first to
+        /// disc.
+        /// </summary>
+        public bool? UseStreamingForAssetDownloads;
+
+        /// <summary>
+        /// The VM size to create the build on.
+        /// </summary>
+        public AzureVmSize? VmSize;
+    }
+
+    public class CreateBuildWithProcessBasedServerResponse : PlayFabResultCommon
+    {
+        /// <summary>
+        /// When true, assets will not be copied for each server inside the VM. All serverswill run from the same set of assets, or
+        /// will have the same assets mounted in the container.
+        /// </summary>
+        public bool? AreAssetsReadonly;
+
+        /// <summary>
+        /// The guid string build ID. Must be unique for every build.
+        /// </summary>
+        public string BuildId;
+
+        /// <summary>
+        /// The build name.
+        /// </summary>
+        public string BuildName;
+
+        /// <summary>
+        /// The flavor of container of the build.
+        /// </summary>
+        public ContainerFlavor? ContainerFlavor;
+
+        /// <summary>
+        /// The time the build was created in UTC.
+        /// </summary>
+        public DateTime? CreationTime;
+
+        /// <summary>
+        /// The game assets for the build.
+        /// </summary>
+        public List<AssetReference> GameAssetReferences;
+
+        /// <summary>
+        /// The game certificates for the build.
+        /// </summary>
+        public List<GameCertificateReference> GameCertificateReferences;
+
+        /// <summary>
+        /// The working directory for the game process. If this is not provided, the working directory will be set based on the
+        /// mount path of the game server executable.
+        /// </summary>
+        public string GameWorkingDirectory;
+
+        /// <summary>
+        /// The instrumentation configuration for this build.
+        /// </summary>
+        public InstrumentationConfiguration InstrumentationConfiguration;
+
+        /// <summary>
+        /// The metadata of the build.
+        /// </summary>
+        public Dictionary<string, string> Metadata;
+
+        /// <summary>
+        /// The number of multiplayer servers to host on a single VM of the build.
+        /// </summary>
+        public int MultiplayerServerCountPerVm;
+
+        /// <summary>
+        /// The OS platform used for running the game process.
+        /// </summary>
+        public string OsPlatform;
+
+        /// <summary>
+        /// The ports the build is mapped on.
+        /// </summary>
+        public List<Port> Ports;
+
+        /// <summary>
+        /// The region configuration for the build.
+        /// </summary>
+        public List<BuildRegion> RegionConfigurations;
+
+        /// <summary>
+        /// The type of game server being hosted.
+        /// </summary>
+        public string ServerType;
+
+        /// <summary>
+        /// The command to run when the multiplayer server is started, including any arguments. The path to any executable is
+        /// relative to the root asset folder when unzipped.
+        /// </summary>
+        public string StartMultiplayerServerCommand;
+
+        /// <summary>
+        /// When true, assets will be downloaded and uncompressed in memory, without the compressedversion being written first to
+        /// disc.
+        /// </summary>
+        public bool? UseStreamingForAssetDownloads;
+
+        /// <summary>
+        /// The VM size the build was created on.
+        /// </summary>
+        public AzureVmSize? VmSize;
     }
 
     /// <summary>
@@ -776,23 +1052,27 @@ namespace PlayFab.MultiplayerModels
         /// <summary>
         /// The User who created this ticket.
         /// </summary>
-        public MatchmakingPlayer Creator ;
+        public MatchmakingPlayer Creator;
+
+        /// <summary>
+        /// The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.).
+        /// </summary>
+        public Dictionary<string, string> CustomTags;
 
         /// <summary>
         /// How long to attempt matching this ticket in seconds.
         /// </summary>
-        public int GiveUpAfterSeconds ;
+        public int GiveUpAfterSeconds;
 
         /// <summary>
         /// A list of Entity Keys of other users to match with.
         /// </summary>
-        public List<EntityKey> MembersToMatchWith ;
+        public List<EntityKey> MembersToMatchWith;
 
         /// <summary>
         /// The Id of a match queue.
         /// </summary>
-        public string QueueName ;
-
+        public string QueueName;
     }
 
     public class CreateMatchmakingTicketResult : PlayFabResultCommon
@@ -800,8 +1080,7 @@ namespace PlayFab.MultiplayerModels
         /// <summary>
         /// The Id of the ticket to find a match for.
         /// </summary>
-        public string TicketId ;
-
+        public string TicketId;
     }
 
     /// <summary>
@@ -813,28 +1092,32 @@ namespace PlayFab.MultiplayerModels
         /// <summary>
         /// The guid string build ID of to create the remote user for.
         /// </summary>
-        public string BuildId ;
+        public string BuildId;
+
+        /// <summary>
+        /// The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.).
+        /// </summary>
+        public Dictionary<string, string> CustomTags;
 
         /// <summary>
         /// The expiration time for the remote user created. Defaults to expiring in one day if not specified.
         /// </summary>
-        public DateTime? ExpirationTime ;
+        public DateTime? ExpirationTime;
 
         /// <summary>
         /// The region of virtual machine to create the remote user for.
         /// </summary>
-        public string Region ;
+        public string Region;
 
         /// <summary>
         /// The username to create the remote user with.
         /// </summary>
-        public string Username ;
+        public string Username;
 
         /// <summary>
         /// The virtual machine ID the multiplayer server is located on.
         /// </summary>
-        public string VmId ;
-
+        public string VmId;
     }
 
     public class CreateRemoteUserResponse : PlayFabResultCommon
@@ -842,18 +1125,17 @@ namespace PlayFab.MultiplayerModels
         /// <summary>
         /// The expiration time for the remote user created.
         /// </summary>
-        public DateTime? ExpirationTime ;
+        public DateTime? ExpirationTime;
 
         /// <summary>
         /// The generated password for the remote user that was created.
         /// </summary>
-        public string Password ;
+        public string Password;
 
         /// <summary>
         /// The username for the remote user that was created.
         /// </summary>
-        public string Username ;
-
+        public string Username;
     }
 
     /// <summary>
@@ -862,25 +1144,29 @@ namespace PlayFab.MultiplayerModels
     public class CreateServerBackfillTicketRequest : PlayFabRequestCommon
     {
         /// <summary>
+        /// The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.).
+        /// </summary>
+        public Dictionary<string, string> CustomTags;
+
+        /// <summary>
         /// How long to attempt matching this ticket in seconds.
         /// </summary>
-        public int GiveUpAfterSeconds ;
+        public int GiveUpAfterSeconds;
 
         /// <summary>
         /// The users who will be part of this ticket, along with their team assignments.
         /// </summary>
-        public List<MatchmakingPlayerWithTeamAssignment> Members ;
+        public List<MatchmakingPlayerWithTeamAssignment> Members;
 
         /// <summary>
         /// The Id of a match queue.
         /// </summary>
-        public string QueueName ;
+        public string QueueName;
 
         /// <summary>
         /// The details of the server the members are connected to.
         /// </summary>
-        public ServerDetails ServerDetails ;
-
+        public ServerDetails ServerDetails;
     }
 
     public class CreateServerBackfillTicketResult : PlayFabResultCommon
@@ -888,8 +1174,7 @@ namespace PlayFab.MultiplayerModels
         /// <summary>
         /// The Id of the ticket to find a match for.
         /// </summary>
-        public string TicketId ;
-
+        public string TicketId;
     }
 
     /// <summary>
@@ -898,20 +1183,24 @@ namespace PlayFab.MultiplayerModels
     public class CreateServerMatchmakingTicketRequest : PlayFabRequestCommon
     {
         /// <summary>
+        /// The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.).
+        /// </summary>
+        public Dictionary<string, string> CustomTags;
+
+        /// <summary>
         /// How long to attempt matching this ticket in seconds.
         /// </summary>
-        public int GiveUpAfterSeconds ;
+        public int GiveUpAfterSeconds;
 
         /// <summary>
         /// The users who will be part of this ticket.
         /// </summary>
-        public List<MatchmakingPlayer> Members ;
+        public List<MatchmakingPlayer> Members;
 
         /// <summary>
         /// The Id of a match queue.
         /// </summary>
-        public string QueueName ;
-
+        public string QueueName;
     }
 
     public class CurrentServerStats
@@ -919,23 +1208,22 @@ namespace PlayFab.MultiplayerModels
         /// <summary>
         /// The number of active multiplayer servers.
         /// </summary>
-        public int Active ;
+        public int Active;
 
         /// <summary>
         /// The number of multiplayer servers still downloading game resources (such as assets).
         /// </summary>
-        public int Propping ;
+        public int Propping;
 
         /// <summary>
         /// The number of standingby multiplayer servers.
         /// </summary>
-        public int StandingBy ;
+        public int StandingBy;
 
         /// <summary>
         /// The total number of multiplayer servers.
         /// </summary>
-        public int Total ;
-
+        public int Total;
     }
 
     public class CustomDifferenceRuleExpansion
@@ -943,13 +1231,12 @@ namespace PlayFab.MultiplayerModels
         /// <summary>
         /// Manually specify the values to use for each expansion interval (this overrides Difference, Delta, and MaxDifference).
         /// </summary>
-        public List<OverrideDouble> DifferenceOverrides ;
+        public List<OverrideDouble> DifferenceOverrides;
 
         /// <summary>
         /// How many seconds before this rule is expanded.
         /// </summary>
-        public uint SecondsBetweenExpansions ;
-
+        public uint SecondsBetweenExpansions;
     }
 
     public class CustomRegionSelectionRuleExpansion
@@ -957,13 +1244,12 @@ namespace PlayFab.MultiplayerModels
         /// <summary>
         /// Manually specify the maximum latency to use for each expansion interval.
         /// </summary>
-        public List<OverrideUnsignedInt> MaxLatencyOverrides ;
+        public List<OverrideUnsignedInt> MaxLatencyOverrides;
 
         /// <summary>
         /// How many seconds before this rule is expanded.
         /// </summary>
-        public uint SecondsBetweenExpansions ;
-
+        public uint SecondsBetweenExpansions;
     }
 
     public class CustomSetIntersectionRuleExpansion
@@ -971,13 +1257,12 @@ namespace PlayFab.MultiplayerModels
         /// <summary>
         /// Manually specify the values to use for each expansion interval.
         /// </summary>
-        public List<OverrideUnsignedInt> MinIntersectionSizeOverrides ;
+        public List<OverrideUnsignedInt> MinIntersectionSizeOverrides;
 
         /// <summary>
         /// How many seconds before this rule is expanded.
         /// </summary>
-        public uint SecondsBetweenExpansions ;
-
+        public uint SecondsBetweenExpansions;
     }
 
     public class CustomTeamDifferenceRuleExpansion
@@ -985,13 +1270,12 @@ namespace PlayFab.MultiplayerModels
         /// <summary>
         /// Manually specify the team difference value to use for each expansion interval.
         /// </summary>
-        public List<OverrideDouble> DifferenceOverrides ;
+        public List<OverrideDouble> DifferenceOverrides;
 
         /// <summary>
         /// How many seconds before this rule is expanded.
         /// </summary>
-        public uint SecondsBetweenExpansions ;
-
+        public uint SecondsBetweenExpansions;
     }
 
     public class CustomTeamSizeBalanceRuleExpansion
@@ -999,13 +1283,12 @@ namespace PlayFab.MultiplayerModels
         /// <summary>
         /// Manually specify the team size difference to use for each expansion interval.
         /// </summary>
-        public List<OverrideUnsignedInt> DifferenceOverrides ;
+        public List<OverrideUnsignedInt> DifferenceOverrides;
 
         /// <summary>
         /// How many seconds before this rule is expanded.
         /// </summary>
-        public uint SecondsBetweenExpansions ;
-
+        public uint SecondsBetweenExpansions;
     }
 
     /// <summary>
@@ -1014,10 +1297,14 @@ namespace PlayFab.MultiplayerModels
     public class DeleteAssetRequest : PlayFabRequestCommon
     {
         /// <summary>
+        /// The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.).
+        /// </summary>
+        public Dictionary<string, string> CustomTags;
+
+        /// <summary>
         /// The filename of the asset to delete.
         /// </summary>
-        public string FileName ;
-
+        public string FileName;
     }
 
     /// <summary>
@@ -1028,8 +1315,12 @@ namespace PlayFab.MultiplayerModels
         /// <summary>
         /// The guid string alias ID of the alias to perform the action on.
         /// </summary>
-        public string AliasId ;
+        public string AliasId;
 
+        /// <summary>
+        /// The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.).
+        /// </summary>
+        public Dictionary<string, string> CustomTags;
     }
 
     /// <summary>
@@ -1040,13 +1331,17 @@ namespace PlayFab.MultiplayerModels
         /// <summary>
         /// The guid string ID of the build we want to update regions for.
         /// </summary>
-        public string BuildId ;
+        public string BuildId;
+
+        /// <summary>
+        /// The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.).
+        /// </summary>
+        public Dictionary<string, string> CustomTags;
 
         /// <summary>
         /// The build region to delete.
         /// </summary>
-        public string Region ;
-
+        public string Region;
     }
 
     /// <summary>
@@ -1057,8 +1352,12 @@ namespace PlayFab.MultiplayerModels
         /// <summary>
         /// The guid string build ID of the build to delete.
         /// </summary>
-        public string BuildId ;
+        public string BuildId;
 
+        /// <summary>
+        /// The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.).
+        /// </summary>
+        public Dictionary<string, string> CustomTags;
     }
 
     /// <summary>
@@ -1067,10 +1366,31 @@ namespace PlayFab.MultiplayerModels
     public class DeleteCertificateRequest : PlayFabRequestCommon
     {
         /// <summary>
+        /// The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.).
+        /// </summary>
+        public Dictionary<string, string> CustomTags;
+
+        /// <summary>
         /// The name of the certificate.
         /// </summary>
-        public string Name ;
+        public string Name;
+    }
 
+    /// <summary>
+    /// Removes the specified container image repository. After this operation, a 'docker pull' will fail for all the tags of
+    /// the specified image. Morever, ListContainerImages will not return the specified image.
+    /// </summary>
+    public class DeleteContainerImageRequest : PlayFabRequestCommon
+    {
+        /// <summary>
+        /// The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.).
+        /// </summary>
+        public Dictionary<string, string> CustomTags;
+
+        /// <summary>
+        /// The container image repository we want to delete.
+        /// </summary>
+        public string ImageName;
     }
 
     /// <summary>
@@ -1082,23 +1402,27 @@ namespace PlayFab.MultiplayerModels
         /// <summary>
         /// The guid string build ID of the multiplayer server where the remote user is to delete.
         /// </summary>
-        public string BuildId ;
+        public string BuildId;
+
+        /// <summary>
+        /// The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.).
+        /// </summary>
+        public Dictionary<string, string> CustomTags;
 
         /// <summary>
         /// The region of the multiplayer server where the remote user is to delete.
         /// </summary>
-        public string Region ;
+        public string Region;
 
         /// <summary>
         /// The username of the remote user to delete.
         /// </summary>
-        public string Username ;
+        public string Username;
 
         /// <summary>
         /// The virtual machine ID the multiplayer server is located on.
         /// </summary>
-        public string VmId ;
-
+        public string VmId;
     }
 
     public class DifferenceRule
@@ -1106,57 +1430,56 @@ namespace PlayFab.MultiplayerModels
         /// <summary>
         /// Description of the attribute used by this rule to match tickets.
         /// </summary>
-        public QueueRuleAttribute Attribute ;
+        public QueueRuleAttribute Attribute;
 
         /// <summary>
         /// Describes the behavior when an attribute is not specified in the ticket creation request or in the user's entity
         /// profile.
         /// </summary>
-        public AttributeNotSpecifiedBehavior AttributeNotSpecifiedBehavior ;
+        public AttributeNotSpecifiedBehavior AttributeNotSpecifiedBehavior;
 
         /// <summary>
         /// Collection of fields relating to expanding this rule at set intervals. Only one expansion can be set per rule. When this
         /// is set, Difference is ignored.
         /// </summary>
-        public CustomDifferenceRuleExpansion CustomExpansion ;
+        public CustomDifferenceRuleExpansion CustomExpansion;
 
         /// <summary>
         /// The default value assigned to tickets that are missing the attribute specified by AttributePath (assuming that
         /// AttributeNotSpecifiedBehavior is false). Optional.
         /// </summary>
-        public double? DefaultAttributeValue ;
+        public double? DefaultAttributeValue;
 
         /// <summary>
         /// The allowed difference between any two tickets at the start of matchmaking.
         /// </summary>
-        public double Difference ;
+        public double Difference;
 
         /// <summary>
         /// Collection of fields relating to expanding this rule at set intervals. Only one expansion can be set per rule.
         /// </summary>
-        public LinearDifferenceRuleExpansion LinearExpansion ;
+        public LinearDifferenceRuleExpansion LinearExpansion;
 
         /// <summary>
         /// How values are treated when there are multiple players in a single ticket.
         /// </summary>
-        public AttributeMergeFunction MergeFunction ;
+        public AttributeMergeFunction MergeFunction;
 
         /// <summary>
         /// Friendly name chosen by developer.
         /// </summary>
-        public string Name ;
+        public string Name;
 
         /// <summary>
         /// How many seconds before this rule is no longer enforced (but tickets that comply with this rule will still be
         /// prioritized over those that don't). Leave blank if this rule is always enforced.
         /// </summary>
-        public uint? SecondsUntilOptional ;
+        public uint? SecondsUntilOptional;
 
         /// <summary>
         /// The relative weight of this rule compared to others.
         /// </summary>
-        public double Weight ;
-
+        public double Weight;
     }
 
     public class DynamicStandbySettings
@@ -1165,18 +1488,17 @@ namespace PlayFab.MultiplayerModels
         /// List of auto standing by trigger values and corresponding standing by multiplier. Defaults to 1.5X at 50%, 3X at 25%,
         /// and 4X at 5%
         /// </summary>
-        public List<DynamicStandbyThreshold> DynamicFloorMultiplierThresholds ;
+        public List<DynamicStandbyThreshold> DynamicFloorMultiplierThresholds;
 
         /// <summary>
         /// When true, dynamic standby will be enabled
         /// </summary>
-        public bool IsEnabled ;
+        public bool IsEnabled;
 
         /// <summary>
         /// The time it takes to reduce target standing by to configured floor value after an increase. Defaults to 30 minutes
         /// </summary>
-        public int? RampDownSeconds ;
-
+        public int? RampDownSeconds;
     }
 
     public class DynamicStandbyThreshold
@@ -1184,13 +1506,12 @@ namespace PlayFab.MultiplayerModels
         /// <summary>
         /// When the trigger threshold is reached, multiply by this value
         /// </summary>
-        public double Multiplier ;
+        public double Multiplier;
 
         /// <summary>
         /// The multiplier will be applied when the actual standby divided by target standby floor is less than this value
         /// </summary>
-        public double TriggerThresholdPercentage ;
-
+        public double TriggerThresholdPercentage;
     }
 
     public class EmptyResponse : PlayFabResultCommon
@@ -1204,6 +1525,10 @@ namespace PlayFab.MultiplayerModels
     /// </summary>
     public class EnableMultiplayerServersForTitleRequest : PlayFabRequestCommon
     {
+        /// <summary>
+        /// The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.).
+        /// </summary>
+        public Dictionary<string, string> CustomTags;
     }
 
     public class EnableMultiplayerServersForTitleResponse : PlayFabResultCommon
@@ -1211,8 +1536,7 @@ namespace PlayFab.MultiplayerModels
         /// <summary>
         /// The enabled status for the multiplayer server features for the title.
         /// </summary>
-        public TitleMultiplayerServerEnabledStatus? Status ;
-
+        public TitleMultiplayerServerEnabledStatus? Status;
     }
 
     /// <summary>
@@ -1229,7 +1553,6 @@ namespace PlayFab.MultiplayerModels
         /// Entity type. See https://docs.microsoft.com/gaming/playfab/features/data/entities/available-built-in-entity-types
         /// </summary>
         public string Type { get; set; }
-
     }
 
     public class GameCertificateReference
@@ -1239,14 +1562,13 @@ namespace PlayFab.MultiplayerModels
         /// certificate. This alias is used as an identifier in game server code to allow a new certificate with different Name
         /// field to be uploaded without the need to change any game server code to reference the new Name.
         /// </summary>
-        public string GsdkAlias ;
+        public string GsdkAlias;
 
         /// <summary>
         /// The name of the game certificate. This name should match the name of a certificate that was previously uploaded to this
         /// title.
         /// </summary>
-        public string Name ;
-
+        public string Name;
     }
 
     public class GameCertificateReferenceParams
@@ -1256,14 +1578,13 @@ namespace PlayFab.MultiplayerModels
         /// certificate. This alias is used as an identifier in game server code to allow a new certificate with different Name
         /// field to be uploaded without the need to change any game server code to reference the new Name.
         /// </summary>
-        public string GsdkAlias ;
+        public string GsdkAlias;
 
         /// <summary>
         /// The name of the game certificate. This name should match the name of a certificate that was previously uploaded to this
         /// title.
         /// </summary>
-        public string Name ;
-
+        public string Name;
     }
 
     /// <summary>
@@ -1272,10 +1593,14 @@ namespace PlayFab.MultiplayerModels
     public class GetAssetUploadUrlRequest : PlayFabRequestCommon
     {
         /// <summary>
+        /// The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.).
+        /// </summary>
+        public Dictionary<string, string> CustomTags;
+
+        /// <summary>
         /// The asset's file name to get the upload URL for.
         /// </summary>
-        public string FileName ;
-
+        public string FileName;
     }
 
     public class GetAssetUploadUrlResponse : PlayFabResultCommon
@@ -1283,13 +1608,12 @@ namespace PlayFab.MultiplayerModels
         /// <summary>
         /// The asset's upload URL.
         /// </summary>
-        public string AssetUploadUrl ;
+        public string AssetUploadUrl;
 
         /// <summary>
         /// The asset's file name to get the upload URL for.
         /// </summary>
-        public string FileName ;
-
+        public string FileName;
     }
 
     /// <summary>
@@ -1300,8 +1624,12 @@ namespace PlayFab.MultiplayerModels
         /// <summary>
         /// The guid string alias ID of the alias to perform the action on.
         /// </summary>
-        public string AliasId ;
+        public string AliasId;
 
+        /// <summary>
+        /// The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.).
+        /// </summary>
+        public Dictionary<string, string> CustomTags;
     }
 
     /// <summary>
@@ -1312,105 +1640,120 @@ namespace PlayFab.MultiplayerModels
         /// <summary>
         /// The guid string build ID of the build to get.
         /// </summary>
-        public string BuildId ;
+        public string BuildId;
 
+        /// <summary>
+        /// The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.).
+        /// </summary>
+        public Dictionary<string, string> CustomTags;
     }
 
     public class GetBuildResponse : PlayFabResultCommon
     {
         /// <summary>
+        /// When true, assets will not be copied for each server inside the VM. All serverswill run from the same set of assets, or
+        /// will have the same assets mounted in the container.
+        /// </summary>
+        public bool? AreAssetsReadonly;
+
+        /// <summary>
         /// The guid string build ID of the build.
         /// </summary>
-        public string BuildId ;
+        public string BuildId;
 
         /// <summary>
         /// The build name.
         /// </summary>
-        public string BuildName ;
+        public string BuildName;
 
         /// <summary>
         /// The current build status. Valid values are - Deploying, Deployed, DeletingRegion, Unhealthy.
         /// </summary>
-        public string BuildStatus ;
+        public string BuildStatus;
 
         /// <summary>
         /// The flavor of container of he build.
         /// </summary>
-        public ContainerFlavor? ContainerFlavor ;
+        public ContainerFlavor? ContainerFlavor;
 
         /// <summary>
         /// The container command to run when the multiplayer server has been allocated, including any arguments. This only applies
         /// to custom builds. If the build is a managed build, this field will be null.
         /// </summary>
-        public string ContainerRunCommand ;
+        public string ContainerRunCommand;
 
         /// <summary>
         /// The time the build was created in UTC.
         /// </summary>
-        public DateTime? CreationTime ;
+        public DateTime? CreationTime;
 
         /// <summary>
         /// The custom game container image for a custom build.
         /// </summary>
-        public ContainerImageReference CustomGameContainerImage ;
+        public ContainerImageReference CustomGameContainerImage;
 
         /// <summary>
         /// The game assets for the build.
         /// </summary>
-        public List<AssetReference> GameAssetReferences ;
+        public List<AssetReference> GameAssetReferences;
 
         /// <summary>
         /// The game certificates for the build.
         /// </summary>
-        public List<GameCertificateReference> GameCertificateReferences ;
+        public List<GameCertificateReference> GameCertificateReferences;
 
         /// <summary>
         /// The instrumentation configuration of the build.
         /// </summary>
-        public InstrumentationConfiguration InstrumentationConfiguration ;
+        public InstrumentationConfiguration InstrumentationConfiguration;
 
         /// <summary>
         /// Metadata of the build. The keys are case insensitive. The build metadata is made available to the server through Game
         /// Server SDK (GSDK).
         /// </summary>
-        public Dictionary<string,string> Metadata ;
+        public Dictionary<string, string> Metadata;
 
         /// <summary>
         /// The number of multiplayer servers to hosted on a single VM of the build.
         /// </summary>
-        public int MultiplayerServerCountPerVm ;
+        public int MultiplayerServerCountPerVm;
 
         /// <summary>
         /// The OS platform used for running the game process.
         /// </summary>
-        public string OsPlatform ;
+        public string OsPlatform;
 
         /// <summary>
         /// The ports the build is mapped on.
         /// </summary>
-        public List<Port> Ports ;
+        public List<Port> Ports;
 
         /// <summary>
         /// The region configuration for the build.
         /// </summary>
-        public List<BuildRegion> RegionConfigurations ;
+        public List<BuildRegion> RegionConfigurations;
 
         /// <summary>
         /// The type of game server being hosted.
         /// </summary>
-        public string ServerType ;
+        public string ServerType;
 
         /// <summary>
         /// The command to run when the multiplayer server has been allocated, including any arguments. This only applies to managed
         /// builds. If the build is a custom build, this field will be null.
         /// </summary>
-        public string StartMultiplayerServerCommand ;
+        public string StartMultiplayerServerCommand;
+
+        /// <summary>
+        /// When true, assets will be downloaded and uncompressed in memory, without the compressedversion being written first to
+        /// disc.
+        /// </summary>
+        public bool? UseStreamingForAssetDownloads;
 
         /// <summary>
         /// The VM size the build was created on.
         /// </summary>
-        public AzureVmSize? VmSize ;
-
+        public AzureVmSize? VmSize;
     }
 
     /// <summary>
@@ -1419,6 +1762,10 @@ namespace PlayFab.MultiplayerModels
     /// </summary>
     public class GetContainerRegistryCredentialsRequest : PlayFabRequestCommon
     {
+        /// <summary>
+        /// The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.).
+        /// </summary>
+        public Dictionary<string, string> CustomTags;
     }
 
     public class GetContainerRegistryCredentialsResponse : PlayFabResultCommon
@@ -1426,18 +1773,17 @@ namespace PlayFab.MultiplayerModels
         /// <summary>
         /// The url of the container registry.
         /// </summary>
-        public string DnsName ;
+        public string DnsName;
 
         /// <summary>
         /// The password for accessing the container registry.
         /// </summary>
-        public string Password ;
+        public string Password;
 
         /// <summary>
         /// The username for accessing the container registry.
         /// </summary>
-        public string Username ;
-
+        public string Username;
     }
 
     /// <summary>
@@ -1446,10 +1792,14 @@ namespace PlayFab.MultiplayerModels
     public class GetMatchmakingQueueRequest : PlayFabRequestCommon
     {
         /// <summary>
+        /// The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.).
+        /// </summary>
+        public Dictionary<string, string> CustomTags;
+
+        /// <summary>
         /// The Id of the matchmaking queue to retrieve.
         /// </summary>
-        public string QueueName ;
-
+        public string QueueName;
     }
 
     public class GetMatchmakingQueueResult : PlayFabResultCommon
@@ -1457,8 +1807,7 @@ namespace PlayFab.MultiplayerModels
         /// <summary>
         /// The matchmaking queue config.
         /// </summary>
-        public MatchmakingQueueConfig MatchmakingQueue ;
-
+        public MatchmakingQueueConfig MatchmakingQueue;
     }
 
     /// <summary>
@@ -1468,21 +1817,25 @@ namespace PlayFab.MultiplayerModels
     public class GetMatchmakingTicketRequest : PlayFabRequestCommon
     {
         /// <summary>
+        /// The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.).
+        /// </summary>
+        public Dictionary<string, string> CustomTags;
+
+        /// <summary>
         /// Determines whether the matchmaking attributes will be returned as an escaped JSON string or as an un-escaped JSON
         /// object.
         /// </summary>
-        public bool EscapeObject ;
+        public bool EscapeObject;
 
         /// <summary>
         /// The name of the queue to find a match for.
         /// </summary>
-        public string QueueName ;
+        public string QueueName;
 
         /// <summary>
         /// The Id of the ticket to find a match for.
         /// </summary>
-        public string TicketId ;
-
+        public string TicketId;
     }
 
     public class GetMatchmakingTicketResult : PlayFabResultCommon
@@ -1490,54 +1843,53 @@ namespace PlayFab.MultiplayerModels
         /// <summary>
         /// The reason why the current ticket was canceled. This field is only set if the ticket is in canceled state.
         /// </summary>
-        public string CancellationReasonString ;
+        public string CancellationReasonString;
 
         /// <summary>
         /// The server date and time at which ticket was created.
         /// </summary>
-        public DateTime Created ;
+        public DateTime Created;
 
         /// <summary>
         /// The Creator's entity key.
         /// </summary>
-        public EntityKey Creator ;
+        public EntityKey Creator;
 
         /// <summary>
         /// How long to attempt matching this ticket in seconds.
         /// </summary>
-        public int GiveUpAfterSeconds ;
+        public int GiveUpAfterSeconds;
 
         /// <summary>
         /// The Id of a match.
         /// </summary>
-        public string MatchId ;
+        public string MatchId;
 
         /// <summary>
         /// A list of Users that have joined this ticket.
         /// </summary>
-        public List<MatchmakingPlayer> Members ;
+        public List<MatchmakingPlayer> Members;
 
         /// <summary>
         /// A list of PlayFab Ids of Users to match with.
         /// </summary>
-        public List<EntityKey> MembersToMatchWith ;
+        public List<EntityKey> MembersToMatchWith;
 
         /// <summary>
         /// The Id of a match queue.
         /// </summary>
-        public string QueueName ;
+        public string QueueName;
 
         /// <summary>
         /// The current ticket status. Possible values are: WaitingForPlayers, WaitingForMatch, WaitingForServer, Canceled and
         /// Matched.
         /// </summary>
-        public string Status ;
+        public string Status;
 
         /// <summary>
         /// The Id of the ticket to find a match for.
         /// </summary>
-        public string TicketId ;
-
+        public string TicketId;
     }
 
     /// <summary>
@@ -1548,26 +1900,30 @@ namespace PlayFab.MultiplayerModels
     public class GetMatchRequest : PlayFabRequestCommon
     {
         /// <summary>
+        /// The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.).
+        /// </summary>
+        public Dictionary<string, string> CustomTags;
+
+        /// <summary>
         /// Determines whether the matchmaking attributes will be returned as an escaped JSON string or as an un-escaped JSON
         /// object.
         /// </summary>
-        public bool EscapeObject ;
+        public bool EscapeObject;
 
         /// <summary>
         /// The Id of a match.
         /// </summary>
-        public string MatchId ;
+        public string MatchId;
 
         /// <summary>
         /// The name of the queue to join.
         /// </summary>
-        public string QueueName ;
+        public string QueueName;
 
         /// <summary>
         /// Determines whether the matchmaking attributes for each user should be returned in the response for match request.
         /// </summary>
-        public bool ReturnMemberAttributes ;
-
+        public bool ReturnMemberAttributes;
     }
 
     public class GetMatchResult : PlayFabResultCommon
@@ -1575,24 +1931,23 @@ namespace PlayFab.MultiplayerModels
         /// <summary>
         /// The Id of a match.
         /// </summary>
-        public string MatchId ;
+        public string MatchId;
 
         /// <summary>
         /// A list of Users that are matched together, along with their team assignments.
         /// </summary>
-        public List<MatchmakingPlayerWithTeamAssignment> Members ;
+        public List<MatchmakingPlayerWithTeamAssignment> Members;
 
         /// <summary>
         /// A list of regions that the match could be played in sorted by preference. This value is only set if the queue has a
         /// region selection rule.
         /// </summary>
-        public List<string> RegionPreferences ;
+        public List<string> RegionPreferences;
 
         /// <summary>
         /// The details of the server that the match has been allocated to.
         /// </summary>
-        public ServerDetails ServerDetails ;
-
+        public ServerDetails ServerDetails;
     }
 
     /// <summary>
@@ -1603,19 +1958,23 @@ namespace PlayFab.MultiplayerModels
         /// <summary>
         /// The guid string build ID of the multiplayer server to get details for.
         /// </summary>
-        public string BuildId ;
+        public string BuildId;
+
+        /// <summary>
+        /// The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.).
+        /// </summary>
+        public Dictionary<string, string> CustomTags;
 
         /// <summary>
         /// The region the multiplayer server is located in to get details for.
         /// </summary>
-        public string Region ;
+        public string Region;
 
         /// <summary>
         /// The title generated guid string session ID of the multiplayer server to get details for. This is to keep track of
         /// multiplayer server sessions.
         /// </summary>
-        public string SessionId ;
-
+        public string SessionId;
     }
 
     public class GetMultiplayerServerDetailsResponse : PlayFabResultCommon
@@ -1623,53 +1982,52 @@ namespace PlayFab.MultiplayerModels
         /// <summary>
         /// The connected players in the multiplayer server.
         /// </summary>
-        public List<ConnectedPlayer> ConnectedPlayers ;
+        public List<ConnectedPlayer> ConnectedPlayers;
 
         /// <summary>
         /// The fully qualified domain name of the virtual machine that is hosting this multiplayer server.
         /// </summary>
-        public string FQDN ;
+        public string FQDN;
 
         /// <summary>
         /// The IPv4 address of the virtual machine that is hosting this multiplayer server.
         /// </summary>
-        public string IPV4Address ;
+        public string IPV4Address;
 
         /// <summary>
         /// The time (UTC) at which a change in the multiplayer server state was observed.
         /// </summary>
-        public DateTime? LastStateTransitionTime ;
+        public DateTime? LastStateTransitionTime;
 
         /// <summary>
         /// The ports the multiplayer server uses.
         /// </summary>
-        public List<Port> Ports ;
+        public List<Port> Ports;
 
         /// <summary>
         /// The region the multiplayer server is located in.
         /// </summary>
-        public string Region ;
+        public string Region;
 
         /// <summary>
         /// The string server ID of the multiplayer server generated by PlayFab.
         /// </summary>
-        public string ServerId ;
+        public string ServerId;
 
         /// <summary>
         /// The guid string session ID of the multiplayer server.
         /// </summary>
-        public string SessionId ;
+        public string SessionId;
 
         /// <summary>
         /// The state of the multiplayer server.
         /// </summary>
-        public string State ;
+        public string State;
 
         /// <summary>
         /// The virtual machine ID that the multiplayer server is located on.
         /// </summary>
-        public string VmId ;
-
+        public string VmId;
     }
 
     /// <summary>
@@ -1679,10 +2037,14 @@ namespace PlayFab.MultiplayerModels
     public class GetMultiplayerServerLogsRequest : PlayFabRequestCommon
     {
         /// <summary>
+        /// The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.).
+        /// </summary>
+        public Dictionary<string, string> CustomTags;
+
+        /// <summary>
         /// The server ID of multiplayer server to get logs for.
         /// </summary>
-        public string ServerId ;
-
+        public string ServerId;
     }
 
     public class GetMultiplayerServerLogsResponse : PlayFabResultCommon
@@ -1690,8 +2052,7 @@ namespace PlayFab.MultiplayerModels
         /// <summary>
         /// URL for logs download.
         /// </summary>
-        public string LogDownloadUrl ;
-
+        public string LogDownloadUrl;
     }
 
     /// <summary>
@@ -1701,10 +2062,14 @@ namespace PlayFab.MultiplayerModels
     public class GetMultiplayerSessionLogsBySessionIdRequest : PlayFabRequestCommon
     {
         /// <summary>
+        /// The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.).
+        /// </summary>
+        public Dictionary<string, string> CustomTags;
+
+        /// <summary>
         /// The server ID of multiplayer server to get logs for.
         /// </summary>
-        public string SessionId ;
-
+        public string SessionId;
     }
 
     /// <summary>
@@ -1717,10 +2082,14 @@ namespace PlayFab.MultiplayerModels
     public class GetQueueStatisticsRequest : PlayFabRequestCommon
     {
         /// <summary>
+        /// The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.).
+        /// </summary>
+        public Dictionary<string, string> CustomTags;
+
+        /// <summary>
         /// The name of the queue.
         /// </summary>
-        public string QueueName ;
-
+        public string QueueName;
     }
 
     public class GetQueueStatisticsResult : PlayFabResultCommon
@@ -1728,13 +2097,12 @@ namespace PlayFab.MultiplayerModels
         /// <summary>
         /// The current number of players in the matchmaking queue, who are waiting to be matched.
         /// </summary>
-        public uint? NumberOfPlayersMatching ;
+        public uint? NumberOfPlayersMatching;
 
         /// <summary>
         /// Statistics representing the time (in seconds) it takes for tickets to find a match.
         /// </summary>
-        public Statistics TimeToMatchStatisticsInSeconds ;
-
+        public Statistics TimeToMatchStatisticsInSeconds;
     }
 
     /// <summary>
@@ -1745,18 +2113,22 @@ namespace PlayFab.MultiplayerModels
         /// <summary>
         /// The guid string build ID of the multiplayer server to get remote login information for.
         /// </summary>
-        public string BuildId ;
+        public string BuildId;
+
+        /// <summary>
+        /// The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.).
+        /// </summary>
+        public Dictionary<string, string> CustomTags;
 
         /// <summary>
         /// The region of the multiplayer server to get remote login information for.
         /// </summary>
-        public string Region ;
+        public string Region;
 
         /// <summary>
         /// The virtual machine ID the multiplayer server is located on.
         /// </summary>
-        public string VmId ;
-
+        public string VmId;
     }
 
     public class GetRemoteLoginEndpointResponse : PlayFabResultCommon
@@ -1764,13 +2136,12 @@ namespace PlayFab.MultiplayerModels
         /// <summary>
         /// The remote login IPV4 address of multiplayer server.
         /// </summary>
-        public string IPV4Address ;
+        public string IPV4Address;
 
         /// <summary>
         /// The remote login port of multiplayer server.
         /// </summary>
-        public int Port ;
-
+        public int Port;
     }
 
     /// <summary>
@@ -1780,21 +2151,25 @@ namespace PlayFab.MultiplayerModels
     public class GetServerBackfillTicketRequest : PlayFabRequestCommon
     {
         /// <summary>
+        /// The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.).
+        /// </summary>
+        public Dictionary<string, string> CustomTags;
+
+        /// <summary>
         /// Determines whether the matchmaking attributes will be returned as an escaped JSON string or as an un-escaped JSON
         /// object.
         /// </summary>
-        public bool EscapeObject ;
+        public bool EscapeObject;
 
         /// <summary>
         /// The name of the queue to find a match for.
         /// </summary>
-        public string QueueName ;
+        public string QueueName;
 
         /// <summary>
         /// The Id of the ticket to find a match for.
         /// </summary>
-        public string TicketId ;
-
+        public string TicketId;
     }
 
     public class GetServerBackfillTicketResult : PlayFabResultCommon
@@ -1802,48 +2177,47 @@ namespace PlayFab.MultiplayerModels
         /// <summary>
         /// The reason why the current ticket was canceled. This field is only set if the ticket is in canceled state.
         /// </summary>
-        public string CancellationReasonString ;
+        public string CancellationReasonString;
 
         /// <summary>
         /// The server date and time at which ticket was created.
         /// </summary>
-        public DateTime Created ;
+        public DateTime Created;
 
         /// <summary>
         /// How long to attempt matching this ticket in seconds.
         /// </summary>
-        public int GiveUpAfterSeconds ;
+        public int GiveUpAfterSeconds;
 
         /// <summary>
         /// The Id of a match.
         /// </summary>
-        public string MatchId ;
+        public string MatchId;
 
         /// <summary>
         /// A list of Users that are part of this ticket, along with their team assignments.
         /// </summary>
-        public List<MatchmakingPlayerWithTeamAssignment> Members ;
+        public List<MatchmakingPlayerWithTeamAssignment> Members;
 
         /// <summary>
         /// The Id of a match queue.
         /// </summary>
-        public string QueueName ;
+        public string QueueName;
 
         /// <summary>
         /// The details of the server the members are connected to.
         /// </summary>
-        public ServerDetails ServerDetails ;
+        public ServerDetails ServerDetails;
 
         /// <summary>
         /// The current ticket status. Possible values are: WaitingForMatch, Canceled and Matched.
         /// </summary>
-        public string Status ;
+        public string Status;
 
         /// <summary>
         /// The Id of the ticket to find a match for.
         /// </summary>
-        public string TicketId ;
-
+        public string TicketId;
     }
 
     /// <summary>
@@ -1852,6 +2226,10 @@ namespace PlayFab.MultiplayerModels
     /// </summary>
     public class GetTitleEnabledForMultiplayerServersStatusRequest : PlayFabRequestCommon
     {
+        /// <summary>
+        /// The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.).
+        /// </summary>
+        public Dictionary<string, string> CustomTags;
     }
 
     public class GetTitleEnabledForMultiplayerServersStatusResponse : PlayFabResultCommon
@@ -1859,8 +2237,7 @@ namespace PlayFab.MultiplayerModels
         /// <summary>
         /// The enabled status for the multiplayer server features for the title.
         /// </summary>
-        public TitleMultiplayerServerEnabledStatus? Status ;
-
+        public TitleMultiplayerServerEnabledStatus? Status;
     }
 
     /// <summary>
@@ -1868,6 +2245,10 @@ namespace PlayFab.MultiplayerModels
     /// </summary>
     public class GetTitleMultiplayerServersQuotasRequest : PlayFabRequestCommon
     {
+        /// <summary>
+        /// The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.).
+        /// </summary>
+        public Dictionary<string, string> CustomTags;
     }
 
     public class GetTitleMultiplayerServersQuotasResponse : PlayFabResultCommon
@@ -1875,8 +2256,7 @@ namespace PlayFab.MultiplayerModels
         /// <summary>
         /// The various quotas for multiplayer servers for the title.
         /// </summary>
-        public TitleMultiplayerServersQuotas Quotas ;
-
+        public TitleMultiplayerServersQuotas Quotas;
     }
 
     public class InstrumentationConfiguration
@@ -1886,8 +2266,7 @@ namespace PlayFab.MultiplayerModels
         /// collection for this build. Process names should not include extensions. If the game server process is: GameServer.exe;
         /// then, ProcessesToMonitor = [ GameServer ]
         /// </summary>
-        public List<string> ProcessesToMonitor ;
-
+        public List<string> ProcessesToMonitor;
     }
 
     /// <summary>
@@ -1899,20 +2278,24 @@ namespace PlayFab.MultiplayerModels
     public class JoinMatchmakingTicketRequest : PlayFabRequestCommon
     {
         /// <summary>
+        /// The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.).
+        /// </summary>
+        public Dictionary<string, string> CustomTags;
+
+        /// <summary>
         /// The User who wants to join the ticket. Their Id must be listed in PlayFabIdsToMatchWith.
         /// </summary>
-        public MatchmakingPlayer Member ;
+        public MatchmakingPlayer Member;
 
         /// <summary>
         /// The name of the queue to join.
         /// </summary>
-        public string QueueName ;
+        public string QueueName;
 
         /// <summary>
         /// The Id of the ticket to find a match for.
         /// </summary>
-        public string TicketId ;
-
+        public string TicketId;
     }
 
     public class JoinMatchmakingTicketResult : PlayFabResultCommon
@@ -1924,18 +2307,17 @@ namespace PlayFab.MultiplayerModels
         /// <summary>
         /// This value gets added to Difference at every expansion interval.
         /// </summary>
-        public double Delta ;
+        public double Delta;
 
         /// <summary>
         /// Once the total difference reaches this value, expansion stops. Optional.
         /// </summary>
-        public double? Limit ;
+        public double? Limit;
 
         /// <summary>
         /// How many seconds before this rule is expanded.
         /// </summary>
-        public uint SecondsBetweenExpansions ;
-
+        public uint SecondsBetweenExpansions;
     }
 
     public class LinearRegionSelectionRuleExpansion
@@ -1943,18 +2325,17 @@ namespace PlayFab.MultiplayerModels
         /// <summary>
         /// This value gets added to MaxLatency at every expansion interval.
         /// </summary>
-        public uint Delta ;
+        public uint Delta;
 
         /// <summary>
         /// Once the max Latency reaches this value, expansion stops.
         /// </summary>
-        public uint Limit ;
+        public uint Limit;
 
         /// <summary>
         /// How many seconds before this rule is expanded.
         /// </summary>
-        public uint SecondsBetweenExpansions ;
-
+        public uint SecondsBetweenExpansions;
     }
 
     public class LinearSetIntersectionRuleExpansion
@@ -1962,13 +2343,12 @@ namespace PlayFab.MultiplayerModels
         /// <summary>
         /// This value gets added to MinIntersectionSize at every expansion interval.
         /// </summary>
-        public uint Delta ;
+        public uint Delta;
 
         /// <summary>
         /// How many seconds before this rule is expanded.
         /// </summary>
-        public uint SecondsBetweenExpansions ;
-
+        public uint SecondsBetweenExpansions;
     }
 
     public class LinearTeamDifferenceRuleExpansion
@@ -1976,18 +2356,17 @@ namespace PlayFab.MultiplayerModels
         /// <summary>
         /// This value gets added to Difference at every expansion interval.
         /// </summary>
-        public double Delta ;
+        public double Delta;
 
         /// <summary>
         /// Once the total difference reaches this value, expansion stops. Optional.
         /// </summary>
-        public double? Limit ;
+        public double? Limit;
 
         /// <summary>
         /// How many seconds before this rule is expanded.
         /// </summary>
-        public uint SecondsBetweenExpansions ;
-
+        public uint SecondsBetweenExpansions;
     }
 
     public class LinearTeamSizeBalanceRuleExpansion
@@ -1995,18 +2374,25 @@ namespace PlayFab.MultiplayerModels
         /// <summary>
         /// This value gets added to Difference at every expansion interval.
         /// </summary>
-        public uint Delta ;
+        public uint Delta;
 
         /// <summary>
         /// Once the total difference reaches this value, expansion stops. Optional.
         /// </summary>
-        public uint? Limit ;
+        public uint? Limit;
 
         /// <summary>
         /// How many seconds before this rule is expanded.
         /// </summary>
-        public uint SecondsBetweenExpansions ;
+        public uint SecondsBetweenExpansions;
+    }
 
+    public class LinuxInstrumentationConfiguration
+    {
+        /// <summary>
+        /// Designates whether Linux instrumentation configuration will be enabled for this Build
+        /// </summary>
+        public bool IsEnabled;
     }
 
     /// <summary>
@@ -2015,15 +2401,19 @@ namespace PlayFab.MultiplayerModels
     public class ListAssetSummariesRequest : PlayFabRequestCommon
     {
         /// <summary>
+        /// The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.).
+        /// </summary>
+        public Dictionary<string, string> CustomTags;
+
+        /// <summary>
         /// The page size for the request.
         /// </summary>
-        public int? PageSize ;
+        public int? PageSize;
 
         /// <summary>
         /// The skip token for the paged request.
         /// </summary>
-        public string SkipToken ;
-
+        public string SkipToken;
     }
 
     public class ListAssetSummariesResponse : PlayFabResultCommon
@@ -2031,18 +2421,17 @@ namespace PlayFab.MultiplayerModels
         /// <summary>
         /// The list of asset summaries.
         /// </summary>
-        public List<AssetSummary> AssetSummaries ;
+        public List<AssetSummary> AssetSummaries;
 
         /// <summary>
         /// The page size on the response.
         /// </summary>
-        public int PageSize ;
+        public int PageSize;
 
         /// <summary>
         /// The skip token for the paged response.
         /// </summary>
-        public string SkipToken ;
-
+        public string SkipToken;
     }
 
     public class ListBuildAliasesForTitleResponse : PlayFabResultCommon
@@ -2050,8 +2439,7 @@ namespace PlayFab.MultiplayerModels
         /// <summary>
         /// The list of build aliases for the title
         /// </summary>
-        public List<BuildAliasDetailsResponse> BuildAliases ;
-
+        public List<BuildAliasDetailsResponse> BuildAliases;
     }
 
     /// <summary>
@@ -2060,15 +2448,19 @@ namespace PlayFab.MultiplayerModels
     public class ListBuildSummariesRequest : PlayFabRequestCommon
     {
         /// <summary>
+        /// The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.).
+        /// </summary>
+        public Dictionary<string, string> CustomTags;
+
+        /// <summary>
         /// The page size for the request.
         /// </summary>
-        public int? PageSize ;
+        public int? PageSize;
 
         /// <summary>
         /// The skip token for the paged request.
         /// </summary>
-        public string SkipToken ;
-
+        public string SkipToken;
     }
 
     public class ListBuildSummariesResponse : PlayFabResultCommon
@@ -2076,18 +2468,17 @@ namespace PlayFab.MultiplayerModels
         /// <summary>
         /// The list of build summaries for a title.
         /// </summary>
-        public List<BuildSummary> BuildSummaries ;
+        public List<BuildSummary> BuildSummaries;
 
         /// <summary>
         /// The page size on the response.
         /// </summary>
-        public int PageSize ;
+        public int PageSize;
 
         /// <summary>
         /// The skip token for the paged response.
         /// </summary>
-        public string SkipToken ;
-
+        public string SkipToken;
     }
 
     /// <summary>
@@ -2096,15 +2487,19 @@ namespace PlayFab.MultiplayerModels
     public class ListCertificateSummariesRequest : PlayFabRequestCommon
     {
         /// <summary>
+        /// The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.).
+        /// </summary>
+        public Dictionary<string, string> CustomTags;
+
+        /// <summary>
         /// The page size for the request.
         /// </summary>
-        public int? PageSize ;
+        public int? PageSize;
 
         /// <summary>
         /// The skip token for the paged request.
         /// </summary>
-        public string SkipToken ;
-
+        public string SkipToken;
     }
 
     public class ListCertificateSummariesResponse : PlayFabResultCommon
@@ -2112,18 +2507,17 @@ namespace PlayFab.MultiplayerModels
         /// <summary>
         /// The list of game certificates.
         /// </summary>
-        public List<CertificateSummary> CertificateSummaries ;
+        public List<CertificateSummary> CertificateSummaries;
 
         /// <summary>
         /// The page size on the response.
         /// </summary>
-        public int PageSize ;
+        public int PageSize;
 
         /// <summary>
         /// The skip token for the paged response.
         /// </summary>
-        public string SkipToken ;
-
+        public string SkipToken;
     }
 
     /// <summary>
@@ -2132,15 +2526,19 @@ namespace PlayFab.MultiplayerModels
     public class ListContainerImagesRequest : PlayFabRequestCommon
     {
         /// <summary>
+        /// The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.).
+        /// </summary>
+        public Dictionary<string, string> CustomTags;
+
+        /// <summary>
         /// The page size for the request.
         /// </summary>
-        public int? PageSize ;
+        public int? PageSize;
 
         /// <summary>
         /// The skip token for the paged request.
         /// </summary>
-        public string SkipToken ;
-
+        public string SkipToken;
     }
 
     public class ListContainerImagesResponse : PlayFabResultCommon
@@ -2148,18 +2546,17 @@ namespace PlayFab.MultiplayerModels
         /// <summary>
         /// The list of container images.
         /// </summary>
-        public List<string> Images ;
+        public List<string> Images;
 
         /// <summary>
         /// The page size on the response.
         /// </summary>
-        public int PageSize ;
+        public int PageSize;
 
         /// <summary>
         /// The skip token for the paged response.
         /// </summary>
-        public string SkipToken ;
-
+        public string SkipToken;
     }
 
     /// <summary>
@@ -2168,10 +2565,14 @@ namespace PlayFab.MultiplayerModels
     public class ListContainerImageTagsRequest : PlayFabRequestCommon
     {
         /// <summary>
+        /// The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.).
+        /// </summary>
+        public Dictionary<string, string> CustomTags;
+
+        /// <summary>
         /// The container images we want to list tags for.
         /// </summary>
-        public string ImageName ;
-
+        public string ImageName;
     }
 
     public class ListContainerImageTagsResponse : PlayFabResultCommon
@@ -2179,8 +2580,7 @@ namespace PlayFab.MultiplayerModels
         /// <summary>
         /// The list of tags for a particular container image.
         /// </summary>
-        public List<string> Tags ;
-
+        public List<string> Tags;
     }
 
     /// <summary>
@@ -2188,6 +2588,10 @@ namespace PlayFab.MultiplayerModels
     /// </summary>
     public class ListMatchmakingQueuesRequest : PlayFabRequestCommon
     {
+        /// <summary>
+        /// The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.).
+        /// </summary>
+        public Dictionary<string, string> CustomTags;
     }
 
     public class ListMatchmakingQueuesResult : PlayFabResultCommon
@@ -2195,8 +2599,7 @@ namespace PlayFab.MultiplayerModels
         /// <summary>
         /// The list of matchmaking queue configs for this title.
         /// </summary>
-        public List<MatchmakingQueueConfig> MatchMakingQueues ;
-
+        public List<MatchmakingQueueConfig> MatchMakingQueues;
     }
 
     /// <summary>
@@ -2206,15 +2609,19 @@ namespace PlayFab.MultiplayerModels
     public class ListMatchmakingTicketsForPlayerRequest : PlayFabRequestCommon
     {
         /// <summary>
+        /// The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.).
+        /// </summary>
+        public Dictionary<string, string> CustomTags;
+
+        /// <summary>
         /// The entity key for which to find the ticket Ids.
         /// </summary>
-        public EntityKey Entity ;
+        public EntityKey Entity;
 
         /// <summary>
         /// The name of the queue to find a match for.
         /// </summary>
-        public string QueueName ;
-
+        public string QueueName;
     }
 
     public class ListMatchmakingTicketsForPlayerResult : PlayFabResultCommon
@@ -2222,8 +2629,7 @@ namespace PlayFab.MultiplayerModels
         /// <summary>
         /// The list of ticket Ids the user is a member of.
         /// </summary>
-        public List<string> TicketIds ;
-
+        public List<string> TicketIds;
     }
 
     /// <summary>
@@ -2234,23 +2640,27 @@ namespace PlayFab.MultiplayerModels
         /// <summary>
         /// The guid string build ID of the multiplayer servers to list.
         /// </summary>
-        public string BuildId ;
+        public string BuildId;
+
+        /// <summary>
+        /// The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.).
+        /// </summary>
+        public Dictionary<string, string> CustomTags;
 
         /// <summary>
         /// The page size for the request.
         /// </summary>
-        public int? PageSize ;
+        public int? PageSize;
 
         /// <summary>
         /// The region the multiplayer servers to list.
         /// </summary>
-        public string Region ;
+        public string Region;
 
         /// <summary>
         /// The skip token for the paged request.
         /// </summary>
-        public string SkipToken ;
-
+        public string SkipToken;
     }
 
     public class ListMultiplayerServersResponse : PlayFabResultCommon
@@ -2258,18 +2668,17 @@ namespace PlayFab.MultiplayerModels
         /// <summary>
         /// The list of multiplayer server summary details.
         /// </summary>
-        public List<MultiplayerServerSummary> MultiplayerServerSummaries ;
+        public List<MultiplayerServerSummary> MultiplayerServerSummaries;
 
         /// <summary>
         /// The page size on the response.
         /// </summary>
-        public int PageSize ;
+        public int PageSize;
 
         /// <summary>
         /// The skip token for the paged response.
         /// </summary>
-        public string SkipToken ;
-
+        public string SkipToken;
     }
 
     /// <summary>
@@ -2278,10 +2687,9 @@ namespace PlayFab.MultiplayerModels
     public class ListPartyQosServersRequest : PlayFabRequestCommon
     {
         /// <summary>
-        /// Qos servers version
+        /// The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.).
         /// </summary>
-        public string Version ;
-
+        public Dictionary<string, string> CustomTags;
     }
 
     public class ListPartyQosServersResponse : PlayFabResultCommon
@@ -2289,18 +2697,17 @@ namespace PlayFab.MultiplayerModels
         /// <summary>
         /// The page size on the response.
         /// </summary>
-        public int PageSize ;
+        public int PageSize;
 
         /// <summary>
         /// The list of QoS servers.
         /// </summary>
-        public List<QosServer> QosServers ;
+        public List<QosServer> QosServers;
 
         /// <summary>
         /// The skip token for the paged response.
         /// </summary>
-        public string SkipToken ;
-
+        public string SkipToken;
     }
 
     /// <summary>
@@ -2308,6 +2715,16 @@ namespace PlayFab.MultiplayerModels
     /// </summary>
     public class ListQosServersForTitleRequest : PlayFabRequestCommon
     {
+        /// <summary>
+        /// The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.).
+        /// </summary>
+        public Dictionary<string, string> CustomTags;
+
+        /// <summary>
+        /// Indicates that the response should contain Qos servers for all regions, including those where there are no builds
+        /// deployed for the title.
+        /// </summary>
+        public bool? IncludeAllRegions;
     }
 
     public class ListQosServersForTitleResponse : PlayFabResultCommon
@@ -2315,44 +2732,17 @@ namespace PlayFab.MultiplayerModels
         /// <summary>
         /// The page size on the response.
         /// </summary>
-        public int PageSize ;
+        public int PageSize;
 
         /// <summary>
         /// The list of QoS servers.
         /// </summary>
-        public List<QosServer> QosServers ;
+        public List<QosServer> QosServers;
 
         /// <summary>
         /// The skip token for the paged response.
         /// </summary>
-        public string SkipToken ;
-
-    }
-
-    /// <summary>
-    /// Returns a list of quality of service servers.
-    /// </summary>
-    public class ListQosServersRequest : PlayFabRequestCommon
-    {
-    }
-
-    public class ListQosServersResponse : PlayFabResultCommon
-    {
-        /// <summary>
-        /// The page size on the response.
-        /// </summary>
-        public int PageSize ;
-
-        /// <summary>
-        /// The list of QoS servers.
-        /// </summary>
-        public List<QosServer> QosServers ;
-
-        /// <summary>
-        /// The skip token for the paged response.
-        /// </summary>
-        public string SkipToken ;
-
+        public string SkipToken;
     }
 
     /// <summary>
@@ -2361,15 +2751,19 @@ namespace PlayFab.MultiplayerModels
     public class ListServerBackfillTicketsForPlayerRequest : PlayFabRequestCommon
     {
         /// <summary>
+        /// The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.).
+        /// </summary>
+        public Dictionary<string, string> CustomTags;
+
+        /// <summary>
         /// The entity key for which to find the ticket Ids.
         /// </summary>
-        public EntityKey Entity ;
+        public EntityKey Entity;
 
         /// <summary>
         /// The name of the queue the tickets are in.
         /// </summary>
-        public string QueueName ;
-
+        public string QueueName;
     }
 
     public class ListServerBackfillTicketsForPlayerResult : PlayFabResultCommon
@@ -2377,8 +2771,7 @@ namespace PlayFab.MultiplayerModels
         /// <summary>
         /// The list of backfill ticket Ids the user is a member of.
         /// </summary>
-        public List<string> TicketIds ;
-
+        public List<string> TicketIds;
     }
 
     /// <summary>
@@ -2389,23 +2782,27 @@ namespace PlayFab.MultiplayerModels
         /// <summary>
         /// The guid string build ID of the virtual machines to list.
         /// </summary>
-        public string BuildId ;
+        public string BuildId;
+
+        /// <summary>
+        /// The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.).
+        /// </summary>
+        public Dictionary<string, string> CustomTags;
 
         /// <summary>
         /// The page size for the request.
         /// </summary>
-        public int? PageSize ;
+        public int? PageSize;
 
         /// <summary>
         /// The region of the virtual machines to list.
         /// </summary>
-        public string Region ;
+        public string Region;
 
         /// <summary>
         /// The skip token for the paged request.
         /// </summary>
-        public string SkipToken ;
-
+        public string SkipToken;
     }
 
     public class ListVirtualMachineSummariesResponse : PlayFabResultCommon
@@ -2413,18 +2810,17 @@ namespace PlayFab.MultiplayerModels
         /// <summary>
         /// The page size on the response.
         /// </summary>
-        public int PageSize ;
+        public int PageSize;
 
         /// <summary>
         /// The skip token for the paged response.
         /// </summary>
-        public string SkipToken ;
+        public string SkipToken;
 
         /// <summary>
         /// The list of virtual machine summaries.
         /// </summary>
-        public List<VirtualMachineSummary> VirtualMachines ;
-
+        public List<VirtualMachineSummary> VirtualMachines;
     }
 
     /// <summary>
@@ -2435,13 +2831,12 @@ namespace PlayFab.MultiplayerModels
         /// <summary>
         /// The user's attributes custom to the title.
         /// </summary>
-        public MatchmakingPlayerAttributes Attributes ;
+        public MatchmakingPlayerAttributes Attributes;
 
         /// <summary>
         /// The entity key of the matchmaking user.
         /// </summary>
-        public EntityKey Entity ;
-
+        public EntityKey Entity;
     }
 
     /// <summary>
@@ -2452,13 +2847,12 @@ namespace PlayFab.MultiplayerModels
         /// <summary>
         /// A data object representing a user's attributes.
         /// </summary>
-        public object DataObject ;
+        public object DataObject;
 
         /// <summary>
         /// An escaped data object representing a user's attributes.
         /// </summary>
-        public string EscapedDataObject ;
-
+        public string EscapedDataObject;
     }
 
     /// <summary>
@@ -2470,18 +2864,17 @@ namespace PlayFab.MultiplayerModels
         /// The user's attributes custom to the title. These attributes will be null unless the request has ReturnMemberAttributes
         /// flag set to true.
         /// </summary>
-        public MatchmakingPlayerAttributes Attributes ;
+        public MatchmakingPlayerAttributes Attributes;
 
         /// <summary>
         /// The entity key of the matchmaking user.
         /// </summary>
-        public EntityKey Entity ;
+        public EntityKey Entity;
 
         /// <summary>
         /// The Id of the team the User is assigned to.
         /// </summary>
-        public string TeamId ;
-
+        public string TeamId;
     }
 
     public class MatchmakingQueueConfig
@@ -2489,83 +2882,82 @@ namespace PlayFab.MultiplayerModels
         /// <summary>
         /// This is the buildId that will be used to allocate the multiplayer server for the match.
         /// </summary>
-        public string BuildId ;
+        public string BuildId;
 
         /// <summary>
         /// List of difference rules used to find an optimal match.
         /// </summary>
-        public List<DifferenceRule> DifferenceRules ;
+        public List<DifferenceRule> DifferenceRules;
 
         /// <summary>
         /// List of match total rules used to find an optimal match.
         /// </summary>
-        public List<MatchTotalRule> MatchTotalRules ;
+        public List<MatchTotalRule> MatchTotalRules;
 
         /// <summary>
         /// Maximum number of players in a match.
         /// </summary>
-        public uint MaxMatchSize ;
+        public uint MaxMatchSize;
 
         /// <summary>
         /// Maximum number of players in a ticket. Optional.
         /// </summary>
-        public uint? MaxTicketSize ;
+        public uint? MaxTicketSize;
 
         /// <summary>
         /// Minimum number of players in a match.
         /// </summary>
-        public uint MinMatchSize ;
+        public uint MinMatchSize;
 
         /// <summary>
         /// Unique identifier for a Queue. Chosen by the developer.
         /// </summary>
-        public string Name ;
+        public string Name;
 
         /// <summary>
         /// Region selection rule used to find an optimal match.
         /// </summary>
-        public RegionSelectionRule RegionSelectionRule ;
+        public RegionSelectionRule RegionSelectionRule;
 
         /// <summary>
         /// Boolean flag to enable server allocation for the queue.
         /// </summary>
-        public bool ServerAllocationEnabled ;
+        public bool ServerAllocationEnabled;
 
         /// <summary>
         /// List of set intersection rules used to find an optimal match.
         /// </summary>
-        public List<SetIntersectionRule> SetIntersectionRules ;
+        public List<SetIntersectionRule> SetIntersectionRules;
 
         /// <summary>
         /// Controls which statistics are visible to players.
         /// </summary>
-        public StatisticsVisibilityToPlayers StatisticsVisibilityToPlayers ;
+        public StatisticsVisibilityToPlayers StatisticsVisibilityToPlayers;
 
         /// <summary>
         /// List of string equality rules used to find an optimal match.
         /// </summary>
-        public List<StringEqualityRule> StringEqualityRules ;
+        public List<StringEqualityRule> StringEqualityRules;
 
         /// <summary>
         /// List of team difference rules used to find an optimal match.
         /// </summary>
-        public List<TeamDifferenceRule> TeamDifferenceRules ;
+        public List<TeamDifferenceRule> TeamDifferenceRules;
 
         /// <summary>
         /// The team configuration for a match. This may be null if there are no teams.
         /// </summary>
-        public List<MatchmakingQueueTeam> Teams ;
+        public List<MatchmakingQueueTeam> Teams;
 
         /// <summary>
         /// Team size balance rule used to find an optimal match.
         /// </summary>
-        public TeamSizeBalanceRule TeamSizeBalanceRule ;
+        public TeamSizeBalanceRule TeamSizeBalanceRule;
 
         /// <summary>
         /// Team ticket size similarity rule used to find an optimal match.
         /// </summary>
-        public TeamTicketSizeSimilarityRule TeamTicketSizeSimilarityRule ;
-
+        public TeamTicketSizeSimilarityRule TeamTicketSizeSimilarityRule;
     }
 
     public class MatchmakingQueueTeam
@@ -2573,18 +2965,17 @@ namespace PlayFab.MultiplayerModels
         /// <summary>
         /// The maximum number of players required for the team.
         /// </summary>
-        public uint MaxTeamSize ;
+        public uint MaxTeamSize;
 
         /// <summary>
         /// The minimum number of players required for the team.
         /// </summary>
-        public uint MinTeamSize ;
+        public uint MinTeamSize;
 
         /// <summary>
         /// A name to identify the team. This is case insensitive.
         /// </summary>
-        public string Name ;
-
+        public string Name;
     }
 
     public class MatchTotalRule
@@ -2592,39 +2983,38 @@ namespace PlayFab.MultiplayerModels
         /// <summary>
         /// Description of the attribute used by this rule to match tickets.
         /// </summary>
-        public QueueRuleAttribute Attribute ;
+        public QueueRuleAttribute Attribute;
 
         /// <summary>
         /// Collection of fields relating to expanding this rule at set intervals.
         /// </summary>
-        public MatchTotalRuleExpansion Expansion ;
+        public MatchTotalRuleExpansion Expansion;
 
         /// <summary>
         /// The maximum total value for a group. Must be >= Min.
         /// </summary>
-        public double Max ;
+        public double Max;
 
         /// <summary>
         /// The minimum total value for a group. Must be >=2.
         /// </summary>
-        public double Min ;
+        public double Min;
 
         /// <summary>
         /// Friendly name chosen by developer.
         /// </summary>
-        public string Name ;
+        public string Name;
 
         /// <summary>
         /// How many seconds before this rule is no longer enforced (but tickets that comply with this rule will still be
         /// prioritized over those that don't). Leave blank if this rule is always enforced.
         /// </summary>
-        public uint? SecondsUntilOptional ;
+        public uint? SecondsUntilOptional;
 
         /// <summary>
         /// The relative weight of this rule compared to others.
         /// </summary>
-        public double Weight ;
-
+        public double Weight;
     }
 
     public class MatchTotalRuleExpansion
@@ -2632,18 +3022,17 @@ namespace PlayFab.MultiplayerModels
         /// <summary>
         /// Manually specify the values to use for each expansion interval. When this is set, Max is ignored.
         /// </summary>
-        public List<OverrideDouble> MaxOverrides ;
+        public List<OverrideDouble> MaxOverrides;
 
         /// <summary>
         /// Manually specify the values to use for each expansion interval. When this is set, Min is ignored.
         /// </summary>
-        public List<OverrideDouble> MinOverrides ;
+        public List<OverrideDouble> MinOverrides;
 
         /// <summary>
         /// How many seconds before this rule is expanded.
         /// </summary>
-        public uint SecondsBetweenExpansions ;
-
+        public uint SecondsBetweenExpansions;
     }
 
     /// <summary>
@@ -2651,6 +3040,10 @@ namespace PlayFab.MultiplayerModels
     /// </summary>
     public class MultiplayerEmptyRequest : PlayFabRequestCommon
     {
+        /// <summary>
+        /// The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.).
+        /// </summary>
+        public Dictionary<string, string> CustomTags;
     }
 
     public class MultiplayerServerSummary
@@ -2658,38 +3051,37 @@ namespace PlayFab.MultiplayerModels
         /// <summary>
         /// The connected players in the multiplayer server.
         /// </summary>
-        public List<ConnectedPlayer> ConnectedPlayers ;
+        public List<ConnectedPlayer> ConnectedPlayers;
 
         /// <summary>
         /// The time (UTC) at which a change in the multiplayer server state was observed.
         /// </summary>
-        public DateTime? LastStateTransitionTime ;
+        public DateTime? LastStateTransitionTime;
 
         /// <summary>
         /// The region the multiplayer server is located in.
         /// </summary>
-        public string Region ;
+        public string Region;
 
         /// <summary>
         /// The string server ID of the multiplayer server generated by PlayFab.
         /// </summary>
-        public string ServerId ;
+        public string ServerId;
 
         /// <summary>
         /// The title generated guid string session ID of the multiplayer server.
         /// </summary>
-        public string SessionId ;
+        public string SessionId;
 
         /// <summary>
         /// The state of the multiplayer server.
         /// </summary>
-        public string State ;
+        public string State;
 
         /// <summary>
         /// The virtual machine ID that the multiplayer server is located on.
         /// </summary>
-        public string VmId ;
-
+        public string VmId;
     }
 
     public enum OsPlatform
@@ -2703,8 +3095,7 @@ namespace PlayFab.MultiplayerModels
         /// <summary>
         /// The custom expansion value.
         /// </summary>
-        public double Value ;
-
+        public double Value;
     }
 
     public class OverrideUnsignedInt
@@ -2712,8 +3103,7 @@ namespace PlayFab.MultiplayerModels
         /// <summary>
         /// The custom expansion value.
         /// </summary>
-        public uint Value ;
-
+        public uint Value;
     }
 
     public class Port
@@ -2721,18 +3111,17 @@ namespace PlayFab.MultiplayerModels
         /// <summary>
         /// The name for the port.
         /// </summary>
-        public string Name ;
+        public string Name;
 
         /// <summary>
         /// The number for the port.
         /// </summary>
-        public int Num ;
+        public int Num;
 
         /// <summary>
         /// The protocol for the port.
         /// </summary>
-        public ProtocolType Protocol ;
-
+        public ProtocolType Protocol;
     }
 
     public enum ProtocolType
@@ -2746,13 +3135,12 @@ namespace PlayFab.MultiplayerModels
         /// <summary>
         /// The region the QoS server is located in.
         /// </summary>
-        public string Region ;
+        public string Region;
 
         /// <summary>
         /// The QoS server URL.
         /// </summary>
-        public string ServerUrl ;
-
+        public string ServerUrl;
     }
 
     public class QueueRuleAttribute
@@ -2760,13 +3148,12 @@ namespace PlayFab.MultiplayerModels
         /// <summary>
         /// Specifies which attribute in a ticket to use.
         /// </summary>
-        public string Path ;
+        public string Path;
 
         /// <summary>
         /// Specifies which source the attribute comes from.
         /// </summary>
-        public AttributeSource Source ;
-
+        public AttributeSource Source;
     }
 
     public class RegionSelectionRule
@@ -2775,39 +3162,38 @@ namespace PlayFab.MultiplayerModels
         /// Controls how the Max Latency parameter expands over time. Only one expansion can be set per rule. When this is set,
         /// MaxLatency is ignored.
         /// </summary>
-        public CustomRegionSelectionRuleExpansion CustomExpansion ;
+        public CustomRegionSelectionRuleExpansion CustomExpansion;
 
         /// <summary>
         /// Controls how the Max Latency parameter expands over time. Only one expansion can be set per rule.
         /// </summary>
-        public LinearRegionSelectionRuleExpansion LinearExpansion ;
+        public LinearRegionSelectionRuleExpansion LinearExpansion;
 
         /// <summary>
         /// Specifies the maximum latency that is allowed between the client and the selected server. The value is in milliseconds.
         /// </summary>
-        public uint MaxLatency ;
+        public uint MaxLatency;
 
         /// <summary>
         /// Friendly name chosen by developer.
         /// </summary>
-        public string Name ;
+        public string Name;
 
         /// <summary>
         /// Specifies which attribute in a ticket to use.
         /// </summary>
-        public string Path ;
+        public string Path;
 
         /// <summary>
         /// How many seconds before this rule is no longer enforced (but tickets that comply with this rule will still be
         /// prioritized over those that don't). Leave blank if this rule is always enforced.
         /// </summary>
-        public uint? SecondsUntilOptional ;
+        public uint? SecondsUntilOptional;
 
         /// <summary>
         /// The relative weight of this rule compared to others.
         /// </summary>
-        public double Weight ;
-
+        public double Weight;
     }
 
     /// <summary>
@@ -2817,10 +3203,14 @@ namespace PlayFab.MultiplayerModels
     public class RemoveMatchmakingQueueRequest : PlayFabRequestCommon
     {
         /// <summary>
+        /// The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.).
+        /// </summary>
+        public Dictionary<string, string> CustomTags;
+
+        /// <summary>
         /// The Id of the matchmaking queue to remove.
         /// </summary>
-        public string QueueName ;
-
+        public string QueueName;
     }
 
     public class RemoveMatchmakingQueueResult : PlayFabResultCommon
@@ -2835,36 +3225,40 @@ namespace PlayFab.MultiplayerModels
         /// <summary>
         /// The identifiers of the build alias to use for the request.
         /// </summary>
-        public BuildAliasParams BuildAliasParams ;
+        public BuildAliasParams BuildAliasParams;
 
         /// <summary>
         /// The guid string build ID of the multiplayer server to request.
         /// </summary>
-        public string BuildId ;
+        public string BuildId;
+
+        /// <summary>
+        /// The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.).
+        /// </summary>
+        public Dictionary<string, string> CustomTags;
 
         /// <summary>
         /// Initial list of players (potentially matchmade) allowed to connect to the game. This list is passed to the game server
         /// when requested (via GSDK) and can be used to validate players connecting to it.
         /// </summary>
-        public List<string> InitialPlayers ;
+        public List<string> InitialPlayers;
 
         /// <summary>
         /// The preferred regions to request a multiplayer server from. The Multiplayer Service will iterate through the regions in
         /// the specified order and allocate a server from the first one that has servers available.
         /// </summary>
-        public List<string> PreferredRegions ;
+        public List<string> PreferredRegions;
 
         /// <summary>
         /// Data encoded as a string that is passed to the game server when requested. This can be used to to communicate
         /// information such as game mode or map through the request flow.
         /// </summary>
-        public string SessionCookie ;
+        public string SessionCookie;
 
         /// <summary>
         /// A guid string session ID created track the multiplayer server session over its life.
         /// </summary>
-        public string SessionId ;
-
+        public string SessionId;
     }
 
     public class RequestMultiplayerServerResponse : PlayFabResultCommon
@@ -2872,53 +3266,52 @@ namespace PlayFab.MultiplayerModels
         /// <summary>
         /// The connected players in the multiplayer server.
         /// </summary>
-        public List<ConnectedPlayer> ConnectedPlayers ;
+        public List<ConnectedPlayer> ConnectedPlayers;
 
         /// <summary>
         /// The fully qualified domain name of the virtual machine that is hosting this multiplayer server.
         /// </summary>
-        public string FQDN ;
+        public string FQDN;
 
         /// <summary>
         /// The IPv4 address of the virtual machine that is hosting this multiplayer server.
         /// </summary>
-        public string IPV4Address ;
+        public string IPV4Address;
 
         /// <summary>
         /// The time (UTC) at which a change in the multiplayer server state was observed.
         /// </summary>
-        public DateTime? LastStateTransitionTime ;
+        public DateTime? LastStateTransitionTime;
 
         /// <summary>
         /// The ports the multiplayer server uses.
         /// </summary>
-        public List<Port> Ports ;
+        public List<Port> Ports;
 
         /// <summary>
         /// The region the multiplayer server is located in.
         /// </summary>
-        public string Region ;
+        public string Region;
 
         /// <summary>
         /// The string server ID of the multiplayer server generated by PlayFab.
         /// </summary>
-        public string ServerId ;
+        public string ServerId;
 
         /// <summary>
         /// The guid string session ID of the multiplayer server.
         /// </summary>
-        public string SessionId ;
+        public string SessionId;
 
         /// <summary>
         /// The state of the multiplayer server.
         /// </summary>
-        public string State ;
+        public string State;
 
         /// <summary>
         /// The virtual machine ID that the multiplayer server is located on.
         /// </summary>
-        public string VmId ;
-
+        public string VmId;
     }
 
     /// <summary>
@@ -2927,6 +3320,10 @@ namespace PlayFab.MultiplayerModels
     /// </summary>
     public class RolloverContainerRegistryCredentialsRequest : PlayFabRequestCommon
     {
+        /// <summary>
+        /// The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.).
+        /// </summary>
+        public Dictionary<string, string> CustomTags;
     }
 
     public class RolloverContainerRegistryCredentialsResponse : PlayFabResultCommon
@@ -2934,18 +3331,64 @@ namespace PlayFab.MultiplayerModels
         /// <summary>
         /// The url of the container registry.
         /// </summary>
-        public string DnsName ;
+        public string DnsName;
 
         /// <summary>
         /// The password for accessing the container registry.
         /// </summary>
-        public string Password ;
+        public string Password;
 
         /// <summary>
         /// The username for accessing the container registry.
         /// </summary>
-        public string Username ;
+        public string Username;
+    }
 
+    public class Schedule
+    {
+        /// <summary>
+        /// A short description about this schedule. For example, "Game launch on July 15th".
+        /// </summary>
+        public string Description;
+
+        /// <summary>
+        /// The date and time in UTC at which the schedule ends. If IsRecurringWeekly is true, this schedule will keep renewing for
+        /// future weeks until disabled or removed.
+        /// </summary>
+        public DateTime EndTime;
+
+        /// <summary>
+        /// Disables the schedule.
+        /// </summary>
+        public bool IsDisabled;
+
+        /// <summary>
+        /// If true, the StartTime and EndTime will get renewed every week.
+        /// </summary>
+        public bool IsRecurringWeekly;
+
+        /// <summary>
+        /// The date and time in UTC at which the schedule starts.
+        /// </summary>
+        public DateTime StartTime;
+
+        /// <summary>
+        /// The standby target to maintain for the duration of the schedule.
+        /// </summary>
+        public int TargetStandby;
+    }
+
+    public class ScheduledStandbySettings
+    {
+        /// <summary>
+        /// When true, scheduled standby will be enabled
+        /// </summary>
+        public bool IsEnabled;
+
+        /// <summary>
+        /// A list of non-overlapping schedules
+        /// </summary>
+        public List<Schedule> ScheduleList;
     }
 
     public class ServerDetails
@@ -2953,18 +3396,17 @@ namespace PlayFab.MultiplayerModels
         /// <summary>
         /// The IPv4 address of the virtual machine that is hosting this multiplayer server.
         /// </summary>
-        public string IPV4Address ;
+        public string IPV4Address;
 
         /// <summary>
         /// The ports the multiplayer server uses.
         /// </summary>
-        public List<Port> Ports ;
+        public List<Port> Ports;
 
         /// <summary>
         /// The server's region.
         /// </summary>
-        public string Region ;
-
+        public string Region;
     }
 
     public enum ServerType
@@ -2978,52 +3420,51 @@ namespace PlayFab.MultiplayerModels
         /// <summary>
         /// Description of the attribute used by this rule to match tickets.
         /// </summary>
-        public QueueRuleAttribute Attribute ;
+        public QueueRuleAttribute Attribute;
 
         /// <summary>
         /// Describes the behavior when an attribute is not specified in the ticket creation request or in the user's entity
         /// profile.
         /// </summary>
-        public AttributeNotSpecifiedBehavior AttributeNotSpecifiedBehavior ;
+        public AttributeNotSpecifiedBehavior AttributeNotSpecifiedBehavior;
 
         /// <summary>
         /// Collection of fields relating to expanding this rule at set intervals. Only one expansion can be set per rule. When this
         /// is set, MinIntersectionSize is ignored.
         /// </summary>
-        public CustomSetIntersectionRuleExpansion CustomExpansion ;
+        public CustomSetIntersectionRuleExpansion CustomExpansion;
 
         /// <summary>
         /// The default value assigned to tickets that are missing the attribute specified by AttributePath (assuming that
         /// AttributeNotSpecifiedBehavior is UseDefault). Values must be unique.
         /// </summary>
-        public List<string> DefaultAttributeValue ;
+        public List<string> DefaultAttributeValue;
 
         /// <summary>
         /// Collection of fields relating to expanding this rule at set intervals. Only one expansion can be set per rule.
         /// </summary>
-        public LinearSetIntersectionRuleExpansion LinearExpansion ;
+        public LinearSetIntersectionRuleExpansion LinearExpansion;
 
         /// <summary>
         /// The minimum number of values that must match between sets.
         /// </summary>
-        public uint MinIntersectionSize ;
+        public uint MinIntersectionSize;
 
         /// <summary>
         /// Friendly name chosen by developer.
         /// </summary>
-        public string Name ;
+        public string Name;
 
         /// <summary>
         /// How many seconds before this rule is no longer enforced (but tickets that comply with this rule will still be
         /// prioritized over those that don't). Leave blank if this rule is always enforced.
         /// </summary>
-        public uint? SecondsUntilOptional ;
+        public uint? SecondsUntilOptional;
 
         /// <summary>
         /// The relative weight of this rule compared to others.
         /// </summary>
-        public double Weight ;
-
+        public double Weight;
     }
 
     /// <summary>
@@ -3034,10 +3475,14 @@ namespace PlayFab.MultiplayerModels
     public class SetMatchmakingQueueRequest : PlayFabRequestCommon
     {
         /// <summary>
+        /// The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.).
+        /// </summary>
+        public Dictionary<string, string> CustomTags;
+
+        /// <summary>
         /// The matchmaking queue config.
         /// </summary>
-        public MatchmakingQueueConfig MatchmakingQueue ;
-
+        public MatchmakingQueueConfig MatchmakingQueue;
     }
 
     public class SetMatchmakingQueueResult : PlayFabResultCommon
@@ -3054,18 +3499,22 @@ namespace PlayFab.MultiplayerModels
         /// <summary>
         /// The guid string build ID of the multiplayer server to delete.
         /// </summary>
-        public string BuildId ;
+        public string BuildId;
+
+        /// <summary>
+        /// The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.).
+        /// </summary>
+        public Dictionary<string, string> CustomTags;
 
         /// <summary>
         /// The region of the multiplayer server to shut down.
         /// </summary>
-        public string Region ;
+        public string Region;
 
         /// <summary>
         /// A guid string session ID of the multiplayer server to shut down.
         /// </summary>
-        public string SessionId ;
-
+        public string SessionId;
     }
 
     public class Statistics
@@ -3073,23 +3522,22 @@ namespace PlayFab.MultiplayerModels
         /// <summary>
         /// The average.
         /// </summary>
-        public double Average ;
+        public double Average;
 
         /// <summary>
         /// The 50th percentile.
         /// </summary>
-        public double Percentile50 ;
+        public double Percentile50;
 
         /// <summary>
         /// The 90th percentile.
         /// </summary>
-        public double Percentile90 ;
+        public double Percentile90;
 
         /// <summary>
         /// The 99th percentile.
         /// </summary>
-        public double Percentile99 ;
-
+        public double Percentile99;
     }
 
     public class StatisticsVisibilityToPlayers
@@ -3097,13 +3545,12 @@ namespace PlayFab.MultiplayerModels
         /// <summary>
         /// Whether to allow players to view the current number of players in the matchmaking queue.
         /// </summary>
-        public bool ShowNumberOfPlayersMatching ;
+        public bool ShowNumberOfPlayersMatching;
 
         /// <summary>
         /// Whether to allow players to view statistics representing the time it takes for tickets to find a match.
         /// </summary>
-        public bool ShowTimeToMatch ;
-
+        public bool ShowTimeToMatch;
     }
 
     public class StringEqualityRule
@@ -3111,42 +3558,41 @@ namespace PlayFab.MultiplayerModels
         /// <summary>
         /// Description of the attribute used by this rule to match tickets.
         /// </summary>
-        public QueueRuleAttribute Attribute ;
+        public QueueRuleAttribute Attribute;
 
         /// <summary>
         /// Describes the behavior when an attribute is not specified in the ticket creation request or in the user's entity
         /// profile.
         /// </summary>
-        public AttributeNotSpecifiedBehavior AttributeNotSpecifiedBehavior ;
+        public AttributeNotSpecifiedBehavior AttributeNotSpecifiedBehavior;
 
         /// <summary>
         /// The default value assigned to tickets that are missing the attribute specified by AttributePath (assuming that
         /// AttributeNotSpecifiedBehavior is false).
         /// </summary>
-        public string DefaultAttributeValue ;
+        public string DefaultAttributeValue;
 
         /// <summary>
         /// Collection of fields relating to expanding this rule at set intervals. For StringEqualityRules, this is limited to
         /// turning the rule off or on during different intervals.
         /// </summary>
-        public StringEqualityRuleExpansion Expansion ;
+        public StringEqualityRuleExpansion Expansion;
 
         /// <summary>
         /// Friendly name chosen by developer.
         /// </summary>
-        public string Name ;
+        public string Name;
 
         /// <summary>
         /// How many seconds before this rule is no longer enforced (but tickets that comply with this rule will still be
         /// prioritized over those that don't). Leave blank if this rule is always enforced.
         /// </summary>
-        public uint? SecondsUntilOptional ;
+        public uint? SecondsUntilOptional;
 
         /// <summary>
         /// The relative weight of this rule compared to others.
         /// </summary>
-        public double Weight ;
-
+        public double Weight;
     }
 
     public class StringEqualityRuleExpansion
@@ -3154,13 +3600,12 @@ namespace PlayFab.MultiplayerModels
         /// <summary>
         /// List of bools specifying whether the rule is applied during this expansion.
         /// </summary>
-        public List<bool> EnabledOverrides ;
+        public List<bool> EnabledOverrides;
 
         /// <summary>
         /// How many seconds before this rule is expanded.
         /// </summary>
-        public uint SecondsBetweenExpansions ;
-
+        public uint SecondsBetweenExpansions;
     }
 
     public class TeamDifferenceRule
@@ -3168,41 +3613,40 @@ namespace PlayFab.MultiplayerModels
         /// <summary>
         /// Description of the attribute used by this rule to match teams.
         /// </summary>
-        public QueueRuleAttribute Attribute ;
+        public QueueRuleAttribute Attribute;
 
         /// <summary>
         /// Collection of fields relating to expanding this rule at set intervals. Only one expansion can be set per rule. When this
         /// is set, Difference is ignored.
         /// </summary>
-        public CustomTeamDifferenceRuleExpansion CustomExpansion ;
+        public CustomTeamDifferenceRuleExpansion CustomExpansion;
 
         /// <summary>
         /// The default value assigned to tickets that are missing the attribute specified by AttributePath (assuming that
         /// AttributeNotSpecifiedBehavior is false).
         /// </summary>
-        public double DefaultAttributeValue ;
+        public double DefaultAttributeValue;
 
         /// <summary>
         /// The allowed difference between any two teams at the start of matchmaking.
         /// </summary>
-        public double Difference ;
+        public double Difference;
 
         /// <summary>
         /// Collection of fields relating to expanding this rule at set intervals. Only one expansion can be set per rule.
         /// </summary>
-        public LinearTeamDifferenceRuleExpansion LinearExpansion ;
+        public LinearTeamDifferenceRuleExpansion LinearExpansion;
 
         /// <summary>
         /// Friendly name chosen by developer.
         /// </summary>
-        public string Name ;
+        public string Name;
 
         /// <summary>
         /// How many seconds before this rule is no longer enforced (but tickets that comply with this rule will still be
         /// prioritized over those that don't). Leave blank if this rule is always enforced.
         /// </summary>
-        public uint? SecondsUntilOptional ;
-
+        public uint? SecondsUntilOptional;
     }
 
     public class TeamSizeBalanceRule
@@ -3211,29 +3655,28 @@ namespace PlayFab.MultiplayerModels
         /// Controls how the Difference parameter expands over time. Only one expansion can be set per rule. When this is set,
         /// Difference is ignored.
         /// </summary>
-        public CustomTeamSizeBalanceRuleExpansion CustomExpansion ;
+        public CustomTeamSizeBalanceRuleExpansion CustomExpansion;
 
         /// <summary>
         /// The allowed difference in team size between any two teams.
         /// </summary>
-        public uint Difference ;
+        public uint Difference;
 
         /// <summary>
         /// Controls how the Difference parameter expands over time. Only one expansion can be set per rule.
         /// </summary>
-        public LinearTeamSizeBalanceRuleExpansion LinearExpansion ;
+        public LinearTeamSizeBalanceRuleExpansion LinearExpansion;
 
         /// <summary>
         /// Friendly name chosen by developer.
         /// </summary>
-        public string Name ;
+        public string Name;
 
         /// <summary>
         /// How many seconds before this rule is no longer enforced (but tickets that comply with this rule will still be
         /// prioritized over those that don't). Leave blank if this rule is always enforced.
         /// </summary>
-        public uint? SecondsUntilOptional ;
-
+        public uint? SecondsUntilOptional;
     }
 
     public class TeamTicketSizeSimilarityRule
@@ -3241,14 +3684,13 @@ namespace PlayFab.MultiplayerModels
         /// <summary>
         /// Friendly name chosen by developer.
         /// </summary>
-        public string Name ;
+        public string Name;
 
         /// <summary>
         /// How many seconds before this rule is no longer enforced (but tickets that comply with this rule will still be
         /// prioritized over those that don't). Leave blank if this rule is always enforced.
         /// </summary>
-        public uint? SecondsUntilOptional ;
-
+        public uint? SecondsUntilOptional;
     }
 
     public enum TitleMultiplayerServerEnabledStatus
@@ -3263,8 +3705,7 @@ namespace PlayFab.MultiplayerModels
         /// <summary>
         /// The core capacity for the various regions and VM Family
         /// </summary>
-        public List<CoreCapacity> CoreCapacities ;
-
+        public List<CoreCapacity> CoreCapacities;
     }
 
     /// <summary>
@@ -3274,15 +3715,19 @@ namespace PlayFab.MultiplayerModels
     public class UntagContainerImageRequest : PlayFabRequestCommon
     {
         /// <summary>
+        /// The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.).
+        /// </summary>
+        public Dictionary<string, string> CustomTags;
+
+        /// <summary>
         /// The container image which tag we want to remove.
         /// </summary>
-        public string ImageName ;
+        public string ImageName;
 
         /// <summary>
         /// The tag we want to remove.
         /// </summary>
-        public string Tag ;
-
+        public string Tag;
     }
 
     /// <summary>
@@ -3293,18 +3738,22 @@ namespace PlayFab.MultiplayerModels
         /// <summary>
         /// The guid string alias Id of the alias to be updated.
         /// </summary>
-        public string AliasId ;
+        public string AliasId;
 
         /// <summary>
         /// The alias name.
         /// </summary>
-        public string AliasName ;
+        public string AliasName;
 
         /// <summary>
         /// Array of build selection criteria.
         /// </summary>
-        public List<BuildSelectionCriterion> BuildSelectionCriteria ;
+        public List<BuildSelectionCriterion> BuildSelectionCriteria;
 
+        /// <summary>
+        /// The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.).
+        /// </summary>
+        public Dictionary<string, string> CustomTags;
     }
 
     /// <summary>
@@ -3315,13 +3764,17 @@ namespace PlayFab.MultiplayerModels
         /// <summary>
         /// The guid string ID of the build we want to update regions for.
         /// </summary>
-        public string BuildId ;
+        public string BuildId;
 
         /// <summary>
         /// The updated region configuration that should be applied to the specified build.
         /// </summary>
-        public BuildRegionParams BuildRegion ;
+        public BuildRegionParams BuildRegion;
 
+        /// <summary>
+        /// The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.).
+        /// </summary>
+        public Dictionary<string, string> CustomTags;
     }
 
     /// <summary>
@@ -3332,13 +3785,17 @@ namespace PlayFab.MultiplayerModels
         /// <summary>
         /// The guid string ID of the build we want to update regions for.
         /// </summary>
-        public string BuildId ;
+        public string BuildId;
 
         /// <summary>
         /// The updated region configuration that should be applied to the specified build.
         /// </summary>
-        public List<BuildRegionParams> BuildRegions ;
+        public List<BuildRegionParams> BuildRegions;
 
+        /// <summary>
+        /// The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.).
+        /// </summary>
+        public Dictionary<string, string> CustomTags;
     }
 
     /// <summary>
@@ -3347,10 +3804,14 @@ namespace PlayFab.MultiplayerModels
     public class UploadCertificateRequest : PlayFabRequestCommon
     {
         /// <summary>
+        /// The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.).
+        /// </summary>
+        public Dictionary<string, string> CustomTags;
+
+        /// <summary>
         /// The game certificate to upload.
         /// </summary>
-        public Certificate GameCertificate ;
-
+        public Certificate GameCertificate;
     }
 
     public class VirtualMachineSummary
@@ -3358,17 +3819,16 @@ namespace PlayFab.MultiplayerModels
         /// <summary>
         /// The virtual machine health status.
         /// </summary>
-        public string HealthStatus ;
+        public string HealthStatus;
 
         /// <summary>
         /// The virtual machine state.
         /// </summary>
-        public string State ;
+        public string State;
 
         /// <summary>
         /// The virtual machine ID.
         /// </summary>
-        public string VmId ;
-
+        public string VmId;
     }
 }

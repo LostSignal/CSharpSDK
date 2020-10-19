@@ -5,7 +5,8 @@ namespace PlayFab
 {
     public class PlayFabApiSettings
     {
-        public readonly Dictionary<string, string> RequestGetParams = new Dictionary<string, string> {
+        public readonly Dictionary<string, string> RequestGetParams = new Dictionary<string, string>
+        {
             { "sdk", PlayFabSettings.SdkVersionString }
         };
         /// <summary> This is only for customers running a private cluster.  Generally you shouldn't touch this </summary>

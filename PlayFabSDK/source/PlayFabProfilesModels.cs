@@ -18,18 +18,17 @@ namespace PlayFab.ProfilesModels
         /// <summary>
         /// Un-escaped JSON object, if DataAsObject is true.
         /// </summary>
-        public object DataObject ;
+        public object DataObject;
 
         /// <summary>
         /// Escaped string JSON body of the object, if DataAsObject is default or false.
         /// </summary>
-        public string EscapedDataObject ;
+        public string EscapedDataObject;
 
         /// <summary>
         /// Name of this object.
         /// </summary>
-        public string ObjectName ;
-
+        public string ObjectName;
     }
 
     /// <summary>
@@ -46,7 +45,6 @@ namespace PlayFab.ProfilesModels
         /// Entity type. See https://docs.microsoft.com/gaming/playfab/features/data/entities/available-built-in-entity-types
         /// </summary>
         public string Type { get; set; }
-
     }
 
     public class EntityLineage
@@ -54,33 +52,32 @@ namespace PlayFab.ProfilesModels
         /// <summary>
         /// The Character Id of the associated entity.
         /// </summary>
-        public string CharacterId ;
+        public string CharacterId;
 
         /// <summary>
         /// The Group Id of the associated entity.
         /// </summary>
-        public string GroupId ;
+        public string GroupId;
 
         /// <summary>
         /// The Master Player Account Id of the associated entity.
         /// </summary>
-        public string MasterPlayerAccountId ;
+        public string MasterPlayerAccountId;
 
         /// <summary>
         /// The Namespace Id of the associated entity.
         /// </summary>
-        public string NamespaceId ;
+        public string NamespaceId;
 
         /// <summary>
         /// The Title Id of the associated entity.
         /// </summary>
-        public string TitleId ;
+        public string TitleId;
 
         /// <summary>
         /// The Title Player Account Id of the associated entity.
         /// </summary>
-        public string TitlePlayerAccountId ;
-
+        public string TitlePlayerAccountId;
     }
 
     public class EntityPermissionStatement
@@ -88,33 +85,32 @@ namespace PlayFab.ProfilesModels
         /// <summary>
         /// The action this statement effects. May be 'Read', 'Write' or '*' for both read and write.
         /// </summary>
-        public string Action ;
+        public string Action;
 
         /// <summary>
         /// A comment about the statement. Intended solely for bookkeeping and debugging.
         /// </summary>
-        public string Comment ;
+        public string Comment;
 
         /// <summary>
         /// Additional conditions to be applied for entity resources.
         /// </summary>
-        public object Condition ;
+        public object Condition;
 
         /// <summary>
         /// The effect this statement will have. It may be either Allow or Deny
         /// </summary>
-        public EffectType Effect ;
+        public EffectType Effect;
 
         /// <summary>
         /// The principal this statement will effect.
         /// </summary>
-        public object Principal ;
+        public object Principal;
 
         /// <summary>
         /// The resource this statements effects. Similar to 'pfrn:data--title![Title ID]/Profile/*'
         /// </summary>
-        public string Resource ;
-
+        public string Resource;
     }
 
     public class EntityProfileBody
@@ -122,76 +118,75 @@ namespace PlayFab.ProfilesModels
         /// <summary>
         /// Avatar URL for the entity.
         /// </summary>
-        public string AvatarUrl ;
+        public string AvatarUrl;
 
         /// <summary>
         /// The creation time of this profile in UTC.
         /// </summary>
-        public DateTime Created ;
+        public DateTime Created;
 
         /// <summary>
         /// The display name of the entity. This field may serve different purposes for different entity types. i.e.: for a title
         /// player account it could represent the display name of the player, whereas on a character it could be character's name.
         /// </summary>
-        public string DisplayName ;
+        public string DisplayName;
 
         /// <summary>
         /// The entity id and type.
         /// </summary>
-        public EntityKey Entity ;
+        public EntityKey Entity;
 
         /// <summary>
         /// The chain of responsibility for this entity. Use Lineage.
         /// </summary>
-        public string EntityChain ;
+        public string EntityChain;
 
         /// <summary>
         /// The experiment variants of this profile.
         /// </summary>
-        public List<string> ExperimentVariants ;
+        public List<string> ExperimentVariants;
 
         /// <summary>
         /// The files on this profile.
         /// </summary>
-        public Dictionary<string,EntityProfileFileMetadata> Files ;
+        public Dictionary<string, EntityProfileFileMetadata> Files;
 
         /// <summary>
         /// The language on this profile.
         /// </summary>
-        public string Language ;
+        public string Language;
 
         /// <summary>
         /// Leaderboard metadata for the entity.
         /// </summary>
-        public string LeaderboardMetadata ;
+        public string LeaderboardMetadata;
 
         /// <summary>
         /// The lineage of this profile.
         /// </summary>
-        public EntityLineage Lineage ;
+        public EntityLineage Lineage;
 
         /// <summary>
         /// The objects on this profile.
         /// </summary>
-        public Dictionary<string,EntityDataObject> Objects ;
+        public Dictionary<string, EntityDataObject> Objects;
 
         /// <summary>
         /// The permissions that govern access to this entity profile and its properties. Only includes permissions set on this
         /// profile, not global statements from titles and namespaces.
         /// </summary>
-        public List<EntityPermissionStatement> Permissions ;
+        public List<EntityPermissionStatement> Permissions;
 
         /// <summary>
         /// The statistics on this profile.
         /// </summary>
-        public Dictionary<string,EntityStatisticValue> Statistics ;
+        public Dictionary<string, EntityStatisticValue> Statistics;
 
         /// <summary>
         /// The version number of the profile in persistent storage at the time of the read. Used for optional optimistic
         /// concurrency during update.
         /// </summary>
-        public int VersionNumber ;
-
+        public int VersionNumber;
     }
 
     /// <summary>
@@ -202,23 +197,22 @@ namespace PlayFab.ProfilesModels
         /// <summary>
         /// Checksum value for the file
         /// </summary>
-        public string Checksum ;
+        public string Checksum;
 
         /// <summary>
         /// Name of the file
         /// </summary>
-        public string FileName ;
+        public string FileName;
 
         /// <summary>
         /// Last UTC time the file was modified
         /// </summary>
-        public DateTime LastModified ;
+        public DateTime LastModified;
 
         /// <summary>
         /// Storage service's reported byte count
         /// </summary>
-        public int Size ;
-
+        public int Size;
     }
 
     public class EntityStatisticChildValue
@@ -226,18 +220,17 @@ namespace PlayFab.ProfilesModels
         /// <summary>
         /// Child name value, if child statistic
         /// </summary>
-        public string ChildName ;
+        public string ChildName;
 
         /// <summary>
         /// Child statistic metadata
         /// </summary>
-        public string Metadata ;
+        public string Metadata;
 
         /// <summary>
         /// Child statistic value
         /// </summary>
-        public int Value ;
-
+        public int Value;
     }
 
     public class EntityStatisticValue
@@ -245,28 +238,27 @@ namespace PlayFab.ProfilesModels
         /// <summary>
         /// Child statistic values
         /// </summary>
-        public Dictionary<string,EntityStatisticChildValue> ChildStatistics ;
+        public Dictionary<string, EntityStatisticChildValue> ChildStatistics;
 
         /// <summary>
         /// Statistic metadata
         /// </summary>
-        public string Metadata ;
+        public string Metadata;
 
         /// <summary>
         /// Statistic name
         /// </summary>
-        public string Name ;
+        public string Name;
 
         /// <summary>
         /// Statistic value
         /// </summary>
-        public int? Value ;
+        public int? Value;
 
         /// <summary>
         /// Statistic version
         /// </summary>
-        public int Version ;
-
+        public int Version;
     }
 
     /// <summary>
@@ -279,16 +271,20 @@ namespace PlayFab.ProfilesModels
     public class GetEntityProfileRequest : PlayFabRequestCommon
     {
         /// <summary>
+        /// The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.).
+        /// </summary>
+        public Dictionary<string, string> CustomTags;
+
+        /// <summary>
         /// Determines whether the objects will be returned as an escaped JSON string or as a un-escaped JSON object. Default is
         /// JSON string.
         /// </summary>
-        public bool? DataAsObject ;
+        public bool? DataAsObject;
 
         /// <summary>
         /// The entity to perform this action on.
         /// </summary>
-        public EntityKey Entity ;
-
+        public EntityKey Entity;
     }
 
     public class GetEntityProfileResponse : PlayFabResultCommon
@@ -296,8 +292,7 @@ namespace PlayFab.ProfilesModels
         /// <summary>
         /// Entity profile
         /// </summary>
-        public EntityProfileBody Profile ;
-
+        public EntityProfileBody Profile;
     }
 
     /// <summary>
@@ -307,16 +302,20 @@ namespace PlayFab.ProfilesModels
     public class GetEntityProfilesRequest : PlayFabRequestCommon
     {
         /// <summary>
+        /// The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.).
+        /// </summary>
+        public Dictionary<string, string> CustomTags;
+
+        /// <summary>
         /// Determines whether the objects will be returned as an escaped JSON string or as a un-escaped JSON object. Default is
         /// JSON string.
         /// </summary>
-        public bool? DataAsObject ;
+        public bool? DataAsObject;
 
         /// <summary>
         /// Entity keys of the profiles to load. Must be between 1 and 25
         /// </summary>
-        public List<EntityKey> Entities ;
-
+        public List<EntityKey> Entities;
     }
 
     public class GetEntityProfilesResponse : PlayFabResultCommon
@@ -324,8 +323,7 @@ namespace PlayFab.ProfilesModels
         /// <summary>
         /// Entity profiles
         /// </summary>
-        public List<EntityProfileBody> Profiles ;
-
+        public List<EntityProfileBody> Profiles;
     }
 
     /// <summary>
@@ -334,6 +332,10 @@ namespace PlayFab.ProfilesModels
     /// </summary>
     public class GetGlobalPolicyRequest : PlayFabRequestCommon
     {
+        /// <summary>
+        /// The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.).
+        /// </summary>
+        public Dictionary<string, string> CustomTags;
     }
 
     public class GetGlobalPolicyResponse : PlayFabResultCommon
@@ -341,8 +343,7 @@ namespace PlayFab.ProfilesModels
         /// <summary>
         /// The permissions that govern access to all entities under this title or namespace.
         /// </summary>
-        public List<EntityPermissionStatement> Permissions ;
-
+        public List<EntityPermissionStatement> Permissions;
     }
 
     /// <summary>
@@ -351,15 +352,19 @@ namespace PlayFab.ProfilesModels
     public class GetTitlePlayersFromMasterPlayerAccountIdsRequest : PlayFabRequestCommon
     {
         /// <summary>
+        /// The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.).
+        /// </summary>
+        public Dictionary<string, string> CustomTags;
+
+        /// <summary>
         /// Master player account ids.
         /// </summary>
-        public List<string> MasterPlayerAccountIds ;
+        public List<string> MasterPlayerAccountIds;
 
         /// <summary>
         /// Id of title to get players from.
         /// </summary>
-        public string TitleId ;
-
+        public string TitleId;
     }
 
     public class GetTitlePlayersFromMasterPlayerAccountIdsResponse : PlayFabResultCommon
@@ -367,13 +372,12 @@ namespace PlayFab.ProfilesModels
         /// <summary>
         /// Optional id of title to get players from, required if calling using a master_player_account.
         /// </summary>
-        public string TitleId ;
+        public string TitleId;
 
         /// <summary>
         /// Dictionary of master player ids mapped to title player entity keys and id pairs
         /// </summary>
-        public Dictionary<string,EntityKey> TitlePlayerAccounts ;
-
+        public Dictionary<string, EntityKey> TitlePlayerAccounts;
     }
 
     public enum OperationTypes
@@ -391,15 +395,19 @@ namespace PlayFab.ProfilesModels
     public class SetEntityProfilePolicyRequest : PlayFabRequestCommon
     {
         /// <summary>
+        /// The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.).
+        /// </summary>
+        public Dictionary<string, string> CustomTags;
+
+        /// <summary>
         /// The entity to perform this action on.
         /// </summary>
-        public EntityKey Entity ;
+        public EntityKey Entity;
 
         /// <summary>
         /// The statements to include in the access policy.
         /// </summary>
-        public List<EntityPermissionStatement> Statements ;
-
+        public List<EntityPermissionStatement> Statements;
     }
 
     public class SetEntityProfilePolicyResponse : PlayFabResultCommon
@@ -408,8 +416,7 @@ namespace PlayFab.ProfilesModels
         /// The permissions that govern access to this entity profile and its properties. Only includes permissions set on this
         /// profile, not global statements from titles and namespaces.
         /// </summary>
-        public List<EntityPermissionStatement> Permissions ;
-
+        public List<EntityPermissionStatement> Permissions;
     }
 
     /// <summary>
@@ -419,10 +426,14 @@ namespace PlayFab.ProfilesModels
     public class SetGlobalPolicyRequest : PlayFabRequestCommon
     {
         /// <summary>
+        /// The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.).
+        /// </summary>
+        public Dictionary<string, string> CustomTags;
+
+        /// <summary>
         /// The permissions that govern access to all entities under this title or namespace.
         /// </summary>
-        public List<EntityPermissionStatement> Permissions ;
-
+        public List<EntityPermissionStatement> Permissions;
     }
 
     public class SetGlobalPolicyResponse : PlayFabResultCommon
@@ -436,20 +447,24 @@ namespace PlayFab.ProfilesModels
     public class SetProfileLanguageRequest : PlayFabRequestCommon
     {
         /// <summary>
+        /// The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.).
+        /// </summary>
+        public Dictionary<string, string> CustomTags;
+
+        /// <summary>
         /// The entity to perform this action on.
         /// </summary>
-        public EntityKey Entity ;
+        public EntityKey Entity;
 
         /// <summary>
         /// The expected version of a profile to perform this update on
         /// </summary>
-        public int? ExpectedVersion ;
+        public int? ExpectedVersion;
 
         /// <summary>
         /// The language to set on the given entity. Deletes the profile's language if passed in a null string.
         /// </summary>
-        public string Language ;
-
+        public string Language;
     }
 
     public class SetProfileLanguageResponse : PlayFabResultCommon
@@ -457,12 +472,11 @@ namespace PlayFab.ProfilesModels
         /// <summary>
         /// The type of operation that occured on the profile's language
         /// </summary>
-        public OperationTypes? OperationResult ;
+        public OperationTypes? OperationResult;
 
         /// <summary>
         /// The updated version of the profile after the language update
         /// </summary>
-        public int? VersionNumber ;
-
+        public int? VersionNumber;
     }
 }

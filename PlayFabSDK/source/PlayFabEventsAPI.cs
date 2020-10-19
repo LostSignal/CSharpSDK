@@ -2,6 +2,11 @@
 
 using PlayFab.EventsModels;
 using PlayFab.Internal;
+#pragma warning disable 0649
+using System;
+// This is required for the Obsolete Attribute flag
+//  which is not always present in all API's
+#pragma warning restore 0649
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -31,7 +36,7 @@ namespace PlayFab
         }
 
         /// <summary>
-        /// Write batches of entity based events to PlayStream. The namespace of the Event must start with 'com.playfab.events.'
+        /// Write batches of entity based events to PlayStream. The namespace of the Event must be 'custom' or start with 'custom.'.
         /// </summary>
         public static async Task<PlayFabResult<WriteEventsResponse>> WriteEventsAsync(WriteEventsRequest request, object customData = null, Dictionary<string, string> extraHeaders = null)
         {
